@@ -1,0 +1,38 @@
+# --- Secrets: NEVER commit these (public repo) ---
+secrets.yaml
+**/secrets.yaml
+*.secret
+.env
+.env.*
+!secrets.example.yaml
+
+# --- ESPHome ---
+.esphome/
+firmware/esphome/.esphome/
+*.bin
+
+# --- Home Assistant ---
+home-assistant/.storage/
+home-assistant/*.db
+home-assistant/*.log
+home-assistant/known_devices.yaml
+home-assistant/ip_bans.yaml
+
+# --- Python / tooling ---
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+node_modules/
+
+# --- CAD / 3D temp ---
+*.f3d.lock
+*.stl.tmp
+hardware/3d-models/**/*.bak
+
+# --- OS / editor ---
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp

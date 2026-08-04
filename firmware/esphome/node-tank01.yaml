@@ -1,0 +1,57 @@
+# node-tank01 — MVP-4 首个传感节点
+# 水温(DS18B20) + 缺水(浮球) + 泵电流(INA219)，发 MQTT (aqua/tank01/...) → Home Assistant。
+#
+# 引脚：
+#   GPIO4  1-Wire (DS18B20 水温)
+#   GPIO21 SDA / GPIO22 SCL (I2C: INA219 泵电流监测)
+#   GPIO13 浮球开关 (低水位, 上拉输入)
+#
+# 首次使用：cp secrets.example.yaml secrets.yaml 并填写；然后 esphome run node-tank01.yaml
+
+substitutions:
+  node_name: tank01
+  friendly_name: "Tank 01"
+
+packages:
+  base: !include common/base.yaml
+
+one_wire:
+  - platform: gpio
+    pin: GPIO4
+
+i2c:
+  sda: GPIO21
+  scl: GPIO22
+  scan: true
+
+sensor:
+  - platform: dallas_temp
+    name: "Water temp"
+    id: water_temp
+    update_interval: 30s
+    # 多个探头时用 scan 到的地址区分：address: 0x...
+
+  - platform: ina219        # 泵电流/功率：突然升高=堵，归零=停/断线
+    address: 0x40
+    shunt_resistance: 0.1 ohm
+    max_voltage: 16.0V
+    max_current: 3.2A
+    update_interval: 5s
+    current:
+      name: "Pump current"
+      id: pump_current
+    bus_voltage:
+      name: "Bus voltage"
+
+binary_sensor:
+  - platform: gpio
+    name: "Low water"
+    id: low_water
+    pin:
+      number: GPIO13
+      mode: INPUT_PULLUP
+    filters:
+      - delay_on_off: 2s
+
+# 注：断泵/缺水/高温的“告警”逻辑放在 Home Assistant（跨模块、可推手机），
+#     节点只负责如实上报数据。见 ../../home-assistant/。

@@ -1,0 +1,18 @@
+# Documentation & Hardware License
+
+Unless a file states otherwise, all **documentation, hardware designs, schematics,
+wiring diagrams, 3D models and media** in this repository are licensed under the
+
+**Creative Commons Attribution-ShareAlike 4.0 International (CC-BY-SA-4.0)**
+
+You are free to share and adapt this material for any purpose, even commercially,
+under the following terms:
+
+- **Attribution** — give appropriate credit, link to the license, and indicate changes.
+- **ShareAlike** — if you remix or build upon the material, distribute your
+  contributions under the same license.
+
+Full legal text: https://creativecommons.org/licenses/by-sa/4.0/legalcode
+Human-readable summary: https://creativecommons.org/licenses/by-sa/4.0/
+
+Code and firmware are licensed separately under MIT — see ../LICENSE.

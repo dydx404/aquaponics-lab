@@ -1,0 +1,14 @@
+# 统一文本文件换行为 LF，避免跨平台 CRLF 冲突
+* text=auto eol=lf
+
+# 二进制文件不做换行转换
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.pdf binary
+*.stl binary
+*.step binary
+*.stp binary
+*.f3d binary
+*.3mf binary

@@ -1,0 +1,40 @@
+# 所有节点复用的底座：wifi / mqtt / ota / logger / web / 时间。
+# 通过各节点的 `packages:` 引入。需要节点提供 substitutions: node_name, friendly_name。
+esphome:
+  name: node-${node_name}
+  friendly_name: ${friendly_name}
+
+esp32:
+  board: esp32dev
+  framework:
+    type: arduino
+
+logger:
+
+ota:
+  - platform: esphome
+    password: !secret ota_password
+
+web_server:
+  port: 80
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  ap:
+    ssid: "node-${node_name}-fallback"
+    password: !secret ap_password
+
+captive_portal:
+
+# 统一 MQTT 主题命名空间：aqua/<node>/<metric>
+mqtt:
+  broker: !secret mqtt_broker
+  username: !secret mqtt_user
+  password: !secret mqtt_password
+  topic_prefix: aqua/${node_name}
+  discovery: true
+
+time:
+  - platform: sntp
+    id: sntp_time

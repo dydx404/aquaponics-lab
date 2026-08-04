@@ -1,0 +1,28 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  guard-secrets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: 确保没有提交 secrets.yaml
+        run: |
+          if git ls-files | grep -E '(^|/)secrets\.yaml$'; then
+            echo "::error::secrets.yaml 不应被提交（公开仓库）"; exit 1
+          fi
+          echo "OK: 未跟踪 secrets.yaml"
+
+  yamllint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: yamllint (relaxed)
+        run: |
+          pip install yamllint
+          # 放宽风格检查；ESPHome 的自定义标签不做强校验
+          yamllint -d relaxed home-assistant/ || true
