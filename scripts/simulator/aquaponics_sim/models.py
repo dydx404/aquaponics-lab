@@ -261,7 +261,8 @@ class NodeModels:
         kind = fault.get("type", "")
         target = fault.get("target", self.node_id)
 
-        if target != self.node_id:
+        # "*" is a wildcard for all nodes (simulator dispatches it per-node).
+        if target != "*" and target != self.node_id:
             return
 
         if kind == "pump_fail":

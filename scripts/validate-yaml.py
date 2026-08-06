@@ -16,6 +16,12 @@ from pathlib import Path
 
 import yaml
 
+# Windows GBK console can't encode emoji in stdout; force UTF-8.
+try:
+    sys.stdout.reconfigure(encoding="utf-8")
+except Exception:
+    pass
+
 
 # ── Custom loader that ignores ESPHome/HA custom tags ─────────────────
 # ESPHome uses !secret, !include, !extend, etc. We just want to verify

@@ -77,6 +77,7 @@ aqua/<node>/<metric>
 - `<node>`：`tank01` / `power` / `grow` / `vision` …（不含 `node-` 前缀，前缀在设备名里）。
 - `<metric>`：`water_temp` / `water_level` / `pump_current` / `battery_v` …（snake_case）。
 - 命令主题：`aqua/<node>/<actuator>/set`。
+- 执行器状态回读：`aqua/<node>/<actuator>/state`（ON/OFF，执行器实际状态）。
 - 状态/遗嘱：`aqua/<node>/status`（online/offline，用 LWT）。
 
 示例：

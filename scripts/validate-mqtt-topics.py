@@ -18,6 +18,12 @@ from __future__ import annotations
 
 import re
 import sys
+
+# Windows GBK console can't encode emoji in stdout; force UTF-8.
+try:
+    sys.stdout.reconfigure(encoding="utf-8")
+except Exception:
+    pass
 from pathlib import Path
 
 import yaml
