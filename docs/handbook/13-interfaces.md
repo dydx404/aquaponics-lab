@@ -124,9 +124,10 @@ aqua/grow/light/set         ON
 
 1. 提出变更 → 开 Issue。
 2. 写/更新 **ADR**（[docs/decisions](../decisions/)）说明原因与影响。
-3. **双方（硬件 + 软件）确认**。
-4. 同步更新本章与 [第 21 章附录](21-appendix-pinouts.md)。
-5. 相关分支据新契约调整。
+3. **逐行核对本次变更影响的 [functional-spec](../functional-spec.md) 条目** —— 防止像 [ADR-0004](../decisions/0004-power-domains.md) 那样静默废掉一条已冻结的功能链（它把"泵电流监测"悄悄变得无实现路径，直到硬件评审才暴露，见 [ADR-0009](../decisions/0009-pump-metering-and-control.md)）。
+4. **双方（硬件 + 软件）确认**。
+5. 同步更新本章与 [第 21 章附录](21-appendix-pinouts.md)。
+6. 相关分支据新契约调整。
 
 > 口诀：**内部实现随便改，公共接口要开会。**
 

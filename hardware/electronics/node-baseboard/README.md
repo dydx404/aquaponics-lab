@@ -44,10 +44,13 @@
 - [ ] 电源指示灯 + 丝印标注所有接口/极性/引脚
 
 ### Should（有余力就上）
-- [ ] 板载 ADS1115 位（可选贴装，给 pH/EC/浊度）
-- [ ] **预留执行器位**（可选贴装，据 [functional-spec](../../../docs/functional-spec.md) B 类）：~4 路 12V MOSFET（打氧/加药/风扇/灯）、2 个舵机/PWM 头（喂食/遮阳）、2 路外部继电器控制输出（220V 泵/气泵）、WS2812 口、SPI 排针（未来触摸墨水屏终端）
-- [ ] 1 路电流监测 INA226（测总线电流）
+- [ ] 板载 ADS1115 位（可选贴装，给 pH/EC/浊度）+ **3 路开关式探头供电口**（分时供电，消 pH/TDS/浊度串扰，≈¥1/路，见 [ADR-0007](../../../docs/decisions/0007-sensor-rail-and-level-translation.md)）
+- [ ] **UART header**（PZEM-004T 泵电流/功率计量，见 [ADR-0009](../../../docs/decisions/0009-pump-metering-and-control.md)）
+- [ ] **预留执行器位**（可选贴装，据 [functional-spec](../../../docs/functional-spec.md) B 类）：~4 路 12V MOSFET（打氧/加药/风扇/灯，**区分开关/PWM 通道**）、2 个舵机/PWM 头（喂食/遮阳）、**2 路光耦隔离泵控制输出**（高有效 + 3.3/5V 跳线 + **主泵失电默认通 NC**，见 ADR-0009）、WS2812 口
+- [ ] 1 路 INA226 测 **12V 母线/电池**（主泵走 PZEM，不在此板）
+- [ ] 干接点数字输入可走 **MCP23017 I²C 扩展**释放 GPIO；**脉冲输入必须留原生 GPIO**（见 [ADR-0008](../../../docs/decisions/0008-node-io-provisioning.md)）
 - [ ] JST-XH 传感口、安装孔、清晰丝印
+- [ ] ~~SPI 排针~~（触摸墨水屏终端是**独立 ESP32 节点**，底板不留，省 4 GPIO）
 
 ### Could（加分/长线）
 - [ ] 每路电流采样、栅极驱动、TVS/snubber 防护
