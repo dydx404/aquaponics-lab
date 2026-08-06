@@ -9,6 +9,9 @@
 - [0003 · 重物落地：弱层板下的载荷布局](0003-heavy-tanks-on-floor.md)
 - [0004 · 供电分域：220V 市电泵 + 12V DC 控制系统](0004-power-domains.md)
 - [0005 · 接口契约分层：电气冻结 / 物理连接器延后](0005-connector-layer-deferred.md)
+- [0006 · I²C 只在盒内；对外线缆的缓冲/线材/最大长度](0006-i2c-cable-limits.md)
+- [0007 · 传感轨 3.3V + 电平转换责任方（底板）+ 连接器防误插](0007-sensor-rail-and-level-translation.md)
+- [0008 · 节点 I/O 供给：数字输入/脉冲/专用 header + GPIO 预算](0008-node-io-provisioning.md)
 
 ## 模板
 

@@ -24,9 +24,9 @@
 |---|---|
 | 供电输入 | 12V DC（红 +12V / 黑 GND，来自太阳能+电池） |
 | 板上电源 | DC-DC 降 5V（给 ESP32 + 5V 传感）；逻辑 3.3V |
-| 逻辑电平 | 3.3V（ESP32）。5V 器件要电平转换 |
-| 数字传感 | I²C 优先（SDA/SCL，带上拉）；模拟量一律经 ADS1115 |
-| 连接器 | 已定：数字/温度/I²C 用 **JST-XH 2.5mm**（1-Wire 3P、I²C 4P）；pH/EC 走 **BNC→模块→模拟**；防水/12V 用 **GX**。见 [functional-spec 连接器方案](../../../docs/functional-spec.md) |
+| 逻辑电平 | 3.3V（ESP32）。**传感轨默认 3.3V；5V 器件的电平转换由本板做**（默认带转换，见 [ADR-0007](../../../docs/decisions/0007-sensor-rail-and-level-translation.md)） |
+| 数字传感 | I²C 优先（SDA/SCL，带上拉，**只在盒内 ≲30cm**，见 [ADR-0006](../../../docs/decisions/0006-i2c-cable-limits.md)）；模拟量一律经 ADS1115 |
+| 连接器 | 板内传感用 **JST-XH 2.5mm**（1-Wire 3P、I²C 4P）；pH/EC 走 **BNC→模块**。**v0.1 板级对外先用端子排/排针，GX 定型后再上**（一壳一信号防误插，见 [ADR-0007](../../../docs/decisions/0007-sensor-rail-and-level-translation.md)） |
 | 大功率负载 | **主泵走市电 220V，不上这块板**：板上 MOSFET 只驱动 12V 轻载(阀/风扇/灯)；要控泵只出一路"控制信号"给外部继电器/SSR（见 [ADR-0004](../../../docs/decisions/0004-power-domains.md)） |
 | 感性负载 | 低边开关用逻辑电平 MOSFET（IRLZ44N），**每路必带续流二极管** |
 | 安全 | 12V 输入加保险 + 防反接；失电默认态在丝印标注（加药类默认关） |
@@ -40,6 +40,7 @@
 - [ ] I²C 总线引出（含上拉电阻）到通用排针/端子（**连接器无关，先不焊死 GX**）
 - [ ] 1-Wire header（DS18B20 温度，含上拉）
 - [ ] **≥2 路低边 MOSFET 驱动**（IRLZ44N + 续流二极管 + 栅极下拉 + 12V **轻载**端子；主泵走市电不在此板）
+- [ ] **≥6 路调理数字输入**（浮球/漏水等干接点）：外部上拉（GPIO34–39 无内部上拉必须板上给）+ RC 滤波 + 限流 + 钳位；含 **≥2 路 5V 容忍脉冲输入**（YF-S201 流量、超声波 Echo，经电平转换）。见 [ADR-0008](../../../docs/decisions/0008-node-io-provisioning.md)（MVP-4 验收前提）
 - [ ] 电源指示灯 + 丝印标注所有接口/极性/引脚
 
 ### Should（有余力就上）
