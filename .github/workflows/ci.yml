@@ -25,4 +25,51 @@ jobs:
         run: |
           pip install yamllint
           # 放宽风格检查；ESPHome 的自定义标签不做强校验
-          yamllint -d relaxed home-assistant/ || true
+          yamllint -d relaxed home-assistant/ firmware/esphome/ .github/workflows/ || true
+
+  validate-yaml:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate YAML syntax
+        run: |
+          pip install pyyaml
+          python scripts/validate-yaml.py
+
+  validate-mqtt-topics:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate MQTT topic naming
+        run: |
+          pip install pyyaml
+          python scripts/validate-mqtt-topics.py
+
+  simulator-smoke-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Smoke test — simulator imports and models work
+        run: |
+          pip install paho-mqtt pyyaml
+          cd scripts/simulator
+          python -c "
+          import sys; sys.path.insert(0, '.')
+          from aquaponics_sim.simulator import AquaponicsSimulator
+          sim = AquaponicsSimulator()
+          print(f'Nodes: {list(sim._models.keys())}')
+          print(f'Interval: {sim.interval}s')
+          # Verify model reads don't crash
+          from datetime import datetime, timezone
+          nm = sim._models['tank01']
+          now = datetime.now(timezone.utc)
+          _ = nm.water_temp.read(now)
+          _ = nm.ph.read(now)
+          _ = nm.nitrogen.read(0)
+          _ = nm.nitrogen.read(900)
+          _ = nm.pump.read()
+          _ = nm.power.read_battery(now)
+          _ = nm.power.read_solar_current(now)
+          _ = nm.low_water.read()
+          print('Smoke test OK.')
+          "
