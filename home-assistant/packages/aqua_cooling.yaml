@@ -1,0 +1,211 @@
+# ─────────────────────────────────────────────────────────────────────
+# aqua_cooling — High-temperature cooling cascade for aquaponics-lab
+# ─────────────────────────────────────────────────────────────────────
+# Three-level cascade with hysteresis and interlocks:
+#
+#   Level 1 (≥30°C):  Fan ON          → clear < 28°C
+#   Level 2 (≥32°C):  + Shade + Aerator   → clear < 30°C
+#   Level 3 (≥34°C):  + Human alert        → clear < 32°C
+#
+# Design:
+#   - 2°C hysteresis band at each level prevents oscillation
+#   - Higher level implies all lower levels are ON (interlock)
+#   - Shutdown reverses: Level 3 → 2 → 1, each with its own hysteresis
+#   - Commands sent via MQTT: aqua/tank01/<actuator>/set
+#   - 30s for: on each trigger to ride through transient spikes
+# ─────────────────────────────────────────────────────────────────────
+
+# ── Cooling level tracking ────────────────────────────────────────────
+input_boolean:
+  aqua_tank01_cooling_fan:
+    name: "Tank01 Cooling Fan"
+    icon: mdi:fan
+  aqua_tank01_cooling_shade:
+    name: "Tank01 Shade"
+    icon: mdi:umbrella
+  aqua_tank01_cooling_aerator:
+    name: "Tank01 Aerator"
+    icon: mdi:air-humidifier
+  aqua_tank01_cooling_alert:
+    name: "Tank01 Cooling: Human Alert Sent"
+    icon: mdi:bell-alert
+
+# ── Switches (MQTT command via aqua/<node>/<actuator>/set) ────────────
+mqtt:
+  switch:
+    - name: "Tank01 Fan"
+      unique_id: aqua_tank01_fan
+      command_topic: "aqua/tank01/fan/set"
+      state_topic: "aqua/tank01/fan/state"
+      payload_on: "ON"
+      payload_off: "OFF"
+      optimistic: true
+      retain: true
+
+    - name: "Tank01 Shade"
+      unique_id: aqua_tank01_shade
+      command_topic: "aqua/tank01/shade/set"
+      state_topic: "aqua/tank01/shade/state"
+      payload_on: "ON"
+      payload_off: "OFF"
+      optimistic: true
+      retain: true
+
+    - name: "Tank01 Aerator"
+      unique_id: aqua_tank01_aerator
+      command_topic: "aqua/tank01/aerator/set"
+      state_topic: "aqua/tank01/aerator/state"
+      payload_on: "ON"
+      payload_off: "OFF"
+      optimistic: true
+      retain: true
+
+automation:
+  # ── Level 1: Fan ON at ≥30°C ──────────────────────────────────────
+  - id: aqua_tank01_cooling_l1_on
+    alias: "Tank01 Cooling L1 — Fan On (≥30°C)"
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.tank01_water_temp
+        above: 30
+        for: "00:00:30"
+    condition:
+      - condition: state
+        entity_id: binary_sensor.tank01_online
+        state: "on"
+    action:
+      - service: switch.turn_on
+        target:
+          entity_id: switch.tank01_fan
+      - service: input_boolean.turn_on
+        target:
+          entity_id: input_boolean.aqua_tank01_cooling_fan
+    mode: single
+
+  # Level 1 clear: Fan OFF at <28°C (2°C hysteresis)
+  - id: aqua_tank01_cooling_l1_off
+    alias: "Tank01 Cooling L1 — Fan Off (<28°C)"
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.tank01_water_temp
+        below: 28
+        for: "00:01:00"
+    condition:
+      # Only clear L1 if L2 is also off (don't turn off fan while shade is on)
+      - condition: state
+        entity_id: input_boolean.aqua_tank01_cooling_shade
+        state: "off"
+    action:
+      - service: switch.turn_off
+        target:
+          entity_id: switch.tank01_fan
+      - service: input_boolean.turn_off
+        target:
+          entity_id: input_boolean.aqua_tank01_cooling_fan
+    mode: single
+
+  # ── Level 2: Shade + Aerator ON at ≥32°C ─────────────────────────
+  - id: aqua_tank01_cooling_l2_on
+    alias: "Tank01 Cooling L2 — Shade+Aerator On (≥32°C)"
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.tank01_water_temp
+        above: 32
+        for: "00:00:30"
+    condition:
+      - condition: state
+        entity_id: binary_sensor.tank01_online
+        state: "on"
+    action:
+      # Interlock: L2 implies L1 is already on, but ensure it
+      - service: switch.turn_on
+        target:
+          entity_id: switch.tank01_fan
+      - service: input_boolean.turn_on
+        target:
+          entity_id: input_boolean.aqua_tank01_cooling_fan
+      # L2 actuators
+      - service: switch.turn_on
+        target:
+          entity_id: switch.tank01_shade
+      - service: switch.turn_on
+        target:
+          entity_id: switch.tank01_aerator
+      - service: input_boolean.turn_on
+        target:
+          entity_id: input_boolean.aqua_tank01_cooling_shade
+      - service: input_boolean.turn_on
+        target:
+          entity_id: input_boolean.aqua_tank01_cooling_aerator
+    mode: single
+
+  # Level 2 clear: Shade + Aerator OFF at <30°C (2°C hysteresis)
+  - id: aqua_tank01_cooling_l2_off
+    alias: "Tank01 Cooling L2 — Shade+Aerator Off (<30°C)"
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.tank01_water_temp
+        below: 30
+        for: "00:01:00"
+    condition:
+      # Only clear L2 if L3 alert is not active
+      - condition: state
+        entity_id: input_boolean.aqua_tank01_cooling_alert
+        state: "off"
+    action:
+      - service: switch.turn_off
+        target:
+          entity_id: switch.tank01_shade
+      - service: switch.turn_off
+        target:
+          entity_id: switch.tank01_aerator
+      - service: input_boolean.turn_off
+        target:
+          entity_id: input_boolean.aqua_tank01_cooling_shade
+      - service: input_boolean.turn_off
+        target:
+          entity_id: input_boolean.aqua_tank01_cooling_aerator
+    mode: single
+
+  # ── Level 3: Human alert at ≥34°C ────────────────────────────────
+  - id: aqua_tank01_cooling_l3_on
+    alias: "Tank01 Cooling L3 — Human Alert (≥34°C)"
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.tank01_water_temp
+        above: 34
+        for: "00:00:15"
+    condition:
+      - condition: state
+        entity_id: binary_sensor.tank01_online
+        state: "on"
+    action:
+      - service: input_boolean.turn_on
+        target:
+          entity_id: input_boolean.aqua_tank01_cooling_alert
+      - service: persistent_notification.create
+        data:
+          title: "🔥 Tank01 Critical Temperature"
+          message: >
+            Water temp {{ states('sensor.tank01_water_temp') }}°C exceeds 34°C.
+            Fan, shade, and aerator are active. Consider emergency measures:
+            ice, water change, reduce fish feeding.
+          notification_id: aqua_tank01_critical_temp
+    mode: single
+
+  # Level 3 clear: dismiss alert at <32°C (2°C hysteresis)
+  - id: aqua_tank01_cooling_l3_off
+    alias: "Tank01 Cooling L3 — Clear Alert (<32°C)"
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.tank01_water_temp
+        below: 32
+        for: "00:01:00"
+    action:
+      - service: input_boolean.turn_off
+        target:
+          entity_id: input_boolean.aqua_tank01_cooling_alert
+      - service: persistent_notification.dismiss
+        data:
+          notification_id: aqua_tank01_critical_temp
+    mode: single

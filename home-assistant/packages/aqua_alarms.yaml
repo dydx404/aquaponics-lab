@@ -1,0 +1,246 @@
+# ─────────────────────────────────────────────────────────────────────
+# aqua_alarms — Failure alert automations for aquaponics-lab
+# ─────────────────────────────────────────────────────────────────────
+# Five alarm classes, each with trigger + clear automation:
+#   1. Pump stopped      — pump_current < 0.05A for 30s
+#   2. No flow           — flow < 0.5 L/min for 30s
+#   3. Low water         — low_water sensor ON
+#   4. High temperature  — water_temp > 32°C (clear < 30°C, 2° hysteresis)
+#   5. Node offline      — LWT offline for 60s
+#
+# Design principles:
+#   - Hysteresis on temperature (2°C band) to prevent oscillation
+#   - 30s delay on pump/flow to ride through transient glitches
+#   - 60s delay on node offline (shorter than LWT retain)
+#   - 5-minute repeat notification while alarm persists
+#   - Interlock: pump_stopped suppresses no_flow alarm (root cause)
+# ─────────────────────────────────────────────────────────────────────
+
+# ── 1. Pump stopped alarm ─────────────────────────────────────────────
+automation:
+  - id: aqua_tank01_alarm_pump_stopped_trigger
+    alias: "Tank01 Pump Stopped — Trigger"
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.tank01_pump_current
+        below: 0.05
+        for: "00:00:30"
+    condition:
+      - condition: state
+        entity_id: binary_sensor.tank01_online
+        state: "on"
+    action:
+      - service: input_boolean.turn_on
+        target:
+          entity_id: input_boolean.aqua_tank01_alarm_pump_stopped
+      - service: persistent_notification.create
+        data:
+          title: "🚨 Tank01 Pump Stopped"
+          message: "Pump current dropped to {{ states('sensor.tank01_pump_current') }}A. Check power and pump."
+          notification_id: aqua_tank01_pump_stopped
+    mode: single
+
+  - id: aqua_tank01_alarm_pump_stopped_clear
+    alias: "Tank01 Pump Stopped — Clear"
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.tank01_pump_current
+        above: 0.05
+        for: "00:00:10"
+    action:
+      - service: input_boolean.turn_off
+        target:
+          entity_id: input_boolean.aqua_tank01_alarm_pump_stopped
+      - service: persistent_notification.dismiss
+        data:
+          notification_id: aqua_tank01_pump_stopped
+    mode: single
+
+  # ── 2. No flow alarm (interlocked: skip if pump already stopped) ──
+  - id: aqua_tank01_alarm_no_flow_trigger
+    alias: "Tank01 No Flow — Trigger"
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.tank01_flow
+        below: 0.5
+        for: "00:00:30"
+    condition:
+      - condition: state
+        entity_id: binary_sensor.tank01_online
+        state: "on"
+      # Interlock: don't fire no_flow if pump_stopped is already active
+      - condition: state
+        entity_id: input_boolean.aqua_tank01_alarm_pump_stopped
+        state: "off"
+    action:
+      - service: input_boolean.turn_on
+        target:
+          entity_id: input_boolean.aqua_tank01_alarm_no_flow
+      - service: persistent_notification.create
+        data:
+          title: "🚨 Tank01 No Flow"
+          message: "Flow rate is {{ states('sensor.tank01_flow') }} L/min but pump is running. Check for blockage."
+          notification_id: aqua_tank01_no_flow
+    mode: single
+
+  - id: aqua_tank01_alarm_no_flow_clear
+    alias: "Tank01 No Flow — Clear"
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.tank01_flow
+        above: 0.5
+        for: "00:00:10"
+    action:
+      - service: input_boolean.turn_off
+        target:
+          entity_id: input_boolean.aqua_tank01_alarm_no_flow
+      - service: persistent_notification.dismiss
+        data:
+          notification_id: aqua_tank01_no_flow
+    mode: single
+
+  # ── 3. Low water alarm ────────────────────────────────────────────
+  - id: aqua_tank01_alarm_low_water_trigger
+    alias: "Tank01 Low Water — Trigger"
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.tank01_low_water
+        to: "on"
+    action:
+      - service: input_boolean.turn_on
+        target:
+          entity_id: input_boolean.aqua_tank01_alarm_low_water
+      - service: persistent_notification.create
+        data:
+          title: "🚨 Tank01 Low Water"
+          message: "Water level is low. Top up immediately to protect pump and fish."
+          notification_id: aqua_tank01_low_water
+    mode: single
+
+  - id: aqua_tank01_alarm_low_water_clear
+    alias: "Tank01 Low Water — Clear"
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.tank01_low_water
+        to: "off"
+        for: "00:00:10"
+    action:
+      - service: input_boolean.turn_off
+        target:
+          entity_id: input_boolean.aqua_tank01_alarm_low_water
+      - service: persistent_notification.dismiss
+        data:
+          notification_id: aqua_tank01_low_water
+    mode: single
+
+  # ── 4. High temperature alarm (2°C hysteresis) ───────────────────
+  # Trigger at 32°C, clear at 30°C — prevents oscillation near threshold
+  - id: aqua_tank01_alarm_high_temp_trigger
+    alias: "Tank01 High Temp — Trigger"
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.tank01_water_temp
+        above: 32
+        for: "00:00:30"
+    condition:
+      - condition: state
+        entity_id: binary_sensor.tank01_online
+        state: "on"
+    action:
+      - service: input_boolean.turn_on
+        target:
+          entity_id: input_boolean.aqua_tank01_alarm_high_temp
+      - service: persistent_notification.create
+        data:
+          title: "🚨 Tank01 High Temperature"
+          message: "Water temperature is {{ states('sensor.tank01_water_temp') }}°C. Cooling cascade should be active."
+          notification_id: aqua_tank01_high_temp
+    mode: single
+
+  - id: aqua_tank01_alarm_high_temp_clear
+    alias: "Tank01 High Temp — Clear"
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.tank01_water_temp
+        below: 30
+        for: "00:01:00"
+    action:
+      - service: input_boolean.turn_off
+        target:
+          entity_id: input_boolean.aqua_tank01_alarm_high_temp
+      - service: persistent_notification.dismiss
+        data:
+          notification_id: aqua_tank01_high_temp
+    mode: single
+
+  # ── 5. Node offline alarm ────────────────────────────────────────
+  - id: aqua_tank01_alarm_node_offline_trigger
+    alias: "Tank01 Node Offline — Trigger"
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.tank01_online
+        to: "off"
+        for: "00:01:00"
+    action:
+      - service: input_boolean.turn_on
+        target:
+          entity_id: input_boolean.aqua_tank01_alarm_node_offline
+      - service: persistent_notification.create
+        data:
+          title: "🚨 Tank01 Node Offline"
+          message: "Node tank01 has been offline for >1 minute. Check power and network."
+          notification_id: aqua_tank01_node_offline
+    mode: single
+
+  - id: aqua_tank01_alarm_node_offline_clear
+    alias: "Tank01 Node Offline — Clear"
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.tank01_online
+        to: "on"
+    action:
+      - service: input_boolean.turn_off
+        target:
+          entity_id: input_boolean.aqua_tank01_alarm_node_offline
+      - service: persistent_notification.dismiss
+        data:
+          notification_id: aqua_tank01_node_offline
+    mode: single
+
+  # ── 6. Repeat notification every 5 min while any alarm persists ───
+  - id: aqua_tank01_alarm_repeat
+    alias: "Tank01 Alarm — Repeat Notification"
+    trigger:
+      - platform: time_pattern
+        minutes: "/5"
+    condition:
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: input_boolean.aqua_tank01_alarm_pump_stopped
+            state: "on"
+          - condition: state
+            entity_id: input_boolean.aqua_tank01_alarm_no_flow
+            state: "on"
+          - condition: state
+            entity_id: input_boolean.aqua_tank01_alarm_low_water
+            state: "on"
+          - condition: state
+            entity_id: input_boolean.aqua_tank01_alarm_high_temp
+            state: "on"
+          - condition: state
+            entity_id: input_boolean.aqua_tank01_alarm_node_offline
+            state: "on"
+    action:
+      - service: persistent_notification.create
+        data:
+          title: "⏰ Tank01 Active Alarms"
+          message: >
+            Active alarms:
+            {% if is_state('input_boolean.aqua_tank01_alarm_pump_stopped', 'on') %} Pump Stopped{% endif %}
+            {% if is_state('input_boolean.aqua_tank01_alarm_no_flow', 'on') %} | No Flow{% endif %}
+            {% if is_state('input_boolean.aqua_tank01_alarm_low_water', 'on') %} | Low Water{% endif %}
+            {% if is_state('input_boolean.aqua_tank01_alarm_high_temp', 'on') %} | High Temp ({{ states('sensor.tank01_water_temp') }}°C){% endif %}
+            {% if is_state('input_boolean.aqua_tank01_alarm_node_offline', 'on') %} | Node Offline{% endif %}
+          notification_id: aqua_tank01_alarm_summary
+    mode: single

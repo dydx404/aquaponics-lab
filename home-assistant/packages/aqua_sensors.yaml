@@ -1,0 +1,153 @@
+# ─────────────────────────────────────────────────────────────────────
+# aqua_sensors — MQTT sensor entity definitions for aquaponics-lab
+# ─────────────────────────────────────────────────────────────────────
+# Mount via: packages: !include_dir_named packages/
+#
+# All topics follow the contract in docs/handbook/13-interfaces.md:
+#   aqua/<node>/<metric>       — telemetry
+#   aqua/<node>/<actuator>/set — commands
+#   aqua/<node>/status         — LWT (online/offline)
+#
+# This package defines entities for node "tank01".
+# Duplicate and rename for additional nodes.
+# ─────────────────────────────────────────────────────────────────────
+
+mqtt:
+  sensor:
+    # ── Water quality ──────────────────────────────────────────────
+    - name: "Tank01 Water Temperature"
+      unique_id: aqua_tank01_water_temp
+      state_topic: "aqua/tank01/water_temp"
+      unit_of_measurement: "°C"
+      device_class: temperature
+      value_template: "{{ value | float(0) }}"
+
+    - name: "Tank01 pH"
+      unique_id: aqua_tank01_ph
+      state_topic: "aqua/tank01/ph"
+      unit_of_measurement: "pH"
+      value_template: "{{ value | float(0) }}"
+
+    - name: "Tank01 Ammonia"
+      unique_id: aqua_tank01_ammonia
+      state_topic: "aqua/tank01/ammonia"
+      unit_of_measurement: "mg/L"
+      icon: mdi:alpha-n-circle
+      value_template: "{{ value | float(0) }}"
+
+    - name: "Tank01 Nitrite"
+      unique_id: aqua_tank01_nitrite
+      state_topic: "aqua/tank01/nitrite"
+      unit_of_measurement: "mg/L"
+      icon: mdi:alpha-n-circle-outline
+      value_template: "{{ value | float(0) }}"
+
+    - name: "Tank01 Nitrate"
+      unique_id: aqua_tank01_nitrate
+      state_topic: "aqua/tank01/nitrate"
+      unit_of_measurement: "mg/L"
+      icon: mdi:alpha-n-box
+      value_template: "{{ value | float(0) }}"
+
+    # ── Pump (220V AC side per ADR-0004) ──────────────────────────
+    - name: "Tank01 Pump Current"
+      unique_id: aqua_tank01_pump_current
+      state_topic: "aqua/tank01/pump_current"
+      unit_of_measurement: "A"
+      device_class: current
+      value_template: "{{ value | float(0) }}"
+
+    - name: "Tank01 Flow Rate"
+      unique_id: aqua_tank01_flow
+      state_topic: "aqua/tank01/flow"
+      unit_of_measurement: "L/min"
+      icon: mdi:water-pump
+      value_template: "{{ value | float(0) }}"
+
+    # ── Power (12V DC domain per ADR-0004) ────────────────────────
+    - name: "Tank01 Battery Voltage"
+      unique_id: aqua_tank01_battery_v
+      state_topic: "aqua/tank01/battery_v"
+      unit_of_measurement: "V"
+      device_class: voltage
+      value_template: "{{ value | float(0) }}"
+
+    - name: "Tank01 Solar Current"
+      unique_id: aqua_tank01_solar_current
+      state_topic: "aqua/tank01/solar_current"
+      unit_of_measurement: "A"
+      device_class: current
+      value_template: "{{ value | float(0) }}"
+
+  binary_sensor:
+    # ── Low water (boolean sensor) ────────────────────────────────
+    - name: "Tank01 Low Water"
+      unique_id: aqua_tank01_low_water
+      state_topic: "aqua/tank01/low_water"
+      payload_on: "ON"
+      payload_off: "OFF"
+      device_class: problem
+
+    # ── Node online status (LWT) ──────────────────────────────────
+    - name: "Tank01 Online"
+      unique_id: aqua_tank01_online
+      state_topic: "aqua/tank01/status"
+      payload_on: "online"
+      payload_off: "offline"
+      device_class: connectivity
+
+# ── Derived template sensors ──────────────────────────────────────────
+template:
+  - sensor:
+      - name: "Tank01 Nitrogen Cycle Stage"
+        unique_id: aqua_tank01_n_cycle_stage
+        icon: mdi:chart-line
+        state: >
+          {% set nh3 = states('sensor.tank01_ammonia') | float(0) %}
+          {% set no2 = states('sensor.tank01_nitrite') | float(0) %}
+          {% set no3 = states('sensor.tank01_nitrate') | float(0) %}
+          {% if nh3 > 0.5 and no2 < 0.5 %}
+            Ammonia Spike
+          {% elif no2 > 0.5 and nh3 > 0.5 %}
+            Nitrite Rising
+          {% elif no2 > 0.5 and nh3 < 0.5 %}
+            Nitrite Peak
+          {% elif no2 < 0.5 and no3 > 20 %}
+            Cycled
+          {% else %}
+            Cycling
+          {% endif %}
+
+      - name: "Tank01 Pump Status"
+        unique_id: aqua_tank01_pump_status
+        icon: mdi:pump
+        state: >
+          {% set cur = states('sensor.tank01_pump_current') | float(0) %}
+          {% set flow = states('sensor.tank01_flow') | float(0) %}
+          {% if cur < 0.05 %}
+            Stopped
+          {% elif flow < 0.5 and cur > 0.7 %}
+            Blocked
+          {% elif flow < 0.5 %}
+            No Flow
+          {% else %}
+            Running
+          {% endif %}
+
+# ── Input booleans for alarm state tracking ──────────────────────────
+input_boolean:
+  aqua_tank01_alarm_pump_stopped:
+    name: "Tank01 Alarm: Pump Stopped"
+    icon: mdi:alert
+  aqua_tank01_alarm_no_flow:
+    name: "Tank01 Alarm: No Flow"
+    icon: mdi:alert
+  aqua_tank01_alarm_low_water:
+    name: "Tank01 Alarm: Low Water"
+    icon: mdi:alert
+  aqua_tank01_alarm_high_temp:
+    name: "Tank01 Alarm: High Temperature"
+    icon: mdi:alert
+  aqua_tank01_alarm_node_offline:
+    name: "Tank01 Alarm: Node Offline"
+    icon: mdi:alert
