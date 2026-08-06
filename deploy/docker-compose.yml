@@ -1,0 +1,131 @@
+# ─────────────────────────────────────────────────────────────────────
+# aquaponics-lab · Docker Compose full-stack environment
+# ─────────────────────────────────────────────────────────────────────
+# One command brings up the entire software stack:
+#   docker compose up -d
+#
+# Services:
+#   mosquitto  — MQTT broker (port 1883)
+#   influxdb   — Time-series database (port 8086)
+#   grafana    — Visualization dashboard (port 3000)
+#   home-assistant — HA with MQTT + InfluxDB recorder (port 8123)
+#   simulator  — Aquaponics sensor simulator (feeds live data)
+#
+# All configurable values are in .env (copy from .env.example).
+# ─────────────────────────────────────────────────────────────────────
+
+services:
+  # ── MQTT Broker ────────────────────────────────────────────────────
+  mosquitto:
+    image: eclipse-mosquitto:2
+    container_name: aqua-mosquitto
+    restart: unless-stopped
+    ports:
+      - "${MOSQUITTO_PORT:-1883}:1883"
+    volumes:
+      - ./mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+      - mosquitto_data:/mosquitto/data
+      - mosquitto_log:/mosquitto/log
+    networks:
+      - aqua-net
+
+  # ── InfluxDB (time-series storage) ─────────────────────────────────
+  influxdb:
+    image: influxdb:1.8
+    container_name: aqua-influxdb
+    restart: unless-stopped
+    ports:
+      - "${INFLUXDB_PORT:-8086}:8086"
+    environment:
+      - INFLUXDB_DB=${INFLUXDB_DATABASE:-aqua}
+      - INFLUXDB_USER=${INFLUXDB_USER:-aqua}
+      - INFLUXDB_USER_PASSWORD=${INFLUXDB_PASSWORD:-aquapass}
+      - INFLUXDB_HTTP_AUTH_ENABLED=true
+    volumes:
+      - ./influxdb/init.iql:/docker-entrypoint-initdb.d/init.iql:ro
+      - influxdb_data:/var/lib/influxdb
+    networks:
+      - aqua-net
+
+  # ── Telegraf (MQTT → InfluxDB bridge) ──────────────────────────────
+  telegraf:
+    image: telegraf:latest
+    container_name: aqua-telegraf
+    restart: unless-stopped
+    environment:
+      - INFLUXDB_PASSWORD=${INFLUXDB_PASSWORD:-aquapass}
+    volumes:
+      - ./telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
+    depends_on:
+      - mosquitto
+      - influxdb
+    networks:
+      - aqua-net
+
+  # ── Grafana (visualization) ────────────────────────────────────────
+  grafana:
+    image: grafana/grafana:latest
+    container_name: aqua-grafana
+    restart: unless-stopped
+    ports:
+      - "${GRAFANA_PORT:-3000}:3000"
+    environment:
+      - GF_SECURITY_ADMIN_USER=${GRAFANA_USER:-admin}
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD:-admin}
+      - GF_USERS_ALLOW_SIGN_UP=false
+      - GF_INSTALL_PLUGINS=flant-statuspanel-panel
+      # Pass InfluxDB password for datasource provisioning substitution
+      - INFLUXDB_PASSWORD=${INFLUXDB_PASSWORD:-aquapass}
+    volumes:
+      - ./grafana/provisioning:/etc/grafana/provisioning:ro
+      - ../data/grafana:/var/lib/grafana/dashboards:ro
+      - grafana_data:/var/lib/grafana
+    depends_on:
+      - influxdb
+    networks:
+      - aqua-net
+
+  # ── Home Assistant ─────────────────────────────────────────────────
+  home-assistant:
+    image: ghcr.io/home-assistant/home-assistant:stable
+    container_name: aqua-home-assistant
+    restart: unless-stopped
+    ports:
+      - "${HA_PORT:-8123}:8123"
+    volumes:
+      - ./home-assistant:/config
+      - ../home-assistant/packages:/config/packages:ro
+    environment:
+      - TZ=${TZ:-Asia/Shanghai}
+    depends_on:
+      - mosquitto
+      - influxdb
+    networks:
+      - aqua-net
+
+  # ── Aquaponics Sensor Simulator ────────────────────────────────────
+  simulator:
+    build:
+      context: ../scripts/simulator
+      dockerfile: ../../deploy/simulator/Dockerfile
+    container_name: aqua-simulator
+    restart: unless-stopped
+    environment:
+      - MQTT_HOST=mosquitto
+      - MQTT_PORT=1883
+      - SIM_INTERVAL=${SIM_INTERVAL:-5}
+      - SIM_TIME_SCALE=${SIM_TIME_SCALE:-1.0}
+    depends_on:
+      - mosquitto
+    networks:
+      - aqua-net
+
+volumes:
+  mosquitto_data:
+  mosquitto_log:
+  influxdb_data:
+  grafana_data:
+
+networks:
+  aqua-net:
+    driver: bridge

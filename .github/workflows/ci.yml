@@ -36,6 +36,16 @@ jobs:
           pip install pyyaml
           python scripts/validate-yaml.py
 
+  validate-docker-compose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate docker-compose.yml
+        run: |
+          cd deploy
+          cp .env.example .env
+          docker compose config --quiet
+
   validate-mqtt-topics:
     runs-on: ubuntu-latest
     steps:
@@ -63,13 +73,29 @@ jobs:
           from datetime import datetime, timezone
           nm = sim._models['tank01']
           now = datetime.now(timezone.utc)
-          _ = nm.water_temp.read(now)
-          _ = nm.ph.read(now)
-          _ = nm.nitrogen.read(0)
+          wt = nm.water_temp.read(now)
+          ph = nm.ph.read(now)
+          nh3, no2, no3 = nm.nitrogen.read(0)
           _ = nm.nitrogen.read(900)
           _ = nm.pump.read()
           _ = nm.power.read_battery(now)
           _ = nm.power.read_solar_current(now)
           _ = nm.low_water.read()
+          # New sensors (Task B)
+          ec, tds = nm.ec_tds.read(wt, no3)
+          _ = nm.turbidity.read(5.0)
+          _ = nm.light.read(now)
+          air_t, air_h = nm.air_th.read(now)
+          _ = nm.air_pressure.read(now)
+          # Actuator state (Task C)
+          nm.feeder.set('ON', 0.0)
+          assert nm.feeder.read() == 'ON'
+          nm.feeder.set('OFF', 0.0)
+          assert nm.feeder.read() == 'OFF'
+          # Refill timeout
+          nm.refill.set('ON', 0.0)
+          assert nm.refill.check_timeout(130.0) == True
+          assert nm.refill.read() == 'OFF'
+          print(f'EC={ec} TDS={tds} AirT={air_t} AirH={air_h}')
           print('Smoke test OK.')
           "

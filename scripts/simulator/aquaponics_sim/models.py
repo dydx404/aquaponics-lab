@@ -206,6 +206,179 @@ class PowerModel:
         return round(max(0.0, val), 3)
 
 
+# ── EC / TDS (nutrient conductivity) ─────────────────────────────────
+
+class EcTdsModel:
+    """
+    Electrical conductivity + TDS — correlates with nutrient (nitrate) level.
+
+    EC is temperature-compensated to 25 °C (standard hydroponic convention).
+    TDS is derived from EC via a conversion factor (0.5 / 0.7 typical).
+    Fault: sensor_drift causes slow reading deviation.
+    """
+
+    def __init__(self, base_ec: float = 1.2, tds_factor: float = 0.5):
+        self.base_ec = base_ec      # mS/cm at 25°C
+        self.tds_factor = tds_factor
+        self._drift = 0.0           # fault: sensor_drift
+
+    def read(self, water_temp: float, nitrate: float) -> tuple[float, float]:
+        """Return (ec_mS_cm, tds_ppm), compensated to 25°C."""
+        # EC rises with nitrate (nutrient load)
+        nutrient_effect = nitrate * 0.008     # ~0.8 mS per 100 mg/L nitrate
+        ec = self.base_ec + nutrient_effect + self._drift
+        # Temperature compensation (2%/°C from 25°C)
+        ec_compensated = ec / (1.0 + 0.02 * (water_temp - 25.0))
+        ec_compensated += random.gauss(0, 0.02)
+        ec_compensated = max(0.0, ec_compensated)
+        tds = ec_compensated * self.tds_factor * 1000   # ppm
+        return round(ec_compensated, 3), round(tds, 1)
+
+    def fault_drift(self, rate: float = 0.05):
+        """Inject a persistent EC drift."""
+        self._drift = rate
+
+
+# ── turbidity ────────────────────────────────────────────────────────
+
+class TurbidityModel:
+    """
+    Water turbidity in NTU — baseline drift + feeding spikes + noise.
+
+    Turbidity slowly increases over time (particulate accumulation) and
+    spikes briefly after feeding events.  Fault: dirty_sensor offsets
+    the baseline upward.
+    """
+
+    def __init__(self, baseline: float = 3.0, drift_rate: float = 0.002):
+        self.baseline = baseline
+        self.drift_rate = drift_rate
+        self._elapsed = 0.0
+        self._spike = 0.0           # transient feeding spike
+        self._dirty_offset = 0.0    # fault: dirty_sensor
+
+    def read(self, dt: float) -> float:
+        """Return turbidity (NTU). *dt* is seconds since last read."""
+        self._elapsed += dt
+        # Slow drift from particulate accumulation
+        drift = self.drift_rate * self._elapsed
+        # Spike decays exponentially
+        self._spike *= 0.95
+        val = self.baseline + drift + self._spike + self._dirty_offset
+        val += random.gauss(0, 0.15)
+        return round(max(0.0, val), 2)
+
+    def trigger_feed_spike(self, magnitude: float = 8.0):
+        """Simulate a turbidity spike from feeding."""
+        self._spike += magnitude
+
+    def fault_dirty(self, offset: float = 15.0):
+        """Simulate a dirty/fouled sensor."""
+        self._dirty_offset = offset
+
+
+# ── light (lux) ──────────────────────────────────────────────────────
+
+class LightModel:
+    """
+    Ambient light intensity (lux) from BH1750 sensor.
+
+    Follows a diurnal curve: zero at night, peaks at solar noon.
+    Cloud cover variation adds realistic noise.  Fault: sensor_fault
+    forces an implausible reading.
+    """
+
+    def __init__(self, peak_lux: float = 45000.0, peak_hour: float = 12.0):
+        self.peak_lux = peak_lux
+        self.peak_hour = peak_hour
+        self._fault = False
+
+    def read(self, now: datetime) -> float:
+        """Return light level (lux)."""
+        if self._fault:
+            return round(max(0.0, self.peak_lux * 0.01 + random.gauss(0, 5)), 1)
+
+        h = _hour_of(now)
+        factor = _diurnal(h, self.peak_hour)
+        # Only daylight produces lux; use a sharper curve
+        daylight = max(0.0, math.sin(math.pi * factor))
+        # Random cloud cover (0 = clear, 1 = overcast)
+        cloud = random.random() * 0.4
+        val = self.peak_lux * daylight * (1.0 - cloud)
+        val += random.gauss(0, 50)
+        return round(max(0.0, val), 1)
+
+    def fault_sensor(self):
+        """Simulate a faulty (under-reading) sensor."""
+        self._fault = True
+
+
+# ── air temperature + humidity (AHT20) ───────────────────────────────
+
+class AirTempHumidityModel:
+    """
+    Air temperature (°C) and relative humidity (%RH) from AHT20.
+
+    Air temp leads water temp by ~1–2h and swings wider.
+    Humidity is inversely correlated with temperature
+    (warm air holds more moisture → lower RH at same absolute humidity).
+    """
+
+    def __init__(self, temp_base: float = 30.0, temp_amplitude: float = 6.0,
+                 temp_peak_hour: float = 13.0,
+                 humidity_base: float = 65.0, humidity_amplitude: float = 20.0):
+        self.temp_base = temp_base
+        self.temp_amplitude = temp_amplitude
+        self.temp_peak_hour = temp_peak_hour
+        self.humidity_base = humidity_base
+        self.humidity_amplitude = humidity_amplitude
+
+    def read(self, now: datetime) -> tuple[float, float]:
+        """Return (air_temp_C, humidity_pct)."""
+        h = _hour_of(now)
+        # Air temp: sine wave, peaks ~1h before water temp
+        temp = self.temp_base + self.temp_amplitude * math.sin(
+            2 * math.pi * (h - self.temp_peak_hour) / 24.0
+        )
+        temp += random.gauss(0, 0.2)
+
+        # Humidity: inverse sine — lowest at peak temp, highest at night
+        humidity = self.humidity_base - self.humidity_amplitude * math.sin(
+            2 * math.pi * (h - self.temp_peak_hour) / 24.0
+        )
+        humidity += random.gauss(0, 1.5)
+        humidity = max(20.0, min(99.0, humidity))
+
+        return round(temp, 2), round(humidity, 1)
+
+
+# ── air pressure (BMP280) ────────────────────────────────────────────
+
+class AirPressureModel:
+    """
+    Barometric pressure (hPa) from BMP280.
+
+    Slow random walk around sea-level baseline with minor diurnal
+    variation.  Guangzhou is near sea level → ~1010 hPa typical.
+    """
+
+    def __init__(self, baseline: float = 1010.0):
+        self.baseline = baseline
+        self._value = baseline
+
+    def read(self, now: datetime) -> float:
+        """Return pressure (hPa)."""
+        h = _hour_of(now)
+        # Semi-diurnal pressure tide (small ±1 hPa)
+        diurnal = 1.0 * math.sin(2 * math.pi * h / 12.0)
+        # Slow random walk
+        self._value += random.gauss(0, 0.3)
+        # Pull back toward baseline
+        self._value += (self.baseline - self._value) * 0.01
+        val = self._value + diurnal
+        return round(val, 1)
+
+
 # ── low water (boolean) ───────────────────────────────────────────────
 
 class LowWaterModel:
@@ -222,6 +395,46 @@ class LowWaterModel:
 
     def clear(self):
         self._forced = False
+
+
+# ── actuator state (simulated readback) ──────────────────────────────
+
+class ActuatorStateModel:
+    """
+    Tracks an actuator's ON/OFF state for /state topic readback.
+
+    Listens to commands on aqua/<node>/<actuator>/set and publishes
+    state on aqua/<node>/<actuator>/state.  Includes optional timeout
+    (auto-off after *timeout* seconds) for safety actuators like
+    auto-refill.
+    """
+
+    def __init__(self, initial: str = "OFF", timeout: float | None = None):
+        self.state = initial
+        self.timeout = timeout       # seconds; None = no auto-off
+        self._activated_at: float | None = None
+
+    def set(self, payload: str, elapsed: float):
+        """Handle a /set command."""
+        payload = payload.strip().upper()
+        if payload in ("ON", "OFF"):
+            self.state = payload
+            if payload == "ON" and self.timeout is not None:
+                self._activated_at = elapsed
+        # Ignore unrecognized payloads
+
+    def check_timeout(self, elapsed: float) -> bool:
+        """Return True if the actuator was auto-off'd by timeout."""
+        if (self.timeout is not None and self.state == "ON"
+                and self._activated_at is not None
+                and elapsed - self._activated_at >= self.timeout):
+            self.state = "OFF"
+            self._activated_at = None
+            return True
+        return False
+
+    def read(self) -> str:
+        return self.state
 
 
 # ── node model bundle ─────────────────────────────────────────────────
@@ -256,6 +469,35 @@ class NodeModels:
         )
         self.low_water = LowWaterModel()
 
+        # ── New sensors (Task B) ────────────────────────────────────
+        self.ec_tds = EcTdsModel(
+            base_ec=node_cfg.get("ec_base", 1.2),
+            tds_factor=node_cfg.get("tds_factor", 0.5),
+        )
+        self.turbidity = TurbidityModel(
+            baseline=node_cfg.get("turbidity_baseline", 3.0),
+            drift_rate=node_cfg.get("turbidity_drift_rate", 0.002),
+        )
+        self.light = LightModel(
+            peak_lux=node_cfg.get("light_peak_lux", 45000.0),
+            peak_hour=node_cfg.get("solar_peak_hour", 12),
+        )
+        self.air_th = AirTempHumidityModel(
+            temp_base=node_cfg.get("air_temp_base", 30.0),
+            temp_amplitude=node_cfg.get("air_temp_amplitude", 6.0),
+            temp_peak_hour=node_cfg.get("air_temp_peak_hour", 13),
+            humidity_base=node_cfg.get("air_humidity_base", 65.0),
+            humidity_amplitude=node_cfg.get("air_humidity_amplitude", 20.0),
+        )
+        self.air_pressure = AirPressureModel(
+            baseline=node_cfg.get("air_pressure_base", 1010.0),
+        )
+
+        # ── Actuator state readback (Task C) ────────────────────────
+        self.feeder = ActuatorStateModel()
+        self.grow_light = ActuatorStateModel()
+        self.refill = ActuatorStateModel(timeout=120.0)   # 2 min safety limit
+
     def apply_fault(self, fault: dict):
         """Apply a fault injection spec."""
         kind = fault.get("type", "")
@@ -275,3 +517,9 @@ class NodeModels:
             self.low_water.fault_trigger()
         elif kind == "sensor_drift":
             self.ph.fault_drift(fault.get("rate", 0.05))
+        elif kind == "ec_drift":
+            self.ec_tds.fault_drift(fault.get("rate", 0.1))
+        elif kind == "dirty_turbidity":
+            self.turbidity.fault_dirty(fault.get("offset", 15.0))
+        elif kind == "light_fault":
+            self.light.fault_sensor()

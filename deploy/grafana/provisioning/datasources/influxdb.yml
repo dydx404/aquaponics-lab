@@ -1,0 +1,14 @@
+# Grafana datasource provisioning — InfluxDB
+apiVersion: 1
+
+datasources:
+  - name: InfluxDB
+    type: influxdb
+    access: proxy
+    database: aqua
+    user: aqua
+    url: http://influxdb:8086
+    isDefault: true
+    editable: true
+    secureJsonData:
+      password: ${INFLUXDB_PASSWORD}

@@ -4,7 +4,7 @@ secrets.yaml
 *.secret
 .env
 .env.*
-!secrets.example.yaml
+!.env.example
 
 # --- ESPHome ---
 .esphome/

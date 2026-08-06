@@ -59,17 +59,40 @@ python run.py --fault pump_block:tank02
 | `aqua/<node>/ammonia` | `2.15` | mg/L | — | Nitrogen cycle: NH₃ |
 | `aqua/<node>/nitrite` | `1.80` | mg/L | — | Nitrogen cycle: NO₂⁻ |
 | `aqua/<node>/nitrate` | `45.3` | mg/L | — | Nitrogen cycle: NO₃⁻ |
+| `aqua/<node>/ec` | `1.23` | mS/cm | — | EC (25°C compensated) |
+| `aqua/<node>/tds` | `615.0` | ppm | — | TDS (derived from EC) |
+| `aqua/<node>/turbidity` | `3.45` | NTU | — | Water turbidity |
+| `aqua/<node>/light_lux` | `42000.0` | lx | — | Ambient light (BH1750) |
+| `aqua/<node>/air_temp` | `32.1` | °C | — | Air temperature (AHT20) |
+| `aqua/<node>/air_humidity` | `58.3` | % | — | Air humidity (AHT20) |
+| `aqua/<node>/air_pressure` | `1010.5` | hPa | — | Barometric pressure (BMP280) |
 | `aqua/<node>/pump_current` | `0.521` | A | — | 220V AC pump (via SSR) |
 | `aqua/<node>/flow` | `8.02` | L/min | — | Pump flow rate |
 | `aqua/<node>/battery_v` | `12.82` | V | — | 12V DC domain (solar+battery) |
 | `aqua/<node>/solar_current` | `1.234` | A | — | Solar panel output |
 | `aqua/<node>/low_water` | `OFF` | bool | — | Low water sensor |
+| `aqua/<node>/feeder/state` | `OFF` | bool | ✅ | Feeder actuator readback |
+| `aqua/<node>/light/state` | `OFF` | bool | ✅ | Grow light actuator readback |
+| `aqua/<node>/refill/state` | `OFF` | bool | ✅ | Refill valve actuator readback |
 
 ### Topic contract
 
 All topics follow the `aqua/<node>/<metric>` namespace defined in
 [docs/handbook/13-interfaces.md](../../docs/handbook/13-interfaces.md).
-Commands use `aqua/<node>/<actuator>/set`. LWT uses `aqua/<node>/status`.
+Commands use `aqua/<node>/<actuator>/set`. Actuator state readback uses
+`aqua/<node>/<actuator>/state`. LWT uses `aqua/<node>/status`.
+
+### Actuator commands
+
+The simulator subscribes to actuator `/set` commands and publishes `/state` readback:
+
+| Command topic | State topic | Description |
+|---|---|---|
+| `aqua/<node>/feeder/set` | `aqua/<node>/feeder/state` | Feeder servo (ON/OFF) |
+| `aqua/<node>/light/set` | `aqua/<node>/light/state` | Grow light (ON/OFF) |
+| `aqua/<node>/refill/set` | `aqua/<node>/refill/state` | Refill valve (ON/OFF, 120s timeout) |
+
+Feed commands also trigger a turbidity spike (food particles in water).
 
 ## Sensor models
 
@@ -105,6 +128,33 @@ hours and dips at night. Solar current is zero at night.
 
 ### Low water
 Boolean sensor; normally `OFF`. Fault `low_water` forces it `ON`.
+
+### EC / TDS (nutrient conductivity)
+EC in mS/cm, temperature-compensated to 25°C (2%/°C correction). Rises with
+nitrate (nutrient load). TDS derived via conversion factor (default 0.5).
+Fault `ec_drift` causes persistent reading deviation.
+
+### Turbidity (NTU)
+Baseline + slow particulate drift + feeding spikes (decays exponentially).
+Fault `dirty_turbidity` offsets baseline upward (fouled sensor).
+
+### Light (lux, BH1750)
+Diurnal curve: zero at night, peaks at solar noon. Random cloud cover
+variation (0–40% reduction). Fault `light_fault` causes under-reading.
+
+### Air temperature & humidity (AHT20)
+Air temp: sine wave, leads water temp by ~1h, wider swing (±6°C).
+Humidity: inverse to temp (warm air → lower RH). Bounded 20–99%.
+
+### Air pressure (BMP280)
+Slow random walk around ~1010 hPa (Guangzhou, near sea level) with
+semi-diurnal pressure tide (±1 hPa).
+
+### Actuator state readback
+Tracks ON/OFF state for feeder, grow light, and refill valve.
+- Feeder: responds to `/set`, feeding triggers turbidity spike
+- Grow light: responds to `/set`
+- Refill valve: responds to `/set`, **auto-off after 120s** (safety timeout)
 
 ## Multi-node support
 

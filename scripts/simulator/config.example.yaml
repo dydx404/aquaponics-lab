@@ -29,6 +29,18 @@ nodes:
     battery_amplitude: 0.4
     solar_peak_current: 1.5       # A
     solar_peak_hour: 12
+    # ── Full sensor set (Task B) ──────────────────────────────────
+    ec_base: 1.2                  # mS/cm at 25°C (nutrient baseline)
+    tds_factor: 0.5               # EC→TDS conversion factor
+    turbidity_baseline: 3.0       # NTU
+    turbidity_drift_rate: 0.002   # NTU/s particulate accumulation
+    light_peak_lux: 45000.0       # lux at solar noon (BH1750)
+    air_temp_base: 30.0           # °C (Guangzhou balcony, AHT20)
+    air_temp_amplitude: 6.0       # diurnal swing ±
+    air_temp_peak_hour: 13        # peaks 1h before water temp
+    air_humidity_base: 65.0       # %RH
+    air_humidity_amplitude: 20.0  # diurnal swing ±
+    air_pressure_base: 1010.0     # hPa (BMP280, near sea level)
 
   # - id: tank02
   #   water_temp_base: 26.0
@@ -40,11 +52,14 @@ nodes:
 # target: node id, or "*" for all nodes.
 #
 # types:
-#   pump_fail     — pump stops (current=0, flow=0)
-#   pump_block    — pump blocked (high current, flow=0)
-#   high_temp     — temperature offset (delta, default +5°C)
-#   low_water     — low water sensor triggers
-#   sensor_drift  — pH drifts (rate, default 0.05/tick)
+#   pump_fail        — pump stops (current=0, flow=0)
+#   pump_block       — pump blocked (high current, flow=0)
+#   high_temp        — temperature offset (delta, default +5°C)
+#   low_water        — low water sensor triggers
+#   sensor_drift     — pH drifts (rate, default 0.05/tick)
+#   ec_drift         — EC reading drifts (rate, default 0.1)
+#   dirty_turbidity  — turbidity sensor fouled (offset, default +15 NTU)
+#   light_fault      — light sensor under-reads
 
 faults: []
   # - type: pump_fail
@@ -54,3 +69,6 @@ faults: []
   #   delta: 6.0
   # - type: low_water
   #   target: tank01
+  # - type: dirty_turbidity
+  #   target: tank01
+  #   offset: 20.0
