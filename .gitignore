@@ -30,6 +30,15 @@ node_modules/
 *.stl.tmp
 hardware/3d-models/**/*.bak
 
+# --- KiCad 自动备份/缓存 ---
+*-backups/
+*.kicad_pcb-bak
+*.kicad_sch-bak
+*.kicad_prl
+fp-info-cache
+*.bak
+_autosave-*
+
 # --- OS / editor ---
 .DS_Store
 Thumbs.db
