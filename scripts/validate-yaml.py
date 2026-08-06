@@ -49,6 +49,7 @@ DEFAULT_PATHS = [
     "firmware/esphome",
     ".github/workflows",
     "scripts/simulator",
+    "deploy",
 ]
 
 # Files to skip (example/template files)

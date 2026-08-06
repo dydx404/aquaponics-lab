@@ -43,7 +43,24 @@ long-term iteration over yield**. Docs are Chinese-first with English summaries.
 
 ### 🧪 纯软件快速体验（无需硬件）
 
-不想等硬件到手？用模拟器直接跑起来：
+不想等硬件到手？有两种方式跑起来：
+
+#### 方式一：Docker Compose 一键全栈（推荐）
+
+```bash
+cd deploy/
+cp .env.example .env       # 编辑密码
+docker compose up -d       # 一条命令拉起全栈
+```
+
+启动后：
+- **Grafana** → http://localhost:3000（仪表盘自动加载，数据在动）
+- **Home Assistant** → http://localhost:8123（传感器实体 + 自动化）
+- 模拟器每 5s 发布全量遥测，Grafana 实时刷新
+
+详见 [`deploy/README.md`](deploy/README.md)。
+
+#### 方式二：手动启动模拟器
 
 ```bash
 # 1. 启动 MQTT broker
@@ -68,9 +85,10 @@ python run.py --fault high_temp:*         # 注入高温，测试降温级联
 | `firmware/esphome/` | 各 ESP32 节点的 ESPHome 配置 |
 | `home-assistant/` | HA 配置包：传感器实体、失效告警、降温级联自动化 |
 | `hardware/` | 接线图、原理图、3D 打印件（源文件 + STL） |
-| `data/grafana/` | Grafana 仪表盘 JSON（氮循环、水质、能量、泵流量） |
+| `data/grafana/` | Grafana 仪表盘 JSON（氮循环、水质、养分、环境、能量、泵流量） |
 | `scripts/simulator/` | MQTT 传感器模拟器（Python，无需硬件即可开发调试） |
 | `scripts/` | CI 校验工具（YAML 语法、MQTT 主题命名） |
+| `deploy/` | Docker Compose 全栈部署（Mosquitto + InfluxDB + Grafana + HA + 模拟器） |
 
 ## 🗺 路线图（MVP）
 

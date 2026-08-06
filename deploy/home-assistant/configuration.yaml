@@ -1,0 +1,65 @@
+# ─────────────────────────────────────────────────────────────────────
+# Home Assistant configuration for Docker Compose deploy
+# ─────────────────────────────────────────────────────────────────────
+# This file is mounted at /config/configuration.yaml.
+# The project's packages are mounted at /config/packages (read-only).
+# ─────────────────────────────────────────────────────────────────────
+
+# Load packages from /config/packages/
+packages: !include_dir_named packages/
+
+# ── Core ─────────────────────────────────────────────────────────────
+homeassistant:
+  name: Aquaponics Lab
+  latitude: 23.13
+  longitude: 113.26
+  elevation: 10
+  unit_system: metric
+  time_zone: Asia/Shanghai
+  external_url: "http://localhost:8123"
+  internal_url: "http://localhost:8123"
+
+# ── MQTT integration ─────────────────────────────────────────────────
+mqtt:
+  broker: mosquitto
+  port: 1883
+  discovery: true
+  discovery_prefix: homeassistant
+
+# ── Frontend ─────────────────────────────────────────────────────────
+frontend:
+  themes: !include_dir_merge_named themes/
+
+lovelace:
+  mode: storage
+
+# ── History & logger ─────────────────────────────────────────────────
+history:
+  include:
+    domains:
+      - sensor
+      - binary_sensor
+      - switch
+      - input_boolean
+      - automation
+
+logger:
+  default: info
+  logs:
+    homeassistant.components.mqtt: debug
+
+# ── Recorder (SQLite, lightweight for demo) ──────────────────────────
+recorder:
+  purge_keep_days: 7
+  include:
+    domains:
+      - sensor
+      - binary_sensor
+      - switch
+
+# ── Time entities ────────────────────────────────────────────────────
+timer:
+
+# ── System ───────────────────────────────────────────────────────────
+config:
+mobile_app:

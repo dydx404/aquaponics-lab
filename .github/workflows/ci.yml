@@ -36,6 +36,16 @@ jobs:
           pip install pyyaml
           python scripts/validate-yaml.py
 
+  validate-docker-compose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate docker-compose.yml
+        run: |
+          cd deploy
+          cp .env.example .env
+          docker compose config --quiet
+
   validate-mqtt-topics:
     runs-on: ubuntu-latest
     steps:

@@ -1,0 +1,12 @@
+-- InfluxDB initialization script
+-- Runs automatically on first container start.
+
+-- Create the aqua database
+CREATE DATABASE aqua;
+
+-- Create a retention policy: 90 days of hot data, then auto-drop
+CREATE RETENTION POLICY "autogen" ON "aqua" DURATION 90d REPLICATION 1 DEFAULT;
+
+-- Grant access to the aqua user
+-- (User is created by the INFLUXDB_USER / INFLUXDB_USER_PASSWORD env vars)
+GRANT ALL ON "aqua" TO "aqua";

@@ -1,0 +1,13 @@
+# Grafana dashboard provisioning — auto-load from /var/lib/grafana/dashboards
+apiVersion: 1
+
+providers:
+  - name: aquaponics
+    orgId: 1
+    folder: Aquaponics
+    type: file
+    disableDeletion: false
+    updateIntervalSeconds: 30
+    allowUiUpdates: true
+    options:
+      path: /var/lib/grafana/dashboards

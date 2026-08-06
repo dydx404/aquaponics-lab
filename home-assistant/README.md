@@ -33,12 +33,27 @@ packages: !include_dir_named packages/
 | Tank01 Ammonia | `aqua/tank01/ammonia` | sensor | mg/L |
 | Tank01 Nitrite | `aqua/tank01/nitrite` | sensor | mg/L |
 | Tank01 Nitrate | `aqua/tank01/nitrate` | sensor | mg/L |
+| Tank01 EC | `aqua/tank01/ec` | sensor | mS/cm |
+| Tank01 TDS | `aqua/tank01/tds` | sensor | ppm |
+| Tank01 Turbidity | `aqua/tank01/turbidity` | sensor | NTU |
+| Tank01 Light Lux | `aqua/tank01/light_lux` | sensor | lx |
+| Tank01 Air Temperature | `aqua/tank01/air_temp` | sensor | °C |
+| Tank01 Air Humidity | `aqua/tank01/air_humidity` | sensor | % |
+| Tank01 Air Pressure | `aqua/tank01/air_pressure` | sensor | hPa |
 | Tank01 Pump Current | `aqua/tank01/pump_current` | sensor | A |
 | Tank01 Flow Rate | `aqua/tank01/flow` | sensor | L/min |
 | Tank01 Battery Voltage | `aqua/tank01/battery_v` | sensor | V |
 | Tank01 Solar Current | `aqua/tank01/solar_current` | sensor | A |
 | Tank01 Low Water | `aqua/tank01/low_water` | binary_sensor | ON/OFF |
 | Tank01 Online | `aqua/tank01/status` | binary_sensor | online/offline |
+| Tank01 Feeder State | `aqua/tank01/feeder/state` | binary_sensor | ON/OFF |
+| Tank01 Light State | `aqua/tank01/light/state` | binary_sensor | ON/OFF |
+| Tank01 Refill State | `aqua/tank01/refill/state` | binary_sensor | ON/OFF |
+
+另含三个 MQTT switch（命令主题 `aqua/tank01/<actuator>/set`）：
+- **Tank01 Feeder** — 喂食舵机
+- **Tank01 Grow Light** — 补光灯
+- **Tank01 Refill Valve** — 补水电磁阀
 
 另含两个 template sensor：
 - **Nitrogen Cycle Stage** — 根据氨/亚硝酸/硝酸盐值自动判断：Ammonia Spike → Nitrite Rising → Nitrite Peak → Cycled
@@ -73,6 +88,22 @@ packages: !include_dir_named packages/
 - **级联联锁**：L2 激活时确保 L1 也激活；L1 清除时检查 L2 是否仍在激活
 - **反向关停**：降温时 L3 → L2 → L1 逐级清除，避免突变
 - **MQTT 命令**：通过 `aqua/tank01/<actuator>/set` 控制风扇、遮阳、打氧
+
+### aqua_automations.yaml — P2 控制自动化
+
+来自 [functional-spec.md](../docs/functional-spec.md) §C 类功能：
+
+| 自动化 | 触发 | 执行器 | 安全机制 |
+|--------|------|--------|----------|
+| 定时喂食 | 每日 08:00 / 18:00 | `aqua/tank01/feeder/set` | 4h 最小间隔锁定，自动 OFF |
+| 光周期 | 06:30 ON / 20:30 OFF | `aqua/tank01/light/set` | 环境 lux > 20k 跳过，> 30k 自动关 |
+| 自动补水 | low_water = ON | `aqua/tank01/refill/set` | 泵互锁 + 120s 超时 + 15min 冷却 + 45min 升级告警 |
+
+设计要点：
+- **互锁**：补水仅在泵运行时触发（水必须循环）
+- **限幅**：喂食 4h 间隔，补水 15min 冷却
+- **超时**：补水阀 120s 强制关闭（模拟器也强制执行）
+- **升级**：缺水 45min 持续 → CRITICAL 告警
 
 ## 本地验证
 
