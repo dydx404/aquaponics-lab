@@ -49,6 +49,57 @@ mqtt:
       icon: mdi:alpha-n-box
       value_template: "{{ value | float(0) }}"
 
+    # ── Nutrients & clarity (Task B) ──────────────────────────────
+    - name: "Tank01 EC"
+      unique_id: aqua_tank01_ec
+      state_topic: "aqua/tank01/ec"
+      unit_of_measurement: "mS/cm"
+      icon: mdi:water-opacity
+      value_template: "{{ value | float(0) }}"
+
+    - name: "Tank01 TDS"
+      unique_id: aqua_tank01_tds
+      state_topic: "aqua/tank01/tds"
+      unit_of_measurement: "ppm"
+      icon: mdi:water-opacity
+      value_template: "{{ value | float(0) }}"
+
+    - name: "Tank01 Turbidity"
+      unique_id: aqua_tank01_turbidity
+      state_topic: "aqua/tank01/turbidity"
+      unit_of_measurement: "NTU"
+      icon: mdi:waves
+      value_template: "{{ value | float(0) }}"
+
+    # ── Environment (Task B — AHT20 + BMP280 + BH1750) ────────────
+    - name: "Tank01 Light Lux"
+      unique_id: aqua_tank01_light_lux
+      state_topic: "aqua/tank01/light_lux"
+      unit_of_measurement: "lx"
+      device_class: illuminance
+      value_template: "{{ value | float(0) }}"
+
+    - name: "Tank01 Air Temperature"
+      unique_id: aqua_tank01_air_temp
+      state_topic: "aqua/tank01/air_temp"
+      unit_of_measurement: "°C"
+      device_class: temperature
+      value_template: "{{ value | float(0) }}"
+
+    - name: "Tank01 Air Humidity"
+      unique_id: aqua_tank01_air_humidity
+      state_topic: "aqua/tank01/air_humidity"
+      unit_of_measurement: "%"
+      device_class: humidity
+      value_template: "{{ value | float(0) }}"
+
+    - name: "Tank01 Air Pressure"
+      unique_id: aqua_tank01_air_pressure
+      state_topic: "aqua/tank01/air_pressure"
+      unit_of_measurement: "hPa"
+      device_class: pressure
+      value_template: "{{ value | float(0) }}"
+
     # ── Pump (220V AC side per ADR-0004) ──────────────────────────
     - name: "Tank01 Pump Current"
       unique_id: aqua_tank01_pump_current
@@ -95,6 +146,60 @@ mqtt:
       payload_on: "online"
       payload_off: "offline"
       device_class: connectivity
+
+    # ── Actuator state readback (Task C) ──────────────────────────
+    - name: "Tank01 Feeder State"
+      unique_id: aqua_tank01_feeder_state
+      state_topic: "aqua/tank01/feeder/state"
+      payload_on: "ON"
+      payload_off: "OFF"
+      device_class: running
+
+    - name: "Tank01 Light State"
+      unique_id: aqua_tank01_light_state
+      state_topic: "aqua/tank01/light/state"
+      payload_on: "ON"
+      payload_off: "OFF"
+      device_class: running
+
+    - name: "Tank01 Refill State"
+      unique_id: aqua_tank01_refill_state
+      state_topic: "aqua/tank01/refill/state"
+      payload_on: "ON"
+      payload_off: "OFF"
+      device_class: running
+
+  # ── Actuator command switches (Task C) ───────────────────────────
+  switch:
+    - name: "Tank01 Feeder"
+      unique_id: aqua_tank01_feeder
+      command_topic: "aqua/tank01/feeder/set"
+      state_topic: "aqua/tank01/feeder/state"
+      payload_on: "ON"
+      payload_off: "OFF"
+      optimistic: false
+      retain: true
+      icon: mdi:food-drumstick
+
+    - name: "Tank01 Grow Light"
+      unique_id: aqua_tank01_grow_light
+      command_topic: "aqua/tank01/light/set"
+      state_topic: "aqua/tank01/light/state"
+      payload_on: "ON"
+      payload_off: "OFF"
+      optimistic: false
+      retain: true
+      icon: mdi:lightbulb
+
+    - name: "Tank01 Refill Valve"
+      unique_id: aqua_tank01_refill
+      command_topic: "aqua/tank01/refill/set"
+      state_topic: "aqua/tank01/refill/state"
+      payload_on: "ON"
+      payload_off: "OFF"
+      optimistic: false
+      retain: true
+      icon: mdi:water-plus
 
 # ── Derived template sensors ──────────────────────────────────────────
 template:

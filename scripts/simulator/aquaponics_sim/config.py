@@ -39,6 +39,18 @@ _DEFAULT_NODE = {
     "battery_amplitude": 0.4,
     "solar_peak_current": 1.5,       # A
     "solar_peak_hour": 12,
+    # ── New sensors (Task B) ──────────────────────────────────────
+    "ec_base": 1.2,                  # mS/cm at 25°C (nutrient baseline)
+    "tds_factor": 0.5,               # EC→TDS conversion factor
+    "turbidity_baseline": 3.0,       # NTU
+    "turbidity_drift_rate": 0.002,   # NTU/s particulate accumulation
+    "light_peak_lux": 45000.0,       # lux at solar noon
+    "air_temp_base": 30.0,           # °C (Guangzhou balcony)
+    "air_temp_amplitude": 6.0,       # diurnal swing ±
+    "air_temp_peak_hour": 13,        # peaks 1h before water
+    "air_humidity_base": 65.0,       # %RH
+    "air_humidity_amplitude": 20.0,  # diurnal swing ±
+    "air_pressure_base": 1010.0,     # hPa (near sea level)
 }
 
 _DEFAULT_FAULTS: list[dict] = []
