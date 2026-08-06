@@ -7,6 +7,8 @@
 - [0001 · 采用 CHOP2 单泵闭环](0001-chop2-single-pump.md)
 - [0002 · 多口小玻璃缸「实验鱼房」而非单一大缸](0002-multi-small-glass-tanks.md)
 - [0003 · 重物落地：弱层板下的载荷布局](0003-heavy-tanks-on-floor.md)
+- [0004 · 供电分域：220V 市电泵 + 12V DC 控制系统](0004-power-domains.md)
+- [0005 · 接口契约分层：电气冻结 / 物理连接器延后](0005-connector-layer-deferred.md)
 
 ## 模板
 
