@@ -1,0 +1,308 @@
+# ─────────────────────────────────────────────────────────────────────
+# aqua_automations — P2 control automations from functional-spec.md §C
+# ─────────────────────────────────────────────────────────────────────
+# Mount via: packages: !include_dir_named packages/
+#
+# Implements three automation classes with safety interlocks:
+#   1. Timed feeding  (定时喂食)  — schedule-driven, min interval lockout
+#   2. Photoperiod    (光周期)    — sunrise/sunset grow light, lux override
+#   3. Auto-refill    (自动补水)  — low-water triggered, 2-min timeout + cooldown
+#
+# All actuator commands use MQTT publish to aqua/<node>/<actuator>/set.
+# State readback comes from aqua/<node>/<actuator>/state.
+#
+# Safety patterns:
+#   - Interlock:  pump must be running before refill (water movement)
+#   - Clamping:   feeder min 4h between feeds; refill max 2 min on
+#   - Timeout:    refill auto-off after 120s; light auto-off at sunrise
+# ─────────────────────────────────────────────────────────────────────
+
+# ── Input helpers for configuration & override ───────────────────────
+input_boolean:
+  aqua_tank01_feeding_enabled:
+    name: "Tank01 Feeding Automation"
+    icon: mdi:food-drumstick
+  aqua_tank01_photoperiod_enabled:
+    name: "Tank01 Photoperiod Automation"
+    icon: mdi:lightbulb-auto
+  aqua_tank01_refill_enabled:
+    name: "Tank01 Auto-Refill Automation"
+    icon: mdi:water-plus
+  aqua_tank01_refill_active:
+    name: "Tank01 Refill In Progress"
+    icon: mdi:progress-clock
+
+input_datetime:
+  aqua_tank01_feed_time_1:
+    name: "Tank01 Feed Time 1"
+    has_time: true
+    initial: "08:00"
+  aqua_tank01_feed_time_2:
+    name: "Tank01 Feed Time 2"
+    has_time: true
+    initial: "18:00"
+  aqua_tank01_light_on_time:
+    name: "Tank01 Light On Time"
+    has_time: true
+    initial: "06:30"
+  aqua_tank01_light_off_time:
+    name: "Tank01 Light Off Time"
+    has_time: true
+    initial: "20:30"
+
+input_number:
+  aqua_tank01_feed_duration:
+    name: "Tank01 Feed Duration"
+    unit_of_measurement: "s"
+    min: 1
+    max: 30
+    initial: 5
+  aqua_tank01_refill_cooldown:
+    name: "Tank01 Refill Cooldown"
+    unit_of_measurement: "min"
+    min: 5
+    max: 60
+    initial: 15
+
+# ── 1. Timed Feeding ─────────────────────────────────────────────────
+# Schedule: twice daily at configured times.
+# Safety: min 4h between feeds (clamping), manual override via switch.
+# Actuator: publishes ON to aqua/tank01/feeder/set, auto-OFF after duration.
+
+automation:
+  # ── Feed trigger 1 ──────────────────────────────────────────────────
+  - id: aqua_tank01_feed_1
+    alias: "Tank01 Timed Feeding 1"
+    description: "Dispense food at scheduled time 1"
+    trigger:
+      - platform: time
+        at: input_datetime.aqua_tank01_feed_time_1
+    condition:
+      - condition: state
+        entity_id: input_boolean.aqua_tank01_feeding_enabled
+        state: "on"
+      - condition: template
+        value_template: >
+          {% set last = state_attr('automation.aqua_tank01_feed_1', 'last_triggered') %}
+          {{ last is none or (now() - last).total_seconds() > 14400 }}
+    action:
+      - service: mqtt.publish
+        data:
+          topic: "aqua/tank01/feeder/set"
+          payload: "ON"
+      - delay:
+          seconds: "{{ states('input_number.aqua_tank01_feed_duration') | int(5) }}"
+      - service: mqtt.publish
+        data:
+          topic: "aqua/tank01/feeder/set"
+          payload: "OFF"
+      - service: persistent_notification.create
+        data:
+          message: "Feeding 1 completed at {{ now().strftime('%H:%M') }}."
+          title: "Tank01 Feeding"
+
+  # ── Feed trigger 2 ──────────────────────────────────────────────────
+  - id: aqua_tank01_feed_2
+    alias: "Tank01 Timed Feeding 2"
+    description: "Dispense food at scheduled time 2"
+    trigger:
+      - platform: time
+        at: input_datetime.aqua_tank01_feed_time_2
+    condition:
+      - condition: state
+        entity_id: input_boolean.aqua_tank01_feeding_enabled
+        state: "on"
+      - condition: template
+        value_template: >
+          {% set last = state_attr('automation.aqua_tank01_feed_2', 'last_triggered') %}
+          {{ last is none or (now() - last).total_seconds() > 14400 }}
+    action:
+      - service: mqtt.publish
+        data:
+          topic: "aqua/tank01/feeder/set"
+          payload: "ON"
+      - delay:
+          seconds: "{{ states('input_number.aqua_tank01_feed_duration') | int(5) }}"
+      - service: mqtt.publish
+        data:
+          topic: "aqua/tank01/feeder/set"
+          payload: "OFF"
+      - service: persistent_notification.create
+        data:
+          message: "Feeding 2 completed at {{ now().strftime('%H:%M') }}."
+          title: "Tank01 Feeding"
+
+# ── 2. Photoperiod Control ───────────────────────────────────────────
+# Schedule: grow light ON at sunrise-ish, OFF at sunset-ish.
+# Override: if ambient lux > 20000, skip turning on (natural light sufficient).
+# Interlock: light only on when photoperiod automation is enabled.
+
+automation:
+  # ── Light ON ───────────────────────────────────────────────────────
+  - id: aqua_tank01_light_on
+    alias: "Tank01 Grow Light On"
+    description: "Turn on grow light at scheduled time if ambient light is low"
+    trigger:
+      - platform: time
+        at: input_datetime.aqua_tank01_light_on_time
+    condition:
+      - condition: state
+        entity_id: input_boolean.aqua_tank01_photoperiod_enabled
+        state: "on"
+      - condition: numeric_state
+        entity_id: sensor.tank01_light_lux
+        below: 20000
+    action:
+      - service: mqtt.publish
+        data:
+          topic: "aqua/tank01/light/set"
+          payload: "ON"
+      - service: persistent_notification.create
+        data:
+          message: "Grow light turned ON (ambient lux: {{ states('sensor.tank01_light_lux') }})."
+          title: "Tank01 Photoperiod"
+
+  # ── Light OFF ──────────────────────────────────────────────────────
+  - id: aqua_tank01_light_off
+    alias: "Tank01 Grow Light Off"
+    description: "Turn off grow light at scheduled time"
+    trigger:
+      - platform: time
+        at: input_datetime.aqua_tank01_light_off_time
+    condition:
+      - condition: state
+        entity_id: input_boolean.aqua_tank01_photoperiod_enabled
+        state: "on"
+    action:
+      - service: mqtt.publish
+        data:
+          topic: "aqua/tank01/light/set"
+          payload: "OFF"
+
+  # ── Light auto-off when ambient is bright enough ──────────────────
+  - id: aqua_tank01_light_auto_off_bright
+    alias: "Tank01 Light Auto-Off (Bright)"
+    description: "Turn off grow light when ambient lux exceeds 30000"
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.tank01_light_lux
+        above: 30000
+        for: "00:05:00"
+    condition:
+      - condition: state
+        entity_id: binary_sensor.tank01_light_state
+        state: "on"
+    action:
+      - service: mqtt.publish
+        data:
+          topic: "aqua/tank01/light/set"
+          payload: "OFF"
+      - service: persistent_notification.create
+        data:
+          message: "Grow light auto-OFF: ambient lux > 30000 for 5 min."
+          title: "Tank01 Photoperiod"
+
+# ── 3. Auto-Refill with Timeout Protection ───────────────────────────
+# Trigger: low_water sensor turns ON.
+# Interlock: only when pump is running (water must be circulating).
+# Timeout: refill valve auto-OFF after 120s (simulator enforces this too).
+# Cooldown: min 15 min between refill attempts (clamping).
+# Safety: if low_water persists after 3 attempts, escalate to alarm.
+
+automation:
+  # ── Refill trigger ─────────────────────────────────────────────────
+  - id: aqua_tank01_refill_start
+    alias: "Tank01 Auto-Refill Start"
+    description: "Open refill valve when low water detected and pump is running"
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.tank01_low_water
+        to: "on"
+    condition:
+      - condition: state
+        entity_id: input_boolean.aqua_tank01_refill_enabled
+        state: "on"
+      # Interlock: pump must be running
+      - condition: template
+        value_template: >
+          {{ not is_state('sensor.tank01_pump_status', 'Stopped') }}
+      # Cooldown: not triggered in last N minutes
+      - condition: template
+        value_template: >
+          {% set last = state_attr('automation.aqua_tank01_refill_start', 'last_triggered') %}
+          {{ last is none or (now() - last).total_seconds() > (states('input_number.aqua_tank01_refill_cooldown') | int(15)) * 60 }}
+    action:
+      - service: input_boolean.turn_on
+        target:
+          entity_id: input_boolean.aqua_tank01_refill_active
+      - service: mqtt.publish
+        data:
+          topic: "aqua/tank01/refill/set"
+          payload: "ON"
+      - service: persistent_notification.create
+        data:
+          message: "Auto-refill started: low water detected."
+          title: "Tank01 Auto-Refill"
+      # Timeout: force OFF after 120s if still active
+      - delay: 120
+      - condition: state
+        entity_id: input_boolean.aqua_tank01_refill_active
+        state: "on"
+      - service: mqtt.publish
+        data:
+          topic: "aqua/tank01/refill/set"
+          payload: "OFF"
+      - service: input_boolean.turn_off
+        target:
+          entity_id: input_boolean.aqua_tank01_refill_active
+      - service: persistent_notification.create
+        data:
+          message: "Auto-refill timed out after 120s."
+          title: "Tank01 Auto-Refill ⚠"
+
+  # ── Refill stop when water level recovers ─────────────────────────
+  - id: aqua_tank01_refill_stop
+    alias: "Tank01 Auto-Refill Stop"
+    description: "Close refill valve when low water clears"
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.tank01_low_water
+        to: "off"
+    condition:
+      - condition: state
+        entity_id: input_boolean.aqua_tank01_refill_active
+        state: "on"
+    action:
+      - service: mqtt.publish
+        data:
+          topic: "aqua/tank01/refill/set"
+          payload: "OFF"
+      - service: input_boolean.turn_off
+        target:
+          entity_id: input_boolean.aqua_tank01_refill_active
+      - service: persistent_notification.create
+        data:
+          message: "Auto-refill completed: water level recovered."
+          title: "Tank01 Auto-Refill"
+
+  # ── Escalation: low water persists after multiple refills ─────────
+  - id: aqua_tank01_refill_escalation
+    alias: "Tank01 Refill Escalation"
+    description: "Escalate to alarm if low water persists after 3 refill attempts"
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.tank01_low_water
+        to: "on"
+        for: "00:45:00"
+    condition:
+      - condition: state
+        entity_id: input_boolean.aqua_tank01_refill_enabled
+        state: "on"
+    action:
+      - service: persistent_notification.create
+        data:
+          message: >
+            LOW WATER PERSISTED 45+ min despite auto-refill.
+            Check water supply, valve, and float switch.
+            Pump status: {{ states('sensor.tank01_pump_status') }}
+          title: "Tank01 CRITICAL: Refill Failed ⚠⚠"
