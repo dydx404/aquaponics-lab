@@ -41,16 +41,36 @@ long-term iteration over yield**. Docs are Chinese-first with English summaries.
 4. 刷 [`firmware/esphome/`](firmware/esphome/) 的节点固件（先复制 `secrets.example.yaml` → `secrets.yaml`）。
 5. 导入 [`home-assistant/`](home-assistant/) 的配置，接入 MQTT。
 
+### 🧪 纯软件快速体验（无需硬件）
+
+不想等硬件到手？用模拟器直接跑起来：
+
+```bash
+# 1. 启动 MQTT broker
+docker run -d --name mosquitto -p 1883:1883 eclipse-mosquitto
+
+# 2. 启动传感器模拟器
+cd scripts/simulator
+pip install -r requirements.txt
+python run.py                              # 默认参数
+python run.py --fault pump_fail:tank01    # 注入泵故障，测试告警
+python run.py --fault high_temp:*         # 注入高温，测试降温级联
+
+# 3. 导入 HA 配置包 → 传感器实体自动出现 → 告警触发
+# 4. 导入 Grafana 仪表盘 JSON → 实时曲线
+```
+
 ## 📂 目录结构
 
 | 路径 | 内容 |
 |---|---|
 | `docs/` | 设计、施工、BOM、运维、架构决策记录（ADR） |
 | `firmware/esphome/` | 各 ESP32 节点的 ESPHome 配置 |
-| `home-assistant/` | HA 自动化、仪表盘、包 |
+| `home-assistant/` | HA 配置包：传感器实体、失效告警、降温级联自动化 |
 | `hardware/` | 接线图、原理图、3D 打印件（源文件 + STL） |
-| `data/` | Grafana 仪表盘、样例数据 |
-| `scripts/` | 刷机、备份等工具脚本 |
+| `data/grafana/` | Grafana 仪表盘 JSON（氮循环、水质、能量、泵流量） |
+| `scripts/simulator/` | MQTT 传感器模拟器（Python，无需硬件即可开发调试） |
+| `scripts/` | CI 校验工具（YAML 语法、MQTT 主题命名） |
 
 ## 🗺 路线图（MVP）
 

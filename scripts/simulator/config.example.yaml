@@ -1,0 +1,56 @@
+# ── MQTT broker ───────────────────────────────────────────────────────
+broker:
+  host: localhost
+  port: 1883
+  # username: user
+  # password: pass
+
+# ── Simulation parameters ─────────────────────────────────────────────
+sim:
+  interval: 5              # seconds between telemetry publishes
+  random_seed: null        # null = random; 42 = reproducible
+  time_scale: 1.0          # >1 = speed up nitrogen cycle for demo
+
+# ── Nodes ─────────────────────────────────────────────────────────────
+# Each node publishes to aqua/<id>/<metric>.
+# Add multiple nodes for a multi-tank setup.
+nodes:
+  - id: tank01
+    water_temp_base: 28.0       # °C — median water temperature
+    water_temp_amplitude: 3.0   # diurnal swing ±
+    water_temp_peak_hour: 14    # hottest hour (24h)
+    ph_initial: 7.6
+    ph_min: 6.5
+    ph_max: 8.5
+    nitrogen_cycle_duration: 1800  # seconds (30 min compressed demo cycle)
+    pump_nominal_current: 0.52     # A (220V AC side via SSR / current sensor)
+    pump_nominal_flow: 8.0         # L/min
+    battery_base: 12.8            # V (12V DC domain)
+    battery_amplitude: 0.4
+    solar_peak_current: 1.5       # A
+    solar_peak_hour: 12
+
+  # - id: tank02
+  #   water_temp_base: 26.0
+  #   water_temp_amplitude: 2.5
+  #   pump_nominal_flow: 6.0
+
+# ── Fault injection ───────────────────────────────────────────────────
+# Faults are applied at startup and persist for the session.
+# target: node id, or "*" for all nodes.
+#
+# types:
+#   pump_fail     — pump stops (current=0, flow=0)
+#   pump_block    — pump blocked (high current, flow=0)
+#   high_temp     — temperature offset (delta, default +5°C)
+#   low_water     — low water sensor triggers
+#   sensor_drift  — pH drifts (rate, default 0.05/tick)
+
+faults: []
+  # - type: pump_fail
+  #   target: tank01
+  # - type: high_temp
+  #   target: "*"
+  #   delta: 6.0
+  # - type: low_water
+  #   target: tank01

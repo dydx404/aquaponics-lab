@@ -25,6 +25,10 @@ __pycache__/
 venv/
 node_modules/
 
+# --- Simulator ---
+scripts/simulator/config.yaml
+scripts/simulator/*.log
+
 # --- CAD / 3D temp ---
 *.f3d.lock
 *.stl.tmp
