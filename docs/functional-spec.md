@@ -24,7 +24,8 @@
 | 光照 | BH1750 | I²C | ✅ | P0 |
 | 气温湿压 | AHT20+BMP280 | I²C | ✅ | P0 |
 | 连续水位 | 超声波(HC-SR04→后换防水 JSN) | 数字 | 🔧/🛒 | P1 |
-| 缺水兜底 | 浮球开关 25mm 0-110V | 数字 | 🛒 | P0 |
+| 缺水兜底(低水位) | 浮球开关 25mm 0-110V | 数字 | 🛒 | P0 |
+| 高水位兜底 | 浮球开关（**断控制回路，不串 220V**，见 [ADR-0009](decisions/0009-pump-metering-and-control.md) R-2） | 数字 | 🛒 | P0 |
 | 流量 | YF-S201 | 脉冲 | 🛒 | P1 |
 | 12V 母线/电池电流 | INA226 | I²C | 🛒 | P2 |
 | 泵功率/电流(220V AC) | **PZEM-004T**（UART，ESPHome pzemac）+ 流量冗余 | UART | 🛒 | P1（见 [ADR-0009](decisions/0009-pump-metering-and-control.md)） |

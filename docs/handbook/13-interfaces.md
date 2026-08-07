@@ -124,7 +124,10 @@ aqua/grow/light/set         ON
 
 1. 提出变更 → 开 Issue。
 2. 写/更新 **ADR**（[docs/decisions](../decisions/)）说明原因与影响。
-3. **逐行核对本次变更影响的 [functional-spec](../functional-spec.md) 条目** —— 防止像 [ADR-0004](../decisions/0004-power-domains.md) 那样静默废掉一条已冻结的功能链（它把"泵电流监测"悄悄变得无实现路径，直到硬件评审才暴露，见 [ADR-0009](../decisions/0009-pump-metering-and-control.md)）。
+3. **双向核对本次变更影响的 [functional-spec](../functional-spec.md) 条目**：
+   ① 本次变更**废掉 / 让谁无实现路径**（防功能悄悄消失——如 [ADR-0004](../decisions/0004-power-domains.md) 静默废掉"泵电流监测"）；
+   ② 本次变更**新依赖了哪些尚未登记的条目**（防前提落空——如 [ADR-0009](../decisions/0009-pump-metering-and-control.md) 的失效安全依赖一颗未登记的"高水位浮球"）。
+   两个方向各五分钟。
 4. **双方（硬件 + 软件）确认**。
 5. 同步更新本章与 [第 21 章附录](21-appendix-pinouts.md)。
 6. 相关分支据新契约调整。

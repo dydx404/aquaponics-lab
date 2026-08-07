@@ -34,6 +34,12 @@ ads1115:
   - address: 0x48
     id: ads
 
+# ── 分时供电 TODO（硬件评审 R-6）──
+# 面包板阶段三路 ADS 连续读取会有串扰（pH 高阻抗被 TDS 交流激励干扰）。
+# 待 node-baseboard 提供"3 路开关式探头供电口"后，固件改为分时采样：
+#   使能一支 → 稳定等待 ≈2s → 采样 → 断电 → 切下一支（单支 30–60s 周期）。
+# 可用 switch + script + interval 实现；现阶段先连续读，标定时注意此串扰。
+
 sensor:
   # ── 水温 ──
   - platform: dallas_temp
