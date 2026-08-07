@@ -1,12 +1,14 @@
-# node-tank01 — MVP-4 首个传感节点
-# 水温(DS18B20) + 缺水(浮球) + 泵电流(INA219)，发 MQTT (aqua/tank01/...) → Home Assistant。
+# node-tank01 — MVP-4 首个真实水质节点（面包板版）
+# 用现有传感器把养菌缸接进 Home Assistant，发扁平 MQTT aqua/tank01/*（与模拟器/仪表盘同主题）。
+# 泵电流不在此节点：泵走 220V 市电，由 PZEM 计量（见 ADR-0009）。
 #
-# 引脚：
-#   GPIO4  1-Wire (DS18B20 水温)
-#   GPIO21 SDA / GPIO22 SCL (I2C: INA219 泵电流监测)
-#   GPIO13 浮球开关 (低水位, 上拉输入)
+# 接线（面包板；PCB 定型后引脚以 node-baseboard 为准）：
+#   I²C   SDA=GPIO21  SCL=GPIO22 → ADS1115(0x48) / BH1750(0x23) / AHT20(0x38) / BMP280(0x77)
+#   1-Wire GPIO4 → DS18B20 防水水温（数据线 4.7kΩ 上拉到 3.3V）
+#   浮球  GPIO13 → 低水位（内部上拉，干接点接 GND）
+#   ADS1115: A0 ← PH4502C 的 Po   A1 ← TDS 模拟 out   A2 ← 浊度 模拟 out
 #
-# 首次使用：cp secrets.example.yaml secrets.yaml 并填写；然后 esphome run node-tank01.yaml
+# 首次：cp secrets.example.yaml secrets.yaml 填 wifi/mqtt；然后 esphome run node-tank01.yaml
 
 substitutions:
   node_name: tank01
@@ -15,33 +17,130 @@ substitutions:
 packages:
   base: !include common/base.yaml
 
-one_wire:
-  - platform: gpio
-    pin: GPIO4
+# 关自动发现（HA 已有手动 MQTT 实体，避免重复）；数值由下面 on_value 显式发扁平主题
+mqtt:
+  discovery: false
 
 i2c:
   sda: GPIO21
   scl: GPIO22
   scan: true
 
+one_wire:
+  - platform: gpio
+    pin: GPIO4
+
+ads1115:
+  - address: 0x48
+    id: ads
+
 sensor:
+  # ── 水温 ──
   - platform: dallas_temp
     name: "Water temp"
     id: water_temp
     update_interval: 30s
-    # 多个探头时用 scan 到的地址区分：address: 0x...
+    on_value:
+      - mqtt.publish: { topic: aqua/${node_name}/water_temp, payload: !lambda 'return to_string(x);' }
 
-  - platform: ina219        # 泵电流/功率：突然升高=堵，归零=停/断线
-    address: 0x40
-    shunt_resistance: 0.1 ohm
-    max_voltage: 16.0V
-    max_current: 3.2A
-    update_interval: 5s
-    current:
-      name: "Pump current"
-      id: pump_current
-    bus_voltage:
-      name: "Bus voltage"
+  # ── pH：ADS1115 A0 原始电压（内部）→ 两点标定 ──
+  - platform: ads1115
+    ads1115_id: ads
+    multiplexer: A0_GND
+    gain: 4.096
+    id: ph_v
+    internal: true
+    update_interval: 10s
+  - platform: template
+    name: "pH"
+    id: ph
+    update_interval: 10s
+    lambda: |-
+      // TODO 标定：分别把探头泡 pH4.00 / 6.86 缓冲液，读 ph_v 电压填这两点
+      const float v_lo = 3.05, ph_lo = 4.00;
+      const float v_hi = 2.53, ph_hi = 6.86;
+      float k = (ph_hi - ph_lo) / (v_hi - v_lo);
+      return ph_lo + k * (id(ph_v).state - v_lo);
+    on_value:
+      - mqtt.publish: { topic: aqua/${node_name}/ph, payload: !lambda 'return to_string(x);' }
+
+  # ── EC/TDS：ADS1115 A1（内部）→ 温补 + 标准公式 ──
+  - platform: ads1115
+    ads1115_id: ads
+    multiplexer: A1_GND
+    gain: 4.096
+    id: tds_v
+    internal: true
+    update_interval: 10s
+  - platform: template
+    name: "TDS"
+    id: tds
+    unit_of_measurement: "ppm"
+    update_interval: 10s
+    lambda: |-
+      float t = id(water_temp).has_state() ? id(water_temp).state : 25.0;
+      float vc = id(tds_v).state / (1.0 + 0.02 * (t - 25.0));   // 温补到 25°C
+      return (133.42*vc*vc*vc - 255.86*vc*vc + 857.39*vc) * 0.5;
+    on_value:
+      - mqtt.publish: { topic: aqua/${node_name}/tds, payload: !lambda 'return to_string(x);' }
+
+  # ── 浊度：ADS1115 A2（内部）→ 电压近似 NTU（标定 TODO）──
+  - platform: ads1115
+    ads1115_id: ads
+    multiplexer: A2_GND
+    gain: 6.144        # 浊度模块 5V 供电、输出可达 ~4.5V，用大量程防削顶
+    id: turb_v
+    internal: true
+    update_interval: 10s
+  - platform: template
+    name: "Turbidity"
+    id: turbidity
+    unit_of_measurement: "NTU"
+    update_interval: 10s
+    lambda: |-
+      // 清水电压高、浑浊电压低；先线性近似，标定后替换
+      float v = id(turb_v).state;
+      float ntu = (v >= 4.2f) ? 0.0f : (4.2f - v) * 1000.0f;
+      return ntu < 0 ? 0 : ntu;
+    on_value:
+      - mqtt.publish: { topic: aqua/${node_name}/turbidity, payload: !lambda 'return to_string(x);' }
+
+  # ── 光照 ──
+  - platform: bh1750
+    name: "Light lux"
+    address: 0x23
+    id: light_lux
+    update_interval: 30s
+    on_value:
+      - mqtt.publish: { topic: aqua/${node_name}/light_lux, payload: !lambda 'return to_string(x);' }
+
+  # ── 空气温湿度（AHT20）──
+  - platform: aht10
+    variant: AHT20
+    update_interval: 30s
+    temperature:
+      name: "Air temp"
+      id: air_temp
+      on_value:
+        - mqtt.publish: { topic: aqua/${node_name}/air_temp, payload: !lambda 'return to_string(x);' }
+    humidity:
+      name: "Air humidity"
+      id: air_humidity
+      on_value:
+        - mqtt.publish: { topic: aqua/${node_name}/air_humidity, payload: !lambda 'return to_string(x);' }
+
+  # ── 气压（BMP280）──
+  - platform: bmp280
+    address: 0x77
+    update_interval: 30s
+    pressure:
+      name: "Air pressure"
+      id: air_pressure
+      on_value:
+        - mqtt.publish: { topic: aqua/${node_name}/air_pressure, payload: !lambda 'return to_string(x);' }
+    temperature:
+      name: "BMP temp"
+      internal: true
 
 binary_sensor:
   - platform: gpio
@@ -52,6 +151,7 @@ binary_sensor:
       mode: INPUT_PULLUP
     filters:
       - delay_on_off: 2s
+    on_state:
+      - mqtt.publish: { topic: aqua/${node_name}/low_water, payload: !lambda 'return x ? std::string("ON") : std::string("OFF");' }
 
-# 注：断泵/缺水/高温的“告警”逻辑放在 Home Assistant（跨模块、可推手机），
-#     节点只负责如实上报数据。见 ../../home-assistant/。
+# 告警/降温/自动化在 Home Assistant（跨模块、可推手机）；本节点只如实上报数据。
