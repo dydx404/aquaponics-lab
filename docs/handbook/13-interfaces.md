@@ -127,7 +127,7 @@ aqua/grow/light/set         ON
 3. **双向核对本次变更影响的 [functional-spec](../functional-spec.md) 条目**：
    ① 本次变更**废掉 / 让谁无实现路径**（防功能悄悄消失——如 [ADR-0004](../decisions/0004-power-domains.md) 静默废掉"泵电流监测"）；
    ② 本次变更**新依赖了哪些尚未登记的条目**（防前提落空——如 [ADR-0009](../decisions/0009-pump-metering-and-control.md) 的失效安全依赖一颗未登记的"高水位浮球"）。
-   两个方向各五分钟。
+   **可执行做法**：在 functional-spec 全文**搜索本次变更涉及的器件名**（如某次改动搜 `WiFi 继电器`/`SSR`/`INA219`）——反向搜索兜住"不再用什么"，比人工逐行读可靠。两个方向各五分钟。
 4. **双方（硬件 + 软件）确认**。
 5. 同步更新本章与 [第 21 章附录](21-appendix-pinouts.md)。
 6. 相关分支据新契约调整。
