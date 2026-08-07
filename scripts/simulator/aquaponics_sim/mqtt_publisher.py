@@ -60,6 +60,10 @@ class MqttPublisher:
             )
 
         self._all_wills = wills  # we'll publish the rest manually on connect
+        # Keep a reference to the broker dict so late CLI overrides (run.py sets
+        # cfg["broker"]["host"] after construction, e.g. --broker mosquitto) are
+        # picked up at connect() time instead of being silently ignored.
+        self._broker = broker
         self._host = host
         self._port = port
         self._command_callback: Callable[[str, str, str], None] | None = None
@@ -96,6 +100,9 @@ class MqttPublisher:
 
     def connect(self):
         """Connect and publish online status for all nodes."""
+        # Re-read host/port in case they were overridden after construction.
+        self._host = self._broker.get("host", self._host)
+        self._port = self._broker.get("port", self._port)
         self._client.connect(self._host, self._port, keepalive=60)
         self._client.loop_start()
 

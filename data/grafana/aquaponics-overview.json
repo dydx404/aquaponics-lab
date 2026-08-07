@@ -22,7 +22,12 @@
     {
       "collapsed": false,
       "datasource": null,
-      "gridPos": { "h": 1, "w": 24, "x": 0, "y": 0 },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
       "id": 100,
       "title": "Nitrogen Cycle",
       "type": "row"
@@ -32,7 +37,9 @@
       "description": "Ammonia (NH3), Nitrite (NO2-), Nitrate (NO3-) — the aquarium cycling curve",
       "fieldConfig": {
         "defaults": {
-          "color": { "mode": "palette-classic" },
+          "color": {
+            "mode": "palette-classic"
+          },
           "custom": {
             "axisLabel": "",
             "axisPlacement": "auto",
@@ -48,37 +55,82 @@
           "thresholds": {
             "mode": "absolute",
             "steps": [
-              { "color": "green", "value": null }
+              {
+                "color": "green",
+                "value": null
+              }
             ]
           },
           "unit": "mg/L"
         },
         "overrides": [
           {
-            "matcher": { "id": "byName", "options": "Ammonia" },
+            "matcher": {
+              "id": "byName",
+              "options": "Ammonia"
+            },
             "properties": [
-              { "id": "color", "value": { "fixedColor": "red", "mode": "fixed" } }
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "red",
+                  "mode": "fixed"
+                }
+              }
             ]
           },
           {
-            "matcher": { "id": "byName", "options": "Nitrite" },
+            "matcher": {
+              "id": "byName",
+              "options": "Nitrite"
+            },
             "properties": [
-              { "id": "color", "value": { "fixedColor": "orange", "mode": "fixed" } }
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "orange",
+                  "mode": "fixed"
+                }
+              }
             ]
           },
           {
-            "matcher": { "id": "byName", "options": "Nitrate" },
+            "matcher": {
+              "id": "byName",
+              "options": "Nitrate"
+            },
             "properties": [
-              { "id": "color", "value": { "fixedColor": "green", "mode": "fixed" } }
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "green",
+                  "mode": "fixed"
+                }
+              }
             ]
           }
         ]
       },
-      "gridPos": { "h": 8, "w": 24, "x": 0, "y": 1 },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 1
+      },
       "id": 1,
       "options": {
-        "legend": { "calcs": ["lastNotNull", "max"], "displayMode": "table", "placement": "bottom" },
-        "tooltip": { "mode": "multi", "sort": "none" }
+        "legend": {
+          "calcs": [
+            "lastNotNull",
+            "max"
+          ],
+          "displayMode": "table",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
       },
       "targets": [
         {
@@ -111,7 +163,12 @@
     {
       "collapsed": false,
       "datasource": null,
-      "gridPos": { "h": 1, "w": 24, "x": 0, "y": 9 },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 9
+      },
       "id": 101,
       "title": "Water Quality",
       "type": "row"
@@ -121,25 +178,50 @@
       "description": "Water temperature with diurnal swing",
       "fieldConfig": {
         "defaults": {
-          "color": { "mode": "thresholds" },
+          "color": {
+            "mode": "thresholds"
+          },
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
-              { "color": "blue", "value": null },
-              { "color": "green", "value": 24 },
-              { "color": "yellow", "value": 30 },
-              { "color": "red", "value": 32 }
+              {
+                "color": "blue",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 24
+              },
+              {
+                "color": "yellow",
+                "value": 30
+              },
+              {
+                "color": "red",
+                "value": 32
+              }
             ]
           },
           "unit": "tempC"
         },
         "overrides": []
       },
-      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 10 },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 10
+      },
       "id": 2,
       "options": {
-        "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false },
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
@@ -160,7 +242,9 @@
       "description": "pH level trend",
       "fieldConfig": {
         "defaults": {
-          "color": { "mode": "thresholds" },
+          "color": {
+            "mode": "thresholds"
+          },
           "custom": {
             "axisLabel": "",
             "axisPlacement": "auto",
@@ -176,20 +260,43 @@
           "thresholds": {
             "mode": "absolute",
             "steps": [
-              { "color": "red", "value": null },
-              { "color": "green", "value": 6.8 },
-              { "color": "red", "value": 8.2 }
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 6.8
+              },
+              {
+                "color": "red",
+                "value": 8.2
+              }
             ]
           },
           "unit": "pH"
         },
         "overrides": []
       },
-      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 10 },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 10
+      },
       "id": 3,
       "options": {
-        "legend": { "calcs": ["lastNotNull"], "displayMode": "list", "placement": "bottom" },
-        "tooltip": { "mode": "single", "sort": "none" }
+        "legend": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
       },
       "targets": [
         {
@@ -206,7 +313,12 @@
     {
       "collapsed": false,
       "datasource": null,
-      "gridPos": { "h": 1, "w": 24, "x": 0, "y": 18 },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 18
+      },
       "id": 102,
       "title": "Energy & Power",
       "type": "row"
@@ -216,7 +328,10 @@
       "description": "Solar panel output current (12V DC domain)",
       "fieldConfig": {
         "defaults": {
-          "color": { "fixedColor": "yellow", "mode": "fixed" },
+          "color": {
+            "fixedColor": "yellow",
+            "mode": "fixed"
+          },
           "custom": {
             "axisLabel": "",
             "axisPlacement": "auto",
@@ -229,16 +344,34 @@
             "spanNulls": true
           },
           "mappings": [],
-          "thresholds": { "mode": "absolute", "steps": [] },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": []
+          },
           "unit": "A"
         },
         "overrides": []
       },
-      "gridPos": { "h": 8, "w": 8, "x": 0, "y": 19 },
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 0,
+        "y": 19
+      },
       "id": 4,
       "options": {
-        "legend": { "calcs": ["lastNotNull", "max"], "displayMode": "list", "placement": "bottom" },
-        "tooltip": { "mode": "single", "sort": "none" }
+        "legend": {
+          "calcs": [
+            "lastNotNull",
+            "max"
+          ],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
       },
       "targets": [
         {
@@ -257,7 +390,9 @@
       "description": "Battery voltage (12V DC domain)",
       "fieldConfig": {
         "defaults": {
-          "color": { "mode": "thresholds" },
+          "color": {
+            "mode": "thresholds"
+          },
           "custom": {
             "axisLabel": "",
             "axisPlacement": "auto",
@@ -273,21 +408,48 @@
           "thresholds": {
             "mode": "absolute",
             "steps": [
-              { "color": "red", "value": null },
-              { "color": "yellow", "value": 11.8 },
-              { "color": "green", "value": 12.2 },
-              { "color": "red", "value": 13.5 }
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 11.8
+              },
+              {
+                "color": "green",
+                "value": 12.2
+              },
+              {
+                "color": "red",
+                "value": 13.5
+              }
             ]
           },
           "unit": "volt"
         },
         "overrides": []
       },
-      "gridPos": { "h": 8, "w": 8, "x": 8, "y": 19 },
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 8,
+        "y": 19
+      },
       "id": 5,
       "options": {
-        "legend": { "calcs": ["lastNotNull", "min"], "displayMode": "list", "placement": "bottom" },
-        "tooltip": { "mode": "single", "sort": "none" }
+        "legend": {
+          "calcs": [
+            "lastNotNull",
+            "min"
+          ],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
       },
       "targets": [
         {
@@ -306,7 +468,10 @@
       "description": "Pump current draw (220V AC side per ADR-0004)",
       "fieldConfig": {
         "defaults": {
-          "color": { "fixedColor": "purple", "mode": "fixed" },
+          "color": {
+            "fixedColor": "purple",
+            "mode": "fixed"
+          },
           "custom": {
             "axisLabel": "",
             "axisPlacement": "auto",
@@ -322,20 +487,44 @@
           "thresholds": {
             "mode": "absolute",
             "steps": [
-              { "color": "red", "value": null },
-              { "color": "green", "value": 0.3 },
-              { "color": "orange", "value": 0.8 }
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 0.3
+              },
+              {
+                "color": "orange",
+                "value": 0.8
+              }
             ]
           },
           "unit": "amp"
         },
         "overrides": []
       },
-      "gridPos": { "h": 8, "w": 8, "x": 16, "y": 19 },
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 16,
+        "y": 19
+      },
       "id": 6,
       "options": {
-        "legend": { "calcs": ["lastNotNull", "max"], "displayMode": "list", "placement": "bottom" },
-        "tooltip": { "mode": "single", "sort": "none" }
+        "legend": {
+          "calcs": [
+            "lastNotNull",
+            "max"
+          ],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
       },
       "targets": [
         {
@@ -352,7 +541,12 @@
     {
       "collapsed": false,
       "datasource": null,
-      "gridPos": { "h": 1, "w": 24, "x": 0, "y": 27 },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 27
+      },
       "id": 103,
       "title": "Pump Flow & Alerts",
       "type": "row"
@@ -362,7 +556,10 @@
       "description": "Water flow rate through the pump",
       "fieldConfig": {
         "defaults": {
-          "color": { "fixedColor": "blue", "mode": "fixed" },
+          "color": {
+            "fixedColor": "blue",
+            "mode": "fixed"
+          },
           "custom": {
             "axisLabel": "",
             "axisPlacement": "auto",
@@ -378,20 +575,44 @@
           "thresholds": {
             "mode": "absolute",
             "steps": [
-              { "color": "red", "value": null },
-              { "color": "green", "value": 3 },
-              { "color": "red", "value": 15 }
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 3
+              },
+              {
+                "color": "red",
+                "value": 15
+              }
             ]
           },
           "unit": "flowlpm"
         },
         "overrides": []
       },
-      "gridPos": { "h": 8, "w": 16, "x": 0, "y": 28 },
+      "gridPos": {
+        "h": 8,
+        "w": 16,
+        "x": 0,
+        "y": 28
+      },
       "id": 7,
       "options": {
-        "legend": { "calcs": ["lastNotNull", "mean"], "displayMode": "list", "placement": "bottom" },
-        "tooltip": { "mode": "single", "sort": "none" }
+        "legend": {
+          "calcs": [
+            "lastNotNull",
+            "mean"
+          ],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
       },
       "targets": [
         {
@@ -410,77 +631,162 @@
       "description": "Current water temperature and flow at a glance",
       "fieldConfig": {
         "defaults": {
-          "color": { "mode": "thresholds" },
+          "color": {
+            "mode": "thresholds"
+          },
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
-              { "color": "green", "value": null }
+              {
+                "color": "green",
+                "value": null
+              }
             ]
           }
         },
         "overrides": [
           {
-            "matcher": { "id": "byName", "options": "Water Temp" },
+            "matcher": {
+              "id": "byName",
+              "options": "Water Temp"
+            },
             "properties": [
-              { "id": "unit", "value": "tempC" },
-              { "id": "thresholds", "value": {
-                "mode": "absolute",
-                "steps": [
-                  { "color": "blue", "value": null },
-                  { "color": "green", "value": 24 },
-                  { "color": "red", "value": 32 }
-                ]
-              }}
+              {
+                "id": "unit",
+                "value": "tempC"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "blue",
+                      "value": null
+                    },
+                    {
+                      "color": "green",
+                      "value": 24
+                    },
+                    {
+                      "color": "red",
+                      "value": 32
+                    }
+                  ]
+                }
+              }
             ]
           },
           {
-            "matcher": { "id": "byName", "options": "Flow Rate" },
+            "matcher": {
+              "id": "byName",
+              "options": "Flow Rate"
+            },
             "properties": [
-              { "id": "unit", "value": "flowlpm" },
-              { "id": "thresholds", "value": {
-                "mode": "absolute",
-                "steps": [
-                  { "color": "red", "value": null },
-                  { "color": "green", "value": 3 }
-                ]
-              }}
+              {
+                "id": "unit",
+                "value": "flowlpm"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "red",
+                      "value": null
+                    },
+                    {
+                      "color": "green",
+                      "value": 3
+                    }
+                  ]
+                }
+              }
             ]
           },
           {
-            "matcher": { "id": "byName", "options": "pH" },
+            "matcher": {
+              "id": "byName",
+              "options": "pH"
+            },
             "properties": [
-              { "id": "unit", "value": "pH" },
-              { "id": "thresholds", "value": {
-                "mode": "absolute",
-                "steps": [
-                  { "color": "red", "value": null },
-                  { "color": "green", "value": 6.8 },
-                  { "color": "red", "value": 8.2 }
-                ]
-              }}
+              {
+                "id": "unit",
+                "value": "pH"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "red",
+                      "value": null
+                    },
+                    {
+                      "color": "green",
+                      "value": 6.8
+                    },
+                    {
+                      "color": "red",
+                      "value": 8.2
+                    }
+                  ]
+                }
+              }
             ]
           },
           {
-            "matcher": { "id": "byName", "options": "Battery" },
+            "matcher": {
+              "id": "byName",
+              "options": "Battery"
+            },
             "properties": [
-              { "id": "unit", "value": "volt" },
-              { "id": "thresholds", "value": {
-                "mode": "absolute",
-                "steps": [
-                  { "color": "red", "value": null },
-                  { "color": "green", "value": 12.2 },
-                  { "color": "red", "value": 13.5 }
-                ]
-              }}
+              {
+                "id": "unit",
+                "value": "volt"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "red",
+                      "value": null
+                    },
+                    {
+                      "color": "green",
+                      "value": 12.2
+                    },
+                    {
+                      "color": "red",
+                      "value": 13.5
+                    }
+                  ]
+                }
+              }
             ]
           }
         ]
       },
-      "gridPos": { "h": 8, "w": 8, "x": 16, "y": 28 },
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 16,
+        "y": 28
+      },
       "id": 8,
       "options": {
-        "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false },
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
         "orientation": "horizontal",
         "showUnfilled": true
       },
@@ -520,7 +826,12 @@
     {
       "collapsed": false,
       "datasource": null,
-      "gridPos": { "h": 1, "w": 24, "x": 0, "y": 36 },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 36
+      },
       "id": 104,
       "title": "Environment & Nutrients",
       "type": "row"
@@ -530,7 +841,9 @@
       "description": "Electrical conductivity (mS/cm) and TDS (ppm) — nutrient strength",
       "fieldConfig": {
         "defaults": {
-          "color": { "mode": "palette-classic" },
+          "color": {
+            "mode": "palette-classic"
+          },
           "custom": {
             "axisLabel": "",
             "axisPlacement": "auto",
@@ -543,31 +856,73 @@
             "spanNulls": true
           },
           "mappings": [],
-          "thresholds": { "mode": "absolute", "steps": [] },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": []
+          },
           "unit": "short"
         },
         "overrides": [
           {
-            "matcher": { "id": "byName", "options": "EC" },
+            "matcher": {
+              "id": "byName",
+              "options": "EC"
+            },
             "properties": [
-              { "id": "color", "value": { "fixedColor": "blue", "mode": "fixed" } },
-              { "id": "unit", "value": "mS/cm" }
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "blue",
+                  "mode": "fixed"
+                }
+              },
+              {
+                "id": "unit",
+                "value": "mS/cm"
+              }
             ]
           },
           {
-            "matcher": { "id": "byName", "options": "TDS" },
+            "matcher": {
+              "id": "byName",
+              "options": "TDS"
+            },
             "properties": [
-              { "id": "color", "value": { "fixedColor": "green", "mode": "fixed" } },
-              { "id": "unit", "value": "ppm" }
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "green",
+                  "mode": "fixed"
+                }
+              },
+              {
+                "id": "unit",
+                "value": "ppm"
+              }
             ]
           }
         ]
       },
-      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 37 },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 37
+      },
       "id": 9,
       "options": {
-        "legend": { "calcs": ["lastNotNull", "max"], "displayMode": "table", "placement": "bottom" },
-        "tooltip": { "mode": "multi", "sort": "none" }
+        "legend": {
+          "calcs": [
+            "lastNotNull",
+            "max"
+          ],
+          "displayMode": "table",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
       },
       "targets": [
         {
@@ -593,7 +948,10 @@
       "description": "Water turbidity (NTU) — particulate load",
       "fieldConfig": {
         "defaults": {
-          "color": { "fixedColor": "super-light-blue", "mode": "fixed" },
+          "color": {
+            "fixedColor": "super-light-blue",
+            "mode": "fixed"
+          },
           "custom": {
             "axisLabel": "",
             "axisPlacement": "auto",
@@ -609,20 +967,44 @@
           "thresholds": {
             "mode": "absolute",
             "steps": [
-              { "color": "green", "value": null },
-              { "color": "yellow", "value": 10 },
-              { "color": "red", "value": 25 }
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 10
+              },
+              {
+                "color": "red",
+                "value": 25
+              }
             ]
           },
           "unit": "short"
         },
         "overrides": []
       },
-      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 37 },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 37
+      },
       "id": 10,
       "options": {
-        "legend": { "calcs": ["lastNotNull", "max"], "displayMode": "list", "placement": "bottom" },
-        "tooltip": { "mode": "single", "sort": "none" }
+        "legend": {
+          "calcs": [
+            "lastNotNull",
+            "max"
+          ],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
       },
       "targets": [
         {
@@ -641,7 +1023,10 @@
       "description": "Ambient light intensity (BH1750, lux)",
       "fieldConfig": {
         "defaults": {
-          "color": { "fixedColor": "yellow", "mode": "fixed" },
+          "color": {
+            "fixedColor": "yellow",
+            "mode": "fixed"
+          },
           "custom": {
             "axisLabel": "",
             "axisPlacement": "auto",
@@ -654,16 +1039,34 @@
             "spanNulls": true
           },
           "mappings": [],
-          "thresholds": { "mode": "absolute", "steps": [] },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": []
+          },
           "unit": "lux"
         },
         "overrides": []
       },
-      "gridPos": { "h": 8, "w": 8, "x": 0, "y": 45 },
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 0,
+        "y": 45
+      },
       "id": 11,
       "options": {
-        "legend": { "calcs": ["lastNotNull", "max"], "displayMode": "list", "placement": "bottom" },
-        "tooltip": { "mode": "single", "sort": "none" }
+        "legend": {
+          "calcs": [
+            "lastNotNull",
+            "max"
+          ],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
       },
       "targets": [
         {
@@ -682,7 +1085,9 @@
       "description": "Air temperature (AHT20) and relative humidity",
       "fieldConfig": {
         "defaults": {
-          "color": { "mode": "palette-classic" },
+          "color": {
+            "mode": "palette-classic"
+          },
           "custom": {
             "axisLabel": "",
             "axisPlacement": "auto",
@@ -695,31 +1100,72 @@
             "spanNulls": true
           },
           "mappings": [],
-          "thresholds": { "mode": "absolute", "steps": [] },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": []
+          },
           "unit": "short"
         },
         "overrides": [
           {
-            "matcher": { "id": "byName", "options": "Air Temp" },
+            "matcher": {
+              "id": "byName",
+              "options": "Air Temp"
+            },
             "properties": [
-              { "id": "color", "value": { "fixedColor": "orange", "mode": "fixed" } },
-              { "id": "unit", "value": "tempC" }
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "orange",
+                  "mode": "fixed"
+                }
+              },
+              {
+                "id": "unit",
+                "value": "tempC"
+              }
             ]
           },
           {
-            "matcher": { "id": "byName", "options": "Humidity" },
+            "matcher": {
+              "id": "byName",
+              "options": "Humidity"
+            },
             "properties": [
-              { "id": "color", "value": { "fixedColor": "light-blue", "mode": "fixed" } },
-              { "id": "unit", "value": "percent" }
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "light-blue",
+                  "mode": "fixed"
+                }
+              },
+              {
+                "id": "unit",
+                "value": "percent"
+              }
             ]
           }
         ]
       },
-      "gridPos": { "h": 8, "w": 8, "x": 8, "y": 45 },
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 8,
+        "y": 45
+      },
       "id": 12,
       "options": {
-        "legend": { "calcs": ["lastNotNull"], "displayMode": "list", "placement": "bottom" },
-        "tooltip": { "mode": "multi", "sort": "none" }
+        "legend": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
       },
       "targets": [
         {
@@ -745,7 +1191,10 @@
       "description": "Barometric pressure (BMP280, hPa)",
       "fieldConfig": {
         "defaults": {
-          "color": { "fixedColor": "purple", "mode": "fixed" },
+          "color": {
+            "fixedColor": "purple",
+            "mode": "fixed"
+          },
           "custom": {
             "axisLabel": "",
             "axisPlacement": "auto",
@@ -758,16 +1207,35 @@
             "spanNulls": true
           },
           "mappings": [],
-          "thresholds": { "mode": "absolute", "steps": [] },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": []
+          },
           "unit": "pressurehpa"
         },
         "overrides": []
       },
-      "gridPos": { "h": 8, "w": 8, "x": 16, "y": 45 },
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 16,
+        "y": 45
+      },
       "id": 13,
       "options": {
-        "legend": { "calcs": ["lastNotNull", "min", "max"], "displayMode": "list", "placement": "bottom" },
-        "tooltip": { "mode": "single", "sort": "none" }
+        "legend": {
+          "calcs": [
+            "lastNotNull",
+            "min",
+            "max"
+          ],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
       },
       "targets": [
         {
@@ -784,20 +1252,28 @@
   ],
   "refresh": "10s",
   "schemaVersion": 39,
-  "tags": ["aquaponics", "iot", "mqtt"],
+  "tags": [
+    "aquaponics",
+    "iot",
+    "mqtt"
+  ],
   "templating": {
     "list": [
       {
-        "current": { "selected": false, "text": "tank01", "value": "tank01" },
+        "current": {
+          "selected": false,
+          "text": "tank01",
+          "value": "tank01"
+        },
         "datasource": "${DS_INFLUXDB}",
-        "definition": "SHOW TAG VALUES FROM \"aqua\" WITH KEY = \"node\"",
+        "definition": "SHOW TAG VALUES WITH KEY = \"node\"",
         "hide": 0,
         "includeAll": false,
         "label": "Node",
         "multi": false,
         "name": "node",
         "options": [],
-        "query": "SHOW TAG VALUES FROM \"aqua\" WITH KEY = \"node\"",
+        "query": "SHOW TAG VALUES WITH KEY = \"node\"",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -806,7 +1282,10 @@
       }
     ]
   },
-  "time": { "from": "now-6h", "to": "now" },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
   "timepicker": {},
   "timezone": "browser",
   "title": "Aquaponics Lab Overview",
