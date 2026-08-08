@@ -53,7 +53,7 @@ PZEM UART,R_tx_5,Resistor 10k,10k 1%,0805,C17414,1,TX 5V pullup
 PZEM UART,R_rx_33,Resistor 10k,10k 1%,0805,C17414,1,RX 3.3V pullup
 PZEM UART,R_rx_5,Resistor 10k,10k 1%,0805,C17414,1,RX 5V pullup
 PZEM UART,J_PZEM,Header Male 1x4,2.54mm 4P,P-1x4,C124378,1,PZEM UART header
-INA226,U_INA,INA226,I2C current/voltage,MSOP-10,C8Z,1,12V bus monitor
+INA226,U_INA,INA226AIDGSR,I2C current/voltage,MSOP-10,C49851,1,12V bus monitor (审核 R-4 修正 LCSC 编号)
 INA226,R_shunt,Resistor 0.01R,10mΩ 1%,1206,C87965,1,Shunt resistor
 INA226,C_ina,Cap 100nF,100nF X7R,0805,C1525,1,VCC bypass
 ADS1115,U_ADS,ADS1115,16-bit I2C ADC,VSSOP-10,C83422,1,Analog sensor ADC
@@ -66,6 +66,7 @@ MCP23017,C_mcp,Cap 100nF,100nF X7R,0805,C1525,1,VCC bypass
 Pump Control,U_OPTO,PC817,Optocoupler 4-pin,DIP-4,C66580,1,PUMP_STOP isolation
 Pump Control,R_led,Resistor 330R,330R 1%,0805,C17168,1,Opto LED limit
 Pump Control,R_pull,Resistor 10k,10k 1%,0805,C17414,1,Output pullup
+Pump Control,R_pd_pump,Resistor 10k,10k 1%,0805,C17414,1,GPIO27 pulldown (审核 R-6: boot 安全)
 Pump Control,JP_VCC,Header Male 1x3,2.54mm 3P,P-1x3,C124379,1,3.3V/5V jumper
 Pump Control,JP_NCNO,Header Male 1x3,2.54mm 3P,P-1x3,C124379,1,NO/NC jumper (default NO)
 Pump Control,J_PUMP,KF128-3P,Terminal 3P 2.54mm,KF128-3P,C395882,1,Pump control output

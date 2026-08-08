@@ -8,7 +8,7 @@
 | GPIO | 方向 | 板上功能 | 外部器件/连接器 | 契约引用 | 电平 | 备注 |
 |------|------|----------|----------------|----------|------|------|
 | GPIO4 | OUT | 1-Wire | J_1W → DS18B20 | 附录 21.1 | 3.3V | 4.7kΩ 上拉 |
-| GPIO5 | OUT | MOSFET CH1 | J_MOS1 → 12V 风扇 | functional-spec B | 3.3V | IRLZ44N 低边 |
+| GPIO5 | OUT | 超声波 Trig | J_DIN3 → JSN-SR04T Trig | ADR-0008 | 3.3V | strapping, 无下拉, boot=HIGH (审核 R-2) |
 | GPIO13 | IN | 数字输入 CH1 | J_DIN1 → 低水位浮球 | 附录 21.1 ⭐ | 3.3V | 上拉+RC+钳位 |
 | GPIO14 | OUT | MOSFET CH2 | J_MOS2 → 12V 阀/打氧 | functional-spec B | 3.3V | IRLZ44N 低边 |
 | GPIO16 | IN | UART2 RX | J_PZEM ← PZEM TX | ADR-0009 R-5 | 3.3V | 经 BSS138 转换 |
@@ -22,6 +22,7 @@
 | GPIO26 | OUT | 舵机 PWM 2 | J_SV2 → 遮阳舵机 | functional-spec B | 3.3V | 1kΩ 限流 |
 | GPIO27 | OUT | PUMP_STOP | J_PUMP → 光耦 → 外部继电器 | ADR-0009 R-3 ⭐ | 3.3V | 高有效, 光耦隔离 |
 | GPIO32 | IN | 数字输入 CH6 | J_DIN6 → 干接点 | ADR-0008 | 3.3V | 上拉+RC+钳位 |
+| GPIO33 | OUT | MOSFET CH1 | J_MOS1 → 12V 风扇 | functional-spec B | 3.3V | IRLZ44N 低边 (审核 R-2 从 GPIO5 改) |
 | GPIO34 | IN | 脉冲输入 CH2 | J_DIN2 → YF-S201 流量 | ADR-0008 ⭐ | 3.3V | 5V 经 BSS138 |
 | GPIO35 | IN | 脉冲输入 CH3 | J_DIN3 → 超声波 Echo | ADR-0008 ⭐ | 3.3V | 5V 经 BSS138 |
 | GPIO36 | IN | 数字输入 CH4 | J_DIN4 → 干接点 | ADR-0008 | 3.3V | 上拉+RC+钳位 |
@@ -40,6 +41,8 @@
 | GPIO6-11 | 连接 Flash, 绝对不可用 |
 | GPIO12 | Strapping pin (Flash 电压选择) |
 | GPIO15 | Strapping pin (boot 日志输出) |
+
+> **GPIO5 特例**: 是 strapping 脚但已用作超声 Trig (无下拉, 内部上拉 boot=HIGH → 安全)。**不可接下拉或 MOSFET 栅极** (审核 R-2)。
 
 ## 3. I²C 地址分配
 

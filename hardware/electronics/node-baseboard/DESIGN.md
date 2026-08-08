@@ -21,13 +21,14 @@
                     ┌─── ESP32-WROOM-32 DevKitC (38pin) ───────────────┤
                     │                                                    │
                     │  GPIO4  ──► [1-Wire] ──► DS18B20 水温             │
+                    │  GPIO5  ──► [超声 Trig] (strapping, 内部上拉保 HIGH) │
                     │  GPIO13 ──► [数字输入CH1] ◄── 低水位浮球          │
                     │  GPIO32 ──► [数字输入CH6] ◄── 干接点              │
+                    │  GPIO33 ──► [MOSFET CH1] ──► 12V 风扇             │
                     │  GPIO34 ──► [脉冲输入CH2] ◄── YF-S201 流量(5V)   │
                     │  GPIO35 ──► [脉冲输入CH3] ◄── 超声波 Echo(5V)    │
                     │  GPIO36 ──► [数字输入CH4] ◄── 干接点              │
                     │  GPIO39 ──► [数字输入CH5] ◄── 干接点              │
-                    │  GPIO5  ──► [MOSFET CH1] ──► 12V 风扇             │
                     │  GPIO14 ──► [MOSFET CH2] ──► 12V 阀/打氧          │
                     │  GPIO18 ──► [MOSFET CH3] ──► 12V 灯               │
                     │  GPIO19 ──► [MOSFET CH4] ──► 12V 备用             │
@@ -65,9 +66,10 @@
 | D1 | TVS 二极管 | SMBJ15A | C110050 | V_RWM=15V, V_BR=16.7V | 钳制 12V 线瞬态 |
 | D2 | 稳压二极管 | 1N4744A | C84361 | 15V 0.5W | 保护 Q1 栅源极（Vgs 限压） |
 
-**防反接原理**: P-MOS 的 Source 接输入正极, Drain 接负载侧, Gate 经 R1(10k) 下拉到 GND。
-- 正接时: V_GS = -12V < V_GS(th)(-2V), MOS 导通, 压降极低 (I²R ≈ 0.1V@5A)
-- 反接时: V_GS = +12V > 0, MOS 截止, 负载侧断开, D2 钳位保护栅极
+**防反接原理** (v2, 审核 R-3 修正): P-MOS 的 **Drain 接输入正极, Source 接负载侧**, Gate 经 R1(10k) 下拉到 GND。AO4407A 体二极管方向 D→S, 故 Drain 在输入侧时:
+- 正接时: Drain=+12V, Source 初始 0V → 体二极管正偏导通 → Source 升到 ~11.3V → V_GS = 0-11.3 = -11.3V < V_GS(th)(-2V) → MOS 导通, 压降极低 (I²R ≈ 0.1V@5A)
+- 反接时: Drain=-12V, Source=0V → 体二极管反偏截止 → MOS 保持关断, 负载侧断开, D2 钳位保护栅极
+- ⚠️ 若 Source 接输入侧、Drain 接负载侧(初版写法), 反接时体二极管正偏导通 → 保护形同虚设
 
 ### 2.2 DC-DC 降压 12V → 5V
 
@@ -87,7 +89,10 @@
 
 > 实际取 R3=68kΩ (C17408), R4=13kΩ (C17726)
 
-### 2.3 LDO 5V → 3.3V
+### 2.3 LDO 5V → 3.3V（传感轨, 独立于 DevKitC 内部 LDO）
+
+> ⚠️ **审核 R-1 修正**: DevKitC 自带 AMS1117-3.3, 板上 U2 也是 AMS1117-3.3。两个稳压器不能并接在同一条 3.3V 网上 (互相倒灌)。
+> **方案**: 只给 DevKitC 灌 VIN=5V (pin 18), **不接 DevKitC 的 3V3 pin (pin 1/19 标 NC)**。板上 U2 的 3.3V 输出仅供传感轨 (I²C 上拉 / 1-Wire 上拉 / 数字输入上拉 / BME280 / MCP23017 / ADS1115 / INA226)。两条 3.3V 共 GND 但不共 VCC, 电平相近 (~3.3V) 可靠通信。
 
 | 位号 | 器件 | 型号 | LCSC | 值/参数 | 说明 |
 |------|------|------|------|---------|------|
@@ -120,14 +125,14 @@ DevKitC 左侧 (J_DEV1, 从 USB 端起):
 
 | Pin | DevKitC | GPIO | 本板分配 | 方向 |
 |-----|---------|------|----------|------|
-| 1 | 3V3 | — | 3.3V 供电 | PWR |
+| 1 | 3V3 | — | **NC** (不接, 审核 R-1) | — |
 | 2 | GND | — | 地 | PWR |
 | 3 | D15 | GPIO15 | (strapping, 备用, 需注意 boot) | — |
 | 4 | D2 | GPIO2 | (strapping, 备用) | — |
 | 5 | D4 | GPIO4 | **1-Wire** (DS18B20) | OUT |
 | 6 | RX2 | GPIO16 | **UART2 RX** (PZEM TX) | IN |
 | 7 | TX2 | GPIO17 | **UART2 TX** (PZEM RX) | OUT |
-| 8 | D5 | GPIO5 | **MOSFET CH1** (风扇) | OUT |
+| 8 | D5 | GPIO5 | **超声 Trig** (strapping, 内部上拉 boot=HIGH) | OUT |
 | 9 | D18 | GPIO18 | **MOSFET CH3** (灯) | OUT |
 | 10 | D19 | GPIO19 | **MOSFET CH4** (备用) | OUT |
 | 11 | D21 | GPIO21 | **I²C SDA** | I/O |
@@ -138,7 +143,7 @@ DevKitC 左侧 (J_DEV1, 从 USB 端起):
 | 16 | D13 | GPIO13 | **数字输入 CH1** (低水位浮球) | IN |
 | 17 | GND | — | 地 | PWR |
 | 18 | VIN | — | 5V 供电 (从 Buck) | PWR |
-| 19 | 3V3 | — | (第二 3.3V 脚, 并接) | PWR |
+| 19 | 3V3 | — | **NC** (不接, 审核 R-1) | — |
 
 DevKitC 右侧 (J_DEV2, 从 USB 端起):
 
@@ -152,7 +157,7 @@ DevKitC 右侧 (J_DEV2, 从 USB 端起):
 | 6 | D27 | GPIO27 | **PUMP_STOP** (光耦, 高有效) | OUT |
 | 7 | D26 | GPIO26 | **舵机 2** (遮阳 PWM) | OUT |
 | 8 | D25 | GPIO25 | **舵机 1** (喂食 PWM) | OUT |
-| 9 | D33 | GPIO33 | (备用 / MCP23017 INTA) | IN |
+| 9 | D33 | GPIO33 | **MOSFET CH1** (风扇, 审核 R-2 从 GPIO5 改) | OUT |
 | 10 | D32 | GPIO32 | **数字输入 CH6** (干接点) | IN |
 | 11 | D35 | GPIO35 | **脉冲输入 CH3** (超声波 Echo, 5V) | IN |
 | 12 | D34 | GPIO34 | **脉冲输入 CH2** (YF-S201 流量, 5V) | IN |
@@ -169,7 +174,7 @@ DevKitC 右侧 (J_DEV2, 从 USB 端起):
 | GPIO | 功能 | 接口 | 契约引用 |
 |------|------|------|----------|
 | GPIO4 | 1-Wire | DS18B20 | 附录 21.1 |
-| GPIO5 | MOSFET CH1 | 12V 风扇 | functional-spec B |
+| GPIO5 | 超声波 Trig | HC-SR04/JSN-SR04T Trig | ADR-0008 (strapping, 无下拉, boot=HIGH) |
 | GPIO13 | 数字输入 CH1 | 低水位浮球 | 附录 21.1 |
 | GPIO14 | MOSFET CH2 | 12V 阀/打氧 | functional-spec B |
 | GPIO16 | UART2 RX | PZEM-004T TX | ADR-0009 R-5 |
@@ -183,12 +188,15 @@ DevKitC 右侧 (J_DEV2, 从 USB 端起):
 | GPIO26 | 舵机 PWM 2 | 遮阳 | functional-spec B |
 | GPIO27 | PUMP_STOP | 光耦隔离泵控制 | ADR-0009 R-3 |
 | GPIO32 | 数字输入 CH6 | 干接点 | ADR-0008 |
+| GPIO33 | MOSFET CH1 | 12V 风扇 (审核 R-2 从 GPIO5 改) | functional-spec B |
 | GPIO34 | 脉冲输入 CH2 | YF-S201 流量 | ADR-0008 |
 | GPIO35 | 脉冲输入 CH3 | 超声波 Echo | ADR-0008 |
 | GPIO36 | 数字输入 CH4 | 干接点 | ADR-0008 |
 | GPIO39 | 数字输入 CH5 | 干接点 | ADR-0008 |
 
 **避免使用的 GPIO**: 0(boot), 1(UART0 TX), 2(strapping), 3(UART0 RX), 6-11(Flash), 12(strapping), 15(strapping)
+
+> **GPIO5 注意**: GPIO5 是 strapping 脚 (boot 需 HIGH)。用作超声 Trig 输出: 无外部下拉, 内部上拉在 boot 时保 HIGH → 满足 strapping 要求。boot 后 ESPHome 配为输出即可控制。**不可用于带下拉的 MOSFET 栅极** (审核 R-2)。
 
 ## 4. I²C 总线
 
@@ -250,6 +258,9 @@ DevKitC 右侧 (J_DEV2, 从 USB 端起):
                           5V signal       GND
 ```
 
+> **超声波 (审核 R-5)**: CH3 (GPIO35) 是 Echo 输入。**Trig 输出 = GPIO5** (strapping 脚, 无下拉, boot 时内部上拉保 HIGH → 安全)。Trig 为 3.3V 输出, 可直连 JSN-SR04T Trig (3.3V 可触发)。
+> **YF-S201 流量 (CH2, GPIO34)**: 纯脉冲输入, 无需 Trig。
+
 ### 6.3 器件清单 (每路)
 
 | 位号 | 器件 | 型号 | LCSC | 值 | 用量 |
@@ -300,7 +311,10 @@ DevKitC 右侧 (J_DEV2, 从 USB 端起):
 | J_SV1/2 | 排针 3P 2.54mm | — | C124379 | 5V/GND/PWM (GPIO25/GPIO26) |
 | R_sv | 信号限流 | 0805 | C17415 | 1kΩ × 2 |
 
-> 舵机供电从 5V 轨取, 不经 MOSFET。大电流舵机建议外接电源。
+> 舵机供电从 5V 轨取, 不经 MOSFET。
+> ⚠️ **5V 预算 (审核 R-7)**: 2 舵机 + ESP32 + WS2812 + PZEM + 电平转换共用 5V/3A (MP1584)。舵机堵转峰值可达 ~700mA/个, 叠加其他负载可能触发 buck 限流保护。
+> **丝印标注**: "大舵机 (>SG90) 建议外接 5V 供电, 仅信号接板"。
+> 若需隔离, 可割断舵机 5V 走线, 加跳线选板载 5V / 外接 5V。
 
 ## 9. WS2812 接口
 
@@ -329,13 +343,14 @@ DevKitC 右侧 (J_DEV2, 从 USB 端起):
 
 | 位号 | 器件 | 型号 | LCSC | 值 | 说明 |
 |------|------|------|------|-----|------|
-| U_INA | 电流/电压监测 | INA226 | C8Z | I²C 0x40 | 12V 母线 |
-| R_shunt | 分流电阻 | 0805 | C87965 | 0.01Ω (10mΩ) | 3A 满量程: V_shunt=30mV < 163.8mV |
+| U_INA | 电流/电压监测 | INA226AIDGSR | C49851 | I²C 0x40 | 12V 母线, MSOP-10 |
+| R_shunt | 分流电阻 | 0805 | C87965 | 0.01Ω (10mΩ) | 满量程 ±81.92mV → 3A 满量程: V_shunt=30mV < 81.92mV ✓ |
 | C_ina | 旁路电容 | 0805 | C1525 | 100nF | VCC 旁路 |
 
 **接线**:
-- INA226 V+ = 12V_BUS (经 R_shunt, 测母线电压)
-- INA226 V- = 12V_BUS_LOAD (负载侧, 经 R_shunt 后)
+- INA226 VBUS = 12V_BUS (测母线电压)
+- INA226 IN+ = 12V_BUS (分流前)
+- INA226 IN- = 12V_LOAD (分流后)
 - INA226 SDA/SCL → I²C 总线
 - INA226 A0/A1 → GND (地址 0x40)
 
@@ -414,6 +429,7 @@ GPIO27 ── R_led(330Ω) ── PC817 LED+ ── LED- ── GND
 | U_OPTO | 光耦 | PC817 | C66580 | 4pin DIP | 电气隔离 |
 | R_led | LED 限流 | 0805 | C17168 | 330Ω | I_LED = (3.3-1.2)/330 = 6.4mA |
 | R_pull | 输出上拉 | 0805 | C17414 | 10kΩ | 默认态确定 |
+| R_pd_pump | GPIO27 下拉 | 0805 | C17414 | 10kΩ | 审核 R-6: boot/复位期间光耦 LED 确保关 (高有效双保险) |
 | JP_VCC | 电压跳线 | 排针 3P | — | — | 3.3V / 5V 选择 |
 | JP_NCNO | NO/NC 跳线 | 排针 3P | — | — | 默认插 NO (泵关) |
 | J_PUMP | 端子排 3P | KF128-3P | C395882 | 2.54mm | COM/NO/NC |

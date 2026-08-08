@@ -3,6 +3,19 @@
 > 对照 [handoff-workbuddy.md](handoff-workbuddy.md) 审核门禁, 逐条打勾。
 > Claude Code 审核时会逐条查 — 这也是你的自检表。
 
+## 审核修正 (Claude Code review v2)
+
+| # | 审核意见 | 状态 | 修正内容 |
+|---|----------|------|----------|
+| R-1 | 3.3V 轨双源冲突 | ✅ | DevKitC 3V3 pin 标 NC, 板上 3.3V 传感轨独立 (DESIGN.md §2.3) |
+| R-2 | GPIO5 strapping 脚不可接 MOSFET 下拉 | ✅ | MOSFET CH1 移到 GPIO33; GPIO5 改为超声 Trig (无下拉) |
+| R-3 | P-MOS 防反接方向写反 | ✅ | Drain=输入+, Source=负载侧 (体二极管反接时反偏截止) |
+| R-4 | INA226 LCSC 编号截断 | ✅ | C8Z → C49851 (INA226AIDGSR); 分流满量程 ±81.92mV |
+| R-5 | 超声波缺 Trig | ✅ | GPIO5 作为 Trig 输出 (strapping, 无下拉, boot=HIGH) |
+| R-6 | GPIO27 加下拉 | ✅ | R_pd_pump 10kΩ 到 GND, boot 时光耦 LED 确保关 |
+| R-7 | 5V 预算 | ✅ | 丝印标注 "大舵机建议外接 5V"; 可割线+跳线隔离 |
+| R-8 | LCSC 全表核对 | ⏳ | 导入 EDA 时逐个确认有货+有封装 |
+
 ## 安全门禁 (任一不过 = 否决)
 
 | # | 检查项 | 状态 | 实现位置 | 备注 |
