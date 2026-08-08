@@ -1,6 +1,6 @@
 # 任务书 · 标准节点底板 PCB（node-baseboard）
 
-> 负责人：硬件协作者（远程）· 分支：`hw/node-baseboard` · 交付到本目录
+> 负责人（2026-08-08 改派）：**设计 = WorkBuddy，审核 = Claude Code**（见 [handoff-workbuddy.md](handoff-workbuddy.md)）· 分支：`hw/node-baseboard` · 交付到本目录
 > **状态：✅ 放行开工。** 功能已固化（见 [functional-spec](../../../docs/functional-spec.md)）、接口契约 v2 与连接器方案已定。**开发板选型 + PCB 设计都由你决定**；唯一约束：开发板是 **ESPHome 兼容的 ESP32 家族**。
 
 ## 0. 一句话
