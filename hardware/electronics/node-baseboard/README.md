@@ -1,7 +1,16 @@
 # 任务书 · 标准节点底板 PCB（node-baseboard）
 
 > 负责人（2026-08-08 改派）：**设计 = WorkBuddy，审核 = Claude Code**（见 [handoff-workbuddy.md](handoff-workbuddy.md)）· 分支：`hw/node-baseboard` · 交付到本目录
-> **状态：✅ 放行开工。** 功能已固化（见 [functional-spec](../../../docs/functional-spec.md)）、接口契约 v2 与连接器方案已定。**开发板选型 + PCB 设计都由你决定**；唯一约束：开发板是 **ESPHome 兼容的 ESP32 家族**。
+> **状态：📐 原理图设计完成, 待 PCB 布板。** 功能已固化（见 [functional-spec](../../../docs/functional-spec.md)）、接口契约 v2 与连接器方案已定。开发板 = **ESP32-WROOM-32 DevKitC 38 脚** (ADR-0011)。
+>
+> **v0.1 设计文档** (本 PR 新增):
+> - [DESIGN.md](DESIGN.md) — 完整原理图设计文档 (19 节, 含电路图/器件值/计算/安全自检)
+> - [bom.csv](bom.csv) — BOM 清单 (全部带 LCSC 型号)
+> - [PIN-MAPPING.md](PIN-MAPPING.md) — 引脚映射表 (GPIO ↔ 功能 ↔ 契约)
+> - [SELF-CHECK.md](SELF-CHECK.md) — 自检表 (对照审核门禁逐条打勾)
+> - [src/generate_netlist.py](src/generate_netlist.py) — SKiDL 网表生成脚本 (待 KiCad 导入)
+>
+> **下一步**: 导入 EDA 工具布板 → Gerber + 3D + DRC → 提交 Claude Code 审核 → 下单打样
 
 ## 0. 一句话
 
