@@ -14,6 +14,7 @@
 - [0008 · 节点 I/O 供给：数字输入/脉冲/专用 header + GPIO 预算](0008-node-io-provisioning.md)
 - [0009 · 泵计量、控制信号与失电默认态](0009-pump-metering-and-control.md)
 - [0010 · 市电安全接地（货架 PE + 接地探针 + 单点接地）](0010-mains-safety-bonding.md)
+- [0011 · 标准节点板选型 = 经典 ESP32-WROOM-32 DevKitC](0011-standard-node-board-selection.md)
 
 ## 模板
 
