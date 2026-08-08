@@ -7,8 +7,8 @@
 | GPIO | 功能 | 器件 |
 |---|---|---|
 | GPIO4 | 1-Wire | DS18B20 水温 |
-| GPIO21 | I²C SDA | INA219（泵电流） |
-| GPIO22 | I²C SCL | INA219 |
+| GPIO21 | I²C SDA | INA226（12V 母线/电池电流） |
+| GPIO22 | I²C SCL | INA226 |
 | GPIO13 | 数字输入(上拉) | 浮球开关（低水位） |
 
 > ESP32 strapping/受限脚（GPIO0/2/12/15 等）避免用作关键输入输出；具体见 ESP32 数据手册。
@@ -18,7 +18,7 @@
 | 器件 | 默认地址 | 可选 | 备注 |
 |---|---|---|---|
 | ADS1115 | 0x48 | 0x49/4A/4B | ADDR 脚选址 |
-| INA219/226 | 0x40 | 0x41–0x4F | A0/A1 选址 |
+| INA226 | 0x40 | 0x41–0x4F | A0/A1 选址（泵功率走 PZEM/UART，不在 I²C） |
 | BME280 | 0x76 | 0x77 | |
 | BH1750 | 0x23 | 0x5C | |
 | DS3231 | 0x68 | — | |
@@ -44,11 +44,14 @@
 
 ## 21.5 MQTT 主题总表（随节点上线补全）
 
-| 主题 | 类型 | 单位 |
-|---|---|---|
-| `aqua/tank01/water_temp` | 遥测 | °C |
-| `aqua/tank01/low_water` | 布尔 | ON/OFF |
-| `aqua/tank01/pump_current` | 遥测 | A |
-| `aqua/power/battery_v` | 遥测 | V |
-| `aqua/<node>/status` | LWT | online/offline |
-| `aqua/<node>/<actuator>/set` | 命令 | — |
+| 主题 | 类型 | 单位 | 来源 |
+|---|---|---|---|
+| `aqua/tank01/water_temp` | 遥测 | °C | DS18B20 |
+| `aqua/tank01/low_water` | 布尔 | ON/OFF | 浮球开关(低水位) |
+| `aqua/tank01/pump_power` | 遥测 | W | PZEM-004T(220V AC 泵) |
+| `aqua/tank01/pump_energy` | 遥测 | kWh | PZEM-004T |
+| `aqua/tank01/bus_12v_i` | 遥测 | A | INA226(12V 母线/电池) |
+| `aqua/power/battery_v` | 遥测 | V | INA226 |
+| `aqua/<node>/<actuator>/state` | 状态回读 | ON/OFF | 执行器 |
+| `aqua/<node>/status` | LWT | online/offline | ESPHome |
+| `aqua/<node>/<actuator>/set` | 命令 | — | HA |
