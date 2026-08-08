@@ -47,11 +47,11 @@
 | 主题 | 类型 | 单位 | 来源 |
 |---|---|---|---|
 | `aqua/tank01/water_temp` | 遥测 | °C | DS18B20 |
-| `aqua/tank01/low_water` | 布尔 | ON/OFF | 浮球开关(低水位) |
-| `aqua/tank01/pump_power` | 遥测 | W | PZEM-004T(220V AC 泵) |
-| `aqua/tank01/pump_energy` | 遥测 | kWh | PZEM-004T |
-| `aqua/tank01/bus_12v_i` | 遥测 | A | INA226(12V 母线/电池) |
-| `aqua/power/battery_v` | 遥测 | V | INA226 |
+| `aqua/tank01/low_water` | 布尔 | ON/OFF | 浮球开关（GPIO13） |
+| `aqua/tank01/pump_power` | 遥测 | W | PZEM-004T（220V AC 泵功率） |
+| `aqua/tank01/pump_energy` | 遥测 | kWh | PZEM-004T（220V AC 泵电能） |
+| `aqua/tank01/bus_12v_i` | 遥测 | A | INA226（12V 母线电流） |
+| `aqua/power/battery_v` | 遥测 | V | INA226（12V 母线电压） |
 | `aqua/<node>/<actuator>/state` | 状态回读 | ON/OFF | 执行器 |
 | `aqua/<node>/status` | LWT | online/offline | ESPHome |
-| `aqua/<node>/<actuator>/set` | 命令 | — | HA |
+| `aqua/<node>/<actuator>/set` | 命令 | — | HA 下发（含 `PUMP_STOP`） |
