@@ -1,0 +1,282 @@
+{
+  "F1": {
+    "dev": "bc8fe3e746a1449d8fb1cece941e6043",
+    "sym": "c80a9bd38a364a55b02a034a17d1a85f",
+    "name": "BGOP_5X20_3A",
+    "fp": "FUSE-TH_L6.5-W4.6-P5.70",
+    "lcsc": "C9900015656"
+  },
+  "Q1": {
+    "dev": "a8c4b1f1e9ac42c3bad64dc28a01c51f",
+    "sym": "2bc56927abce437183c2b7c387458368",
+    "name": "AO4407A",
+    "fp": "SOP-8_L4.9-W3.9-P1.27-LS6.0-BL",
+    "lcsc": "C3019374"
+  },
+  "D1": {
+    "dev": "9a1593d1216344c29a56d306ce854ef8",
+    "sym": "bdaeb0bf7a15498086ef0b5ba34eddd4",
+    "name": "SMBJ15A",
+    "fp": "SMB_L4.6-W3.6-LS5.3-RD",
+    "lcsc": "C357961"
+  },
+  "D2": {
+    "dev": "f6eb22c982b548e793c0e2c7eeabbda8",
+    "sym": "5280096745a347fc8e788011af8fc2b9",
+    "name": "1N4744A",
+    "fp": "DO-41_BD2.8-L4.2-P8.00-D0.7-FD",
+    "lcsc": "C2547"
+  },
+  "U1": {
+    "dev": "0f70de8269ea435b84f044f376c260f4",
+    "sym": "d404bf7da8c948e29906892d21e93d53",
+    "name": "MP1584EN",
+    "fp": "SOIC-8_L4.9-W3.9-P1.27-LS6.0-BL-EP3.3",
+    "lcsc": "C454188"
+  },
+  "U2": {
+    "dev": "9f9c6cb41c7449fd8acf96aceed2661a",
+    "sym": "06f50e10ab7d460599b3fe3ee8717a78",
+    "name": "AMS1117-3.3_C6186",
+    "fp": "SOT-223-3_L6.5-W3.4-P2.30-LS7.0-BR",
+    "lcsc": "C6186"
+  },
+  "L1": {
+    "dev": "0ef81669b0ff4c3193e0cd7966af0f5f",
+    "sym": "f6afb2b4bbfc4c5693ff58f2d0a7089b",
+    "name": "Inductor,47UH/功率电感",
+    "fp": "IND-SMD_L7.4-W6.6",
+    "lcsc": "C9900013584"
+  },
+  "C10u": {
+    "dev": "6e5726223dd84f70bc3b626fc7d1f72c",
+    "sym": "2e54d9f6ef024fd6a073cb020500c9e8",
+    "name": "GRM21BR61H106KE43L",
+    "fp": "C0805",
+    "lcsc": "C440198"
+  },
+  "C220u": {
+    "dev": "afc524306ef5462a935f6f57552ddcdc",
+    "sym": "1fd370811bf946f081af70923d4553ed",
+    "name": "220uF",
+    "fp": "CAP-SMD_BD6.3-L6.6-W6.6-LS7.2-FD",
+    "lcsc": "C2941234"
+  },
+  "C22u": {
+    "dev": "33d1d739854140d4879841b29bb39974",
+    "sym": "9a73c31d1d744ba6b61ee6cdc1970773",
+    "name": "22UF",
+    "fp": "C1206",
+    "lcsc": "C9900008064"
+  },
+  "Qmos": {
+    "dev": "a29db174690a43e5ac6d4d7d9834e753",
+    "sym": "43f5accbb4044b89b0fea7ee613d2014",
+    "name": "IRLZ44NPBF-MNS",
+    "fp": "TO-220-3_L10.0-W4.5-P2.54-L",
+    "lcsc": "C54839582"
+  },
+  "Dfly": {
+    "dev": "2c682abf60534f16bf1f99d010f76eae",
+    "sym": "aa59c8438e18412484b159f9834979bc",
+    "name": "1N5819",
+    "fp": "SMA_L4.3-W2.6-LS5.1-RD",
+    "lcsc": "C9900008009"
+  },
+  "Dclamp": {
+    "dev": "3233f5ce690c4213a2ee0de15950246a",
+    "sym": "4feaba150abe41d6a13d07db517540df",
+    "name": "BAT54S",
+    "fp": "SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR",
+    "lcsc": "C266597"
+  },
+  "Qlvl": {
+    "dev": "8cc24da45a2f4bfba339f1e6c7b46648",
+    "sym": "9a4a927099bb4ceea3d22260476610cf",
+    "name": "BSS138",
+    "fp": "SOT-23-3_L3.0-W1.7-P0.95-LS2.9-BR",
+    "lcsc": "C193019"
+  },
+  "Qprobe": {
+    "dev": "3f19e976d6d549ca9885436e76148e57",
+    "sym": "d98f27b217a64573b91c6e0be2bb1994",
+    "name": "SI2302",
+    "fp": "SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR",
+    "lcsc": "C2841377"
+  },
+  "Uopto": {
+    "dev": "30bd103d39534364b9f4516852b0812e",
+    "sym": "0177709a2d994be4b11d07586fcbe8c3",
+    "name": "PC817-4",
+    "fp": "DIP-4_L4.6-W6.5-P2.54-LS7.6-BL",
+    "lcsc": "C33333"
+  },
+  "UINA": {
+    "dev": "c19abc37bc174e89b3cbd0176ec08490",
+    "sym": "a2ac9eb35bd943459c9f6a66881973e4",
+    "name": "INA226AIDGSR",
+    "fp": "MSOP-10_L3.0-W3.0-P0.50-LS5.0-BL",
+    "lcsc": "C49851"
+  },
+  "UADS": {
+    "dev": "34b35f435a91415791b9967e952b2875",
+    "sym": "d701e200b9e340f198bcc829375b23b3",
+    "name": "ADS1115QDGSRQ1",
+    "fp": "VSSOP-10_L3.0-W3.0-P0.50-LS4.9-BL",
+    "lcsc": "C172375"
+  },
+  "UMCP": {
+    "dev": "a28b9c286c45480bbf4da1292d87f115",
+    "sym": "beeb42b2dd23425a8c5ee505d5fdaa0f",
+    "name": "MCP23017-E/SP",
+    "fp": "DIP-28_L34.6-W7.3-P2.54-LS10.2-BL",
+    "lcsc": "C647352"
+  },
+  "UBME": {
+    "dev": "92e74489719a4196b1a998a3bb211cfe",
+    "sym": "deb7f5f321374fec8d0a9742efe12bad",
+    "name": "BME280",
+    "fp": "LGA-8_BME280_BL",
+    "lcsc": "C92489"
+  },
+  "JST4": {
+    "dev": "a71a7bdf77af48c1b80feeb30a045ab9",
+    "sym": "c69d6211d60a4f68af125e828ed4f898",
+    "name": "XH2.54-4P",
+    "fp": "CONN-SMD_4P-P2.50-WT",
+    "lcsc": "C9900004347"
+  },
+  "JST3": {
+    "dev": "7333e628e8074886986317aedcd86d5f",
+    "sym": "4df3c145fbd343af8595f4fb993fbd6e",
+    "name": "XH2.54-3P",
+    "fp": "CONN-SMD_3P-P2.50-WT",
+    "lcsc": "C9900004346"
+  },
+  "HDR19": {
+    "dev": "ed5d2827eb09415f9731b3c6116b7c7e",
+    "sym": "342f33f902a7450ea464860369223c90",
+    "name": "CON_2X19PIN_2D54",
+    "fp": "HDR-SMD_38P-P2.54-V-F-R2-C19-LS7.1",
+    "lcsc": "C9900020268"
+  },
+  "C100n": {
+    "dev": "7fe1204034d143ac9ddb217b3ea8de3e",
+    "sym": "5f120022182d425884e1ca64e3123afe",
+    "name": "CL21B104KCFNNNE",
+    "fp": "C0805",
+    "lcsc": "C28233"
+  },
+  "R10k": {
+    "dev": "e9c34dedae26495c91dced1a655b8614",
+    "sym": "77ef2a0f689c42309b6f2c668fcf3542",
+    "name": "0805W8F1002T5E_C17414",
+    "fp": "R0805",
+    "lcsc": "C17414"
+  },
+  "R100k": {
+    "dev": "70d0676a7e554bf2bb2f7d2e56e17c75",
+    "sym": "8dc11cfb07084f02b34c26e9f8f34bc2",
+    "name": "0805W8F1003T5E",
+    "fp": "R0805",
+    "lcsc": "C149504"
+  },
+  "R68k": {
+    "dev": "b319bcbf494e495ca9a45247c6340d1e",
+    "sym": "5c7eed33682642c68c58ec64b39b248b",
+    "name": "0805W8F6802T5E",
+    "fp": "R0805",
+    "lcsc": "C17801"
+  },
+  "R13k": {
+    "dev": "41079faeae2242e0ae609526eaefe453",
+    "sym": "617da773dbef42fe93b2c8ebef612176",
+    "name": "0805W8F1302T5E",
+    "fp": "R0805",
+    "lcsc": "C17455"
+  },
+  "R4k7": {
+    "dev": "d2dbaa25512b4ca5bdc0c22834f8fdbe",
+    "sym": "ffc235b5b93641f2aa601359e155126b",
+    "name": "0805W8F4701T5E",
+    "fp": "R0805",
+    "lcsc": "C17673"
+  },
+  "R1k": {
+    "dev": "bb42a40a4c514c729b3c2928e464ad80",
+    "sym": "e53e6dc510d04c78ab30b973136c05f9",
+    "name": "0805W8F1001T5E",
+    "fp": "R0805",
+    "lcsc": "C17513"
+  },
+  "R100": {
+    "dev": "3140f4b435ed496db8557758bbe577c7",
+    "sym": "ad0826143ecc4b8ea061a6f6dda67400",
+    "name": "0805W8F1000T5E",
+    "fp": "R0805",
+    "lcsc": "C17408"
+  },
+  "R330": {
+    "dev": "c7283a83ac1f4313b7191627b29ca465",
+    "sym": "2dbdb53192d345ee8d94aa9ddd160f4f",
+    "name": "0805W8F3300T5E",
+    "fp": "R0805",
+    "lcsc": "C17630"
+  },
+  "Rshunt": {
+    "dev": "9cdc0cb7eb204069b983d01363121ac4",
+    "sym": "f538bdb16f5143fbadc81100f2b1f4ce",
+    "name": "WSK2512R0100FEA",
+    "fp": "RES-SMD_L6.4-W3.2_WSK2512R0100FEA",
+    "lcsc": "C3985410"
+  },
+  "LEDr": {
+    "dev": "1d7a0591eee2425b90fe439ede815318",
+    "sym": "1bbe5b80e3d4445ab6f73fb19e52d9ca",
+    "name": "KT-0805R",
+    "fp": "LED0805-R-RD",
+    "lcsc": "C2295"
+  },
+  "LEDg": {
+    "dev": "9934e6f2be03427c81d2f7ee362750fc",
+    "sym": "c160a17d5e9d4c0bbeddfb2820de45f2",
+    "name": "KT-0805G",
+    "fp": "LED0805-R-RD",
+    "lcsc": "C2297"
+  },
+  "TERM2": {
+    "dev": "ec19c4ab6453401fbc81ede8097843be",
+    "sym": "bde66afba0954a278f781710b5859f2e",
+    "name": "KF128-2.54-2P",
+    "fp": "CONN-TH_P2.54_KF128-2.54-2P",
+    "lcsc": "C474920"
+  },
+  "TERM3": {
+    "dev": "ef1108a0c58944848a8cc2eb5b64dcb4",
+    "sym": "4cd3df5103654786a1d3085c46caf987",
+    "name": "KF128-2.54-3P",
+    "fp": "CONN-TH_3P-P2.54_KF128-2.54-3P",
+    "lcsc": "C474921"
+  },
+  "HDR3": {
+    "dev": "eccd12ded5314d1cb4e40fcde2eea031",
+    "sym": "4a7a6716609f4299a56ab38a807a7202",
+    "name": "黄色排针A_HEADER3",
+    "fp": "HDR-TH_3P-P2.54-V-M-1",
+    "lcsc": "C9900019266"
+  },
+  "HDR4": {
+    "dev": "6cd6901bc0e5466d9b6f965620600134",
+    "sym": "e12e311f4159435a82de4eb0c0efa57f",
+    "name": "HDR1X4",
+    "fp": "CONN-SMD_4P-P2.50_DEALON_XH-4PWB",
+    "lcsc": "C9900027556"
+  },
+  "HDR6": {
+    "dev": "d3c4c7c94c194be28fe42d8ab20e059b",
+    "sym": "4aeea494092c4109b22921a7ce1732fa",
+    "name": "HDR-1X6",
+    "fp": "CONN-TH_6P-P2.50_HX25035-6A",
+    "lcsc": "C9900004873"
+  }
+}

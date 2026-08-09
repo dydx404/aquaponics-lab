@@ -1,0 +1,4191 @@
+{
+ "F1": {
+  "id": "F1",
+  "type": "F1",
+  "module": "PWR",
+  "value": "5A",
+  "pid": "36cd00a8177be512",
+  "designator": "U1",
+  "lcsc": "C9900015656",
+  "name": "BGOP_5X20_3A",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "1",
+    "name": "1",
+    "lx": -20,
+    "ly": 0
+   },
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 20,
+    "ly": 0
+   }
+  ]
+ },
+ "Q1": {
+  "id": "Q1",
+  "type": "Q1",
+  "module": "PWR",
+  "value": "AO4407A",
+  "pid": "a2c55cc0cbb4d05c",
+  "designator": "U2",
+  "lcsc": "C3019374",
+  "name": "AO4407A",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "8",
+    "name": "D",
+    "lx": 585,
+    "ly": 15
+   },
+   {
+    "n": "7",
+    "name": "D",
+    "lx": 585,
+    "ly": 5
+   },
+   {
+    "n": "6",
+    "name": "D",
+    "lx": 585,
+    "ly": -5
+   },
+   {
+    "n": "5",
+    "name": "D",
+    "lx": 585,
+    "ly": -15
+   },
+   {
+    "n": "4",
+    "name": "G",
+    "lx": 530,
+    "ly": -15
+   },
+   {
+    "n": "3",
+    "name": "S",
+    "lx": 530,
+    "ly": -5
+   },
+   {
+    "n": "2",
+    "name": "S",
+    "lx": 530,
+    "ly": 5
+   },
+   {
+    "n": "1",
+    "name": "S",
+    "lx": 530,
+    "ly": 15
+   }
+  ]
+ },
+ "R1": {
+  "id": "R1",
+  "type": "R10k",
+  "module": "PWR",
+  "value": "10k",
+  "pid": "d8dff1e269de0176",
+  "designator": "R1",
+  "lcsc": "C17414",
+  "name": "0805W8F1002T5E_C17414",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 1140,
+    "ly": 0
+   },
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 1100,
+    "ly": 0
+   }
+  ]
+ },
+ "R2": {
+  "id": "R2",
+  "type": "R100k",
+  "module": "PWR",
+  "value": "100k",
+  "pid": "411d815b22c5dc97",
+  "designator": "R2",
+  "lcsc": "C149504",
+  "name": "0805W8F1003T5E",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 1700,
+    "ly": 0
+   },
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 1660,
+    "ly": 0
+   }
+  ]
+ },
+ "D1": {
+  "id": "D1",
+  "type": "D1",
+  "module": "PWR",
+  "value": "SMBJ15A",
+  "pid": "3e3aec370dca0ecf",
+  "designator": "D1",
+  "lcsc": "C357961",
+  "name": "SMBJ15A",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "2",
+    "name": "A",
+    "lx": 2260,
+    "ly": 0
+   },
+   {
+    "n": "1",
+    "name": "K",
+    "lx": 2220,
+    "ly": 0
+   }
+  ]
+ },
+ "D2": {
+  "id": "D2",
+  "type": "D2",
+  "module": "PWR",
+  "value": "1N4744A",
+  "pid": "990fac722b2c7e66",
+  "designator": "ZD1",
+  "lcsc": "C2547",
+  "name": "1N4744A",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "1",
+    "name": "A",
+    "lx": 2780,
+    "ly": 0
+   },
+   {
+    "n": "2",
+    "name": "K",
+    "lx": 2820,
+    "ly": 0
+   }
+  ]
+ },
+ "U1": {
+  "id": "U1",
+  "type": "U1",
+  "module": "PWR",
+  "value": "MP1584EN",
+  "pid": "0a3919a4294916b5",
+  "designator": "U3",
+  "lcsc": "C454188",
+  "name": "MP1584EN",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "1",
+    "name": "SW",
+    "lx": -45,
+    "ly": 495
+   },
+   {
+    "n": "2",
+    "name": "EN",
+    "lx": -45,
+    "ly": 485
+   },
+   {
+    "n": "3",
+    "name": "COMP",
+    "lx": -45,
+    "ly": 475
+   },
+   {
+    "n": "4",
+    "name": "FB",
+    "lx": -45,
+    "ly": 465
+   },
+   {
+    "n": "5",
+    "name": "GND",
+    "lx": 45,
+    "ly": 465
+   },
+   {
+    "n": "6",
+    "name": "FREQ",
+    "lx": 45,
+    "ly": 475
+   },
+   {
+    "n": "7",
+    "name": "VIN",
+    "lx": 45,
+    "ly": 485
+   },
+   {
+    "n": "8",
+    "name": "BST",
+    "lx": 45,
+    "ly": 495
+   },
+   {
+    "n": "9",
+    "name": "GND",
+    "lx": 0,
+    "ly": 515
+   }
+  ]
+ },
+ "L1": {
+  "id": "L1",
+  "type": "L1",
+  "module": "PWR",
+  "value": "47uH",
+  "pid": "205a493afd72cd8a",
+  "designator": "U4",
+  "lcsc": "C9900013584",
+  "name": "Inductor,47UH/功率电感",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 580,
+    "ly": 480
+   },
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 540,
+    "ly": 480
+   }
+  ]
+ },
+ "C1": {
+  "id": "C1",
+  "type": "C10u",
+  "module": "PWR",
+  "value": "10uF",
+  "pid": "a7e8d891cdf839f3",
+  "designator": "C1",
+  "lcsc": "C440198",
+  "name": "GRM21BR61H106KE43L",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 1100,
+    "ly": 480
+   },
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 1140,
+    "ly": 480
+   }
+  ]
+ },
+ "C2": {
+  "id": "C2",
+  "type": "C220u",
+  "module": "PWR",
+  "value": "220uF",
+  "pid": "874672958621100b",
+  "designator": "U5",
+  "lcsc": "C2941234",
+  "name": "220uF",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 1690,
+    "ly": 480
+   },
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 1660,
+    "ly": 480
+   }
+  ]
+ },
+ "C3": {
+  "id": "C3",
+  "type": "C22u",
+  "module": "PWR",
+  "value": "22uF",
+  "pid": "d1dff9b1d28f296c",
+  "designator": "C2",
+  "lcsc": "C9900008064",
+  "name": "22UF",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 2260,
+    "ly": 480
+   },
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 2220,
+    "ly": 480
+   }
+  ]
+ },
+ "C4": {
+  "id": "C4",
+  "type": "C220u",
+  "module": "PWR",
+  "value": "220uF",
+  "pid": "377d54985df63841",
+  "designator": "U6",
+  "lcsc": "C2941234",
+  "name": "220uF",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 2810,
+    "ly": 480
+   },
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 2780,
+    "ly": 480
+   }
+  ]
+ },
+ "R3": {
+  "id": "R3",
+  "type": "R68k",
+  "module": "PWR",
+  "value": "68k",
+  "pid": "77e659da7ca0602a",
+  "designator": "R3",
+  "lcsc": "C17801",
+  "name": "0805W8F6802T5E",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 20,
+    "ly": 960
+   },
+   {
+    "n": "1",
+    "name": "1",
+    "lx": -20,
+    "ly": 960
+   }
+  ]
+ },
+ "R4": {
+  "id": "R4",
+  "type": "R13k",
+  "module": "PWR",
+  "value": "13k",
+  "pid": "c5234c936cba0a03",
+  "designator": "R4",
+  "lcsc": "C17455",
+  "name": "0805W8F1302T5E",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 580,
+    "ly": 960
+   },
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 540,
+    "ly": 960
+   }
+  ]
+ },
+ "C5": {
+  "id": "C5",
+  "type": "C100n",
+  "module": "PWR",
+  "value": "100nF",
+  "pid": "494e7b2345acceb5",
+  "designator": "C3",
+  "lcsc": "C28233",
+  "name": "CL21B104KCFNNNE",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 1105,
+    "ly": 960
+   },
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 1135,
+    "ly": 960
+   }
+  ]
+ },
+ "U2": {
+  "id": "U2",
+  "type": "U2",
+  "module": "PWR",
+  "value": "AMS1117-3.3",
+  "pid": "90ff3580294c5317",
+  "designator": "U7",
+  "lcsc": "C6186",
+  "name": "AMS1117-3.3_C6186",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "1",
+    "name": "GND",
+    "lx": -45,
+    "ly": 1450
+   },
+   {
+    "n": "2",
+    "name": "VOUT",
+    "lx": -45,
+    "ly": 1440
+   },
+   {
+    "n": "3",
+    "name": "VIN",
+    "lx": -45,
+    "ly": 1430
+   },
+   {
+    "n": "4",
+    "name": "VOUT",
+    "lx": 45,
+    "ly": 1440
+   }
+  ]
+ },
+ "C6": {
+  "id": "C6",
+  "type": "C10u",
+  "module": "PWR",
+  "value": "10uF",
+  "pid": "6932561e84696188",
+  "designator": "C4",
+  "lcsc": "C440198",
+  "name": "GRM21BR61H106KE43L",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 540,
+    "ly": 1440
+   },
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 580,
+    "ly": 1440
+   }
+  ]
+ },
+ "C7": {
+  "id": "C7",
+  "type": "C10u",
+  "module": "PWR",
+  "value": "10uF",
+  "pid": "3a12563aaad679f6",
+  "designator": "C5",
+  "lcsc": "C440198",
+  "name": "GRM21BR61H106KE43L",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 1100,
+    "ly": 1440
+   },
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 1140,
+    "ly": 1440
+   }
+  ]
+ },
+ "D3": {
+  "id": "D3",
+  "type": "LEDg",
+  "module": "PWR",
+  "value": "LED",
+  "pid": "8c76210638a9fb90",
+  "designator": "LED1",
+  "lcsc": "C2297",
+  "name": "KT-0805G",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "2",
+    "name": "K",
+    "lx": 1660,
+    "ly": 1440
+   },
+   {
+    "n": "1",
+    "name": "A",
+    "lx": 1700,
+    "ly": 1440
+   }
+  ]
+ },
+ "R5": {
+  "id": "R5",
+  "type": "R1k",
+  "module": "PWR",
+  "value": "1k",
+  "pid": "4322a8e501c5df6e",
+  "designator": "R5",
+  "lcsc": "C17513",
+  "name": "0805W8F1001T5E",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 2260,
+    "ly": 1440
+   },
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 2220,
+    "ly": 1440
+   }
+  ]
+ },
+ "J_DEV": {
+  "id": "J_DEV",
+  "type": "HDR19",
+  "module": "DEVKIT",
+  "value": "DevKitC",
+  "pid": "cf9caa6dde1516cb",
+  "designator": "U8",
+  "lcsc": "C9900020268",
+  "name": "CON_2X19PIN_2D54",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 30,
+    "ly": 4290
+   },
+   {
+    "n": "37",
+    "name": "37",
+    "lx": -30,
+    "ly": 4110
+   },
+   {
+    "n": "4",
+    "name": "4",
+    "lx": 30,
+    "ly": 4280
+   },
+   {
+    "n": "35",
+    "name": "35",
+    "lx": -30,
+    "ly": 4120
+   },
+   {
+    "n": "6",
+    "name": "6",
+    "lx": 30,
+    "ly": 4270
+   },
+   {
+    "n": "33",
+    "name": "33",
+    "lx": -30,
+    "ly": 4130
+   },
+   {
+    "n": "8",
+    "name": "8",
+    "lx": 30,
+    "ly": 4260
+   },
+   {
+    "n": "31",
+    "name": "31",
+    "lx": -30,
+    "ly": 4140
+   },
+   {
+    "n": "10",
+    "name": "10",
+    "lx": 30,
+    "ly": 4250
+   },
+   {
+    "n": "29",
+    "name": "29",
+    "lx": -30,
+    "ly": 4150
+   },
+   {
+    "n": "12",
+    "name": "12",
+    "lx": 30,
+    "ly": 4240
+   },
+   {
+    "n": "27",
+    "name": "27",
+    "lx": -30,
+    "ly": 4160
+   },
+   {
+    "n": "14",
+    "name": "14",
+    "lx": 30,
+    "ly": 4230
+   },
+   {
+    "n": "25",
+    "name": "25",
+    "lx": -30,
+    "ly": 4170
+   },
+   {
+    "n": "16",
+    "name": "16",
+    "lx": 30,
+    "ly": 4220
+   },
+   {
+    "n": "23",
+    "name": "23",
+    "lx": -30,
+    "ly": 4180
+   },
+   {
+    "n": "18",
+    "name": "18",
+    "lx": 30,
+    "ly": 4210
+   },
+   {
+    "n": "21",
+    "name": "21",
+    "lx": -30,
+    "ly": 4190
+   },
+   {
+    "n": "20",
+    "name": "20",
+    "lx": 30,
+    "ly": 4200
+   },
+   {
+    "n": "19",
+    "name": "19",
+    "lx": -30,
+    "ly": 4200
+   },
+   {
+    "n": "22",
+    "name": "22",
+    "lx": 30,
+    "ly": 4190
+   },
+   {
+    "n": "17",
+    "name": "17",
+    "lx": -30,
+    "ly": 4210
+   },
+   {
+    "n": "24",
+    "name": "24",
+    "lx": 30,
+    "ly": 4180
+   },
+   {
+    "n": "15",
+    "name": "15",
+    "lx": -30,
+    "ly": 4220
+   },
+   {
+    "n": "26",
+    "name": "26",
+    "lx": 30,
+    "ly": 4170
+   },
+   {
+    "n": "13",
+    "name": "13",
+    "lx": -30,
+    "ly": 4230
+   },
+   {
+    "n": "28",
+    "name": "28",
+    "lx": 30,
+    "ly": 4160
+   },
+   {
+    "n": "11",
+    "name": "11",
+    "lx": -30,
+    "ly": 4240
+   },
+   {
+    "n": "30",
+    "name": "30",
+    "lx": 30,
+    "ly": 4150
+   },
+   {
+    "n": "9",
+    "name": "9",
+    "lx": -30,
+    "ly": 4250
+   },
+   {
+    "n": "32",
+    "name": "32",
+    "lx": 30,
+    "ly": 4140
+   },
+   {
+    "n": "7",
+    "name": "7",
+    "lx": -30,
+    "ly": 4260
+   },
+   {
+    "n": "34",
+    "name": "34",
+    "lx": 30,
+    "ly": 4130
+   },
+   {
+    "n": "5",
+    "name": "5",
+    "lx": -30,
+    "ly": 4270
+   },
+   {
+    "n": "36",
+    "name": "36",
+    "lx": 30,
+    "ly": 4120
+   },
+   {
+    "n": "3",
+    "name": "3",
+    "lx": -30,
+    "ly": 4280
+   },
+   {
+    "n": "38",
+    "name": "38",
+    "lx": 30,
+    "ly": 4110
+   },
+   {
+    "n": "1",
+    "name": "1",
+    "lx": -30,
+    "ly": 4290
+   }
+  ]
+ },
+ "R6": {
+  "id": "R6",
+  "type": "R4k7",
+  "module": "I2C",
+  "value": "4.7k",
+  "pid": "b2a5d7561adfbc90",
+  "designator": "R6",
+  "lcsc": "C17673",
+  "name": "0805W8F4701T5E",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 7020,
+    "ly": 0
+   },
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 6980,
+    "ly": 0
+   }
+  ]
+ },
+ "R7": {
+  "id": "R7",
+  "type": "R4k7",
+  "module": "I2C",
+  "value": "4.7k",
+  "pid": "641eb63e4b90daba",
+  "designator": "R7",
+  "lcsc": "C17673",
+  "name": "0805W8F4701T5E",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 7580,
+    "ly": 0
+   },
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 7540,
+    "ly": 0
+   }
+  ]
+ },
+ "J_I2C": {
+  "id": "J_I2C",
+  "type": "JST4",
+  "module": "I2C",
+  "value": "I2C",
+  "pid": "1a37122869ae75da",
+  "designator": "CN1",
+  "lcsc": "C9900004347",
+  "name": "XH2.54-4P",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 8105,
+    "ly": 15
+   },
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 8105,
+    "ly": 5
+   },
+   {
+    "n": "3",
+    "name": "3",
+    "lx": 8105,
+    "ly": -5
+   },
+   {
+    "n": "4",
+    "name": "4",
+    "lx": 8105,
+    "ly": -15
+   },
+   {
+    "n": "5",
+    "name": "5",
+    "lx": 8135,
+    "ly": -35
+   },
+   {
+    "n": "6",
+    "name": "6",
+    "lx": 8135,
+    "ly": 35
+   }
+  ]
+ },
+ "R8": {
+  "id": "R8",
+  "type": "R4k7",
+  "module": "ONEW",
+  "value": "4.7k",
+  "pid": "fd1ffc2f2f694216",
+  "designator": "R8",
+  "lcsc": "C17673",
+  "name": "0805W8F4701T5E",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 7020,
+    "ly": 1600
+   },
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 6980,
+    "ly": 1600
+   }
+  ]
+ },
+ "J_1W": {
+  "id": "J_1W",
+  "type": "JST3",
+  "module": "ONEW",
+  "value": "1-Wire",
+  "pid": "dac536be08aa5be5",
+  "designator": "CN2",
+  "lcsc": "C9900004346",
+  "name": "XH2.54-3P",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 7545,
+    "ly": 1610
+   },
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 7545,
+    "ly": 1600
+   },
+   {
+    "n": "3",
+    "name": "3",
+    "lx": 7545,
+    "ly": 1590
+   },
+   {
+    "n": "4",
+    "name": "4",
+    "lx": 7575,
+    "ly": 1630
+   },
+   {
+    "n": "5",
+    "name": "5",
+    "lx": 7575,
+    "ly": 1570
+   }
+  ]
+ },
+ "R_pull1": {
+  "id": "R_pull1",
+  "type": "R10k",
+  "module": "DIN",
+  "value": "10k",
+  "pid": "7109bc61745b7aae",
+  "designator": "R9",
+  "lcsc": "C17414",
+  "name": "0805W8F1002T5E_C17414",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 9020,
+    "ly": 0
+   },
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 8980,
+    "ly": 0
+   }
+  ]
+ },
+ "R_ser1": {
+  "id": "R_ser1",
+  "type": "R1k",
+  "module": "DIN",
+  "value": "1k",
+  "pid": "3b765b4e00f956f4",
+  "designator": "R10",
+  "lcsc": "C17513",
+  "name": "0805W8F1001T5E",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 9020,
+    "ly": 480
+   },
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 8980,
+    "ly": 480
+   }
+  ]
+ },
+ "C_flt1": {
+  "id": "C_flt1",
+  "type": "C100n",
+  "module": "DIN",
+  "value": "100nF",
+  "pid": "f40203f63ab9d460",
+  "designator": "C6",
+  "lcsc": "C28233",
+  "name": "CL21B104KCFNNNE",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 8985,
+    "ly": 960
+   },
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 9015,
+    "ly": 960
+   }
+  ]
+ },
+ "D_cl1": {
+  "id": "D_cl1",
+  "type": "Dclamp",
+  "module": "DIN",
+  "value": "BAT54S",
+  "pid": "3233ece26050ee16",
+  "designator": "D2",
+  "lcsc": "C266597",
+  "name": "BAT54S",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 8990,
+    "ly": 1420
+   },
+   {
+    "n": "3",
+    "name": "3",
+    "lx": 9000,
+    "ly": 1470
+   },
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 9010,
+    "ly": 1420
+   }
+  ]
+ },
+ "R_pull2": {
+  "id": "R_pull2",
+  "type": "R10k",
+  "module": "DIN",
+  "value": "10k",
+  "pid": "a77c1bea9cb71423",
+  "designator": "R11",
+  "lcsc": "C17414",
+  "name": "0805W8F1002T5E_C17414",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 9580,
+    "ly": 0
+   },
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 9540,
+    "ly": 0
+   }
+  ]
+ },
+ "R_ser2": {
+  "id": "R_ser2",
+  "type": "R1k",
+  "module": "DIN",
+  "value": "1k",
+  "pid": "02fe5b5bf2b71f40",
+  "designator": "R12",
+  "lcsc": "C17513",
+  "name": "0805W8F1001T5E",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 9580,
+    "ly": 480
+   },
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 9540,
+    "ly": 480
+   }
+  ]
+ },
+ "C_flt2": {
+  "id": "C_flt2",
+  "type": "C100n",
+  "module": "DIN",
+  "value": "100nF",
+  "pid": "f5467fe2d061beff",
+  "designator": "C7",
+  "lcsc": "C28233",
+  "name": "CL21B104KCFNNNE",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 9545,
+    "ly": 960
+   },
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 9575,
+    "ly": 960
+   }
+  ]
+ },
+ "D_cl2": {
+  "id": "D_cl2",
+  "type": "Dclamp",
+  "module": "DIN",
+  "value": "BAT54S",
+  "pid": "74439d9a4ed3dff8",
+  "designator": "D3",
+  "lcsc": "C266597",
+  "name": "BAT54S",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 9550,
+    "ly": 1420
+   },
+   {
+    "n": "3",
+    "name": "3",
+    "lx": 9560,
+    "ly": 1470
+   },
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 9570,
+    "ly": 1420
+   }
+  ]
+ },
+ "R_pull3": {
+  "id": "R_pull3",
+  "type": "R10k",
+  "module": "DIN",
+  "value": "10k",
+  "pid": "41731dc852ab8261",
+  "designator": "R13",
+  "lcsc": "C17414",
+  "name": "0805W8F1002T5E_C17414",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 10140,
+    "ly": 0
+   },
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 10100,
+    "ly": 0
+   }
+  ]
+ },
+ "R_ser3": {
+  "id": "R_ser3",
+  "type": "R1k",
+  "module": "DIN",
+  "value": "1k",
+  "pid": "26bef84348a895f9",
+  "designator": "R14",
+  "lcsc": "C17513",
+  "name": "0805W8F1001T5E",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 10140,
+    "ly": 480
+   },
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 10100,
+    "ly": 480
+   }
+  ]
+ },
+ "C_flt3": {
+  "id": "C_flt3",
+  "type": "C100n",
+  "module": "DIN",
+  "value": "100nF",
+  "pid": "d003366ea6040d7b",
+  "designator": "C8",
+  "lcsc": "C28233",
+  "name": "CL21B104KCFNNNE",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 10105,
+    "ly": 960
+   },
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 10135,
+    "ly": 960
+   }
+  ]
+ },
+ "D_cl3": {
+  "id": "D_cl3",
+  "type": "Dclamp",
+  "module": "DIN",
+  "value": "BAT54S",
+  "pid": "9a7990f41ad357d6",
+  "designator": "D4",
+  "lcsc": "C266597",
+  "name": "BAT54S",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 10110,
+    "ly": 1420
+   },
+   {
+    "n": "3",
+    "name": "3",
+    "lx": 10120,
+    "ly": 1470
+   },
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 10130,
+    "ly": 1420
+   }
+  ]
+ },
+ "R_pull4": {
+  "id": "R_pull4",
+  "type": "R10k",
+  "module": "DIN",
+  "value": "10k",
+  "pid": "b330212fb4e6f91a",
+  "designator": "R15",
+  "lcsc": "C17414",
+  "name": "0805W8F1002T5E_C17414",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 10700,
+    "ly": 0
+   },
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 10660,
+    "ly": 0
+   }
+  ]
+ },
+ "R_ser4": {
+  "id": "R_ser4",
+  "type": "R1k",
+  "module": "DIN",
+  "value": "1k",
+  "pid": "4476562ee7b62eab",
+  "designator": "R16",
+  "lcsc": "C17513",
+  "name": "0805W8F1001T5E",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 10700,
+    "ly": 480
+   },
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 10660,
+    "ly": 480
+   }
+  ]
+ },
+ "C_flt4": {
+  "id": "C_flt4",
+  "type": "C100n",
+  "module": "DIN",
+  "value": "100nF",
+  "pid": "c9161e465531de81",
+  "designator": "C9",
+  "lcsc": "C28233",
+  "name": "CL21B104KCFNNNE",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 10665,
+    "ly": 960
+   },
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 10695,
+    "ly": 960
+   }
+  ]
+ },
+ "D_cl4": {
+  "id": "D_cl4",
+  "type": "Dclamp",
+  "module": "DIN",
+  "value": "BAT54S",
+  "pid": "1e673029ef9da827",
+  "designator": "D5",
+  "lcsc": "C266597",
+  "name": "BAT54S",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 10670,
+    "ly": 1420
+   },
+   {
+    "n": "3",
+    "name": "3",
+    "lx": 10680,
+    "ly": 1470
+   },
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 10690,
+    "ly": 1420
+   }
+  ]
+ },
+ "R_pull5": {
+  "id": "R_pull5",
+  "type": "R10k",
+  "module": "DIN",
+  "value": "10k",
+  "pid": "5403aa8aa86adb94",
+  "designator": "R17",
+  "lcsc": "C17414",
+  "name": "0805W8F1002T5E_C17414",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 11260,
+    "ly": 0
+   },
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 11220,
+    "ly": 0
+   }
+  ]
+ },
+ "R_ser5": {
+  "id": "R_ser5",
+  "type": "R1k",
+  "module": "DIN",
+  "value": "1k",
+  "pid": "e32f6e9ccd92e067",
+  "designator": "R18",
+  "lcsc": "C17513",
+  "name": "0805W8F1001T5E",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 11260,
+    "ly": 480
+   },
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 11220,
+    "ly": 480
+   }
+  ]
+ },
+ "C_flt5": {
+  "id": "C_flt5",
+  "type": "C100n",
+  "module": "DIN",
+  "value": "100nF",
+  "pid": "97d099061e6497a8",
+  "designator": "C10",
+  "lcsc": "C28233",
+  "name": "CL21B104KCFNNNE",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 11225,
+    "ly": 960
+   },
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 11255,
+    "ly": 960
+   }
+  ]
+ },
+ "D_cl5": {
+  "id": "D_cl5",
+  "type": "Dclamp",
+  "module": "DIN",
+  "value": "BAT54S",
+  "pid": "40fc59982d8a4f57",
+  "designator": "D6",
+  "lcsc": "C266597",
+  "name": "BAT54S",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 11230,
+    "ly": 1420
+   },
+   {
+    "n": "3",
+    "name": "3",
+    "lx": 11240,
+    "ly": 1470
+   },
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 11250,
+    "ly": 1420
+   }
+  ]
+ },
+ "R_pull6": {
+  "id": "R_pull6",
+  "type": "R10k",
+  "module": "DIN",
+  "value": "10k",
+  "pid": "de00ee3f15a4557d",
+  "designator": "R19",
+  "lcsc": "C17414",
+  "name": "0805W8F1002T5E_C17414",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 11820,
+    "ly": 0
+   },
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 11780,
+    "ly": 0
+   }
+  ]
+ },
+ "R_ser6": {
+  "id": "R_ser6",
+  "type": "R1k",
+  "module": "DIN",
+  "value": "1k",
+  "pid": "74446eb49635e9c9",
+  "designator": "R20",
+  "lcsc": "C17513",
+  "name": "0805W8F1001T5E",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 11820,
+    "ly": 480
+   },
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 11780,
+    "ly": 480
+   }
+  ]
+ },
+ "C_flt6": {
+  "id": "C_flt6",
+  "type": "C100n",
+  "module": "DIN",
+  "value": "100nF",
+  "pid": "492f67b056a147ec",
+  "designator": "C11",
+  "lcsc": "C28233",
+  "name": "CL21B104KCFNNNE",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 11785,
+    "ly": 960
+   },
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 11815,
+    "ly": 960
+   }
+  ]
+ },
+ "D_cl6": {
+  "id": "D_cl6",
+  "type": "Dclamp",
+  "module": "DIN",
+  "value": "BAT54S",
+  "pid": "bcd715b9ce088935",
+  "designator": "D7",
+  "lcsc": "C266597",
+  "name": "BAT54S",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 11790,
+    "ly": 1420
+   },
+   {
+    "n": "3",
+    "name": "3",
+    "lx": 11800,
+    "ly": 1470
+   },
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 11810,
+    "ly": 1420
+   }
+  ]
+ },
+ "Q_lvl1": {
+  "id": "Q_lvl1",
+  "type": "Qlvl",
+  "module": "DIN",
+  "value": "BSS138",
+  "pid": "c64c49e5e235f716",
+  "designator": "Q1",
+  "lcsc": "C193019",
+  "name": "BSS138",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "3",
+    "name": "D",
+    "lx": 12360,
+    "ly": 20
+   },
+   {
+    "n": "1",
+    "name": "G",
+    "lx": 12330,
+    "ly": 0
+   },
+   {
+    "n": "2",
+    "name": "S",
+    "lx": 12360,
+    "ly": -20
+   }
+  ]
+ },
+ "Q_lvl2": {
+  "id": "Q_lvl2",
+  "type": "Qlvl",
+  "module": "DIN",
+  "value": "BSS138",
+  "pid": "e26f3a87d8a7c982",
+  "designator": "Q2",
+  "lcsc": "C193019",
+  "name": "BSS138",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "3",
+    "name": "D",
+    "lx": 12920,
+    "ly": 20
+   },
+   {
+    "n": "1",
+    "name": "G",
+    "lx": 12890,
+    "ly": 0
+   },
+   {
+    "n": "2",
+    "name": "S",
+    "lx": 12920,
+    "ly": -20
+   }
+  ]
+ },
+ "R_p5V1": {
+  "id": "R_p5V1",
+  "type": "R10k",
+  "module": "DIN",
+  "value": "10k",
+  "pid": "8547c7ee4eb78a22",
+  "designator": "R21",
+  "lcsc": "C17414",
+  "name": "0805W8F1002T5E_C17414",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 12380,
+    "ly": 480
+   },
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 12340,
+    "ly": 480
+   }
+  ]
+ },
+ "R_p5V2": {
+  "id": "R_p5V2",
+  "type": "R10k",
+  "module": "DIN",
+  "value": "10k",
+  "pid": "ad21e54ed13e1dd6",
+  "designator": "R22",
+  "lcsc": "C17414",
+  "name": "0805W8F1002T5E_C17414",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 12940,
+    "ly": 480
+   },
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 12900,
+    "ly": 480
+   }
+  ]
+ },
+ "J_DIN1": {
+  "id": "J_DIN1",
+  "type": "TERM2",
+  "module": "DIN",
+  "value": "DIN",
+  "pid": "12ecbddb3b6fcf27",
+  "designator": "U9",
+  "lcsc": "C474920",
+  "name": "KF128-2.54-2P",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 8980,
+    "ly": 2405
+   },
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 8980,
+    "ly": 2395
+   }
+  ]
+ },
+ "J_DIN2": {
+  "id": "J_DIN2",
+  "type": "TERM2",
+  "module": "DIN",
+  "value": "DIN",
+  "pid": "f6c8bc0c9aaf4305",
+  "designator": "U10",
+  "lcsc": "C474920",
+  "name": "KF128-2.54-2P",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 9540,
+    "ly": 2405
+   },
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 9540,
+    "ly": 2395
+   }
+  ]
+ },
+ "J_DIN3": {
+  "id": "J_DIN3",
+  "type": "TERM2",
+  "module": "DIN",
+  "value": "DIN",
+  "pid": "51d32cebcaa39ae9",
+  "designator": "U11",
+  "lcsc": "C474920",
+  "name": "KF128-2.54-2P",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 10100,
+    "ly": 2405
+   },
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 10100,
+    "ly": 2395
+   }
+  ]
+ },
+ "J_DIN4": {
+  "id": "J_DIN4",
+  "type": "TERM2",
+  "module": "DIN",
+  "value": "DIN",
+  "pid": "28e1b31df17d3028",
+  "designator": "U12",
+  "lcsc": "C474920",
+  "name": "KF128-2.54-2P",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 10660,
+    "ly": 2405
+   },
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 10660,
+    "ly": 2395
+   }
+  ]
+ },
+ "J_DIN5": {
+  "id": "J_DIN5",
+  "type": "TERM2",
+  "module": "DIN",
+  "value": "DIN",
+  "pid": "1f8eba2e603b2bb4",
+  "designator": "U13",
+  "lcsc": "C474920",
+  "name": "KF128-2.54-2P",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 11220,
+    "ly": 2405
+   },
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 11220,
+    "ly": 2395
+   }
+  ]
+ },
+ "J_DIN6": {
+  "id": "J_DIN6",
+  "type": "TERM2",
+  "module": "DIN",
+  "value": "DIN",
+  "pid": "dcbb62c0ba0bb55f",
+  "designator": "U14",
+  "lcsc": "C474920",
+  "name": "KF128-2.54-2P",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 11780,
+    "ly": 2405
+   },
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 11780,
+    "ly": 2395
+   }
+  ]
+ },
+ "Q_mos1": {
+  "id": "Q_mos1",
+  "type": "Qmos",
+  "module": "MOS",
+  "value": "IRLZ44N",
+  "pid": "01e884eefb53e854",
+  "designator": "Q3",
+  "lcsc": "C54839582",
+  "name": "IRLZ44NPBF-MNS",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "2",
+    "name": "D",
+    "lx": 9010,
+    "ly": 4220
+   },
+   {
+    "n": "1",
+    "name": "G",
+    "lx": 8980,
+    "ly": 4200
+   },
+   {
+    "n": "3",
+    "name": "S",
+    "lx": 9010,
+    "ly": 4180
+   }
+  ]
+ },
+ "D_fly1": {
+  "id": "D_fly1",
+  "type": "Dfly",
+  "module": "MOS",
+  "value": "1N5819",
+  "pid": "6fdcd6dc6502eb4a",
+  "designator": "U15",
+  "lcsc": "C9900008009",
+  "name": "1N5819",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "2",
+    "name": "A",
+    "lx": 9020,
+    "ly": 4680
+   },
+   {
+    "n": "1",
+    "name": "K",
+    "lx": 8980,
+    "ly": 4680
+   }
+  ]
+ },
+ "R_gate1": {
+  "id": "R_gate1",
+  "type": "R100",
+  "module": "MOS",
+  "value": "100",
+  "pid": "c26aef02cdff40be",
+  "designator": "R23",
+  "lcsc": "C17408",
+  "name": "0805W8F1000T5E",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 9020,
+    "ly": 5160
+   },
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 8980,
+    "ly": 5160
+   }
+  ]
+ },
+ "R_pd1": {
+  "id": "R_pd1",
+  "type": "R10k",
+  "module": "MOS",
+  "value": "10k",
+  "pid": "a76b8ea153f43631",
+  "designator": "R24",
+  "lcsc": "C17414",
+  "name": "0805W8F1002T5E_C17414",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 9020,
+    "ly": 5640
+   },
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 8980,
+    "ly": 5640
+   }
+  ]
+ },
+ "D_mos1": {
+  "id": "D_mos1",
+  "type": "LEDr",
+  "module": "MOS",
+  "value": "LED",
+  "pid": "a9232c7776062243",
+  "designator": "LED2",
+  "lcsc": "C2295",
+  "name": "KT-0805R",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "2",
+    "name": "K",
+    "lx": 8980,
+    "ly": 6105
+   },
+   {
+    "n": "1",
+    "name": "A",
+    "lx": 9020,
+    "ly": 6105
+   }
+  ]
+ },
+ "R_mled1": {
+  "id": "R_mled1",
+  "type": "R1k",
+  "module": "MOS",
+  "value": "1k",
+  "pid": "ebbebc61dd350d99",
+  "designator": "R25",
+  "lcsc": "C17513",
+  "name": "0805W8F1001T5E",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 9020,
+    "ly": 6600
+   },
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 8980,
+    "ly": 6600
+   }
+  ]
+ },
+ "J_MOS1": {
+  "id": "J_MOS1",
+  "type": "TERM2",
+  "module": "MOS",
+  "value": "MOS",
+  "pid": "fd523b1651012b6c",
+  "designator": "U16",
+  "lcsc": "C474920",
+  "name": "KF128-2.54-2P",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 8980,
+    "ly": 7085
+   },
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 8980,
+    "ly": 7075
+   }
+  ]
+ },
+ "Q_mos2": {
+  "id": "Q_mos2",
+  "type": "Qmos",
+  "module": "MOS",
+  "value": "IRLZ44N",
+  "pid": "0297ad2ed7be597f",
+  "designator": "Q4",
+  "lcsc": "C54839582",
+  "name": "IRLZ44NPBF-MNS",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "2",
+    "name": "D",
+    "lx": 9570,
+    "ly": 4220
+   },
+   {
+    "n": "1",
+    "name": "G",
+    "lx": 9540,
+    "ly": 4200
+   },
+   {
+    "n": "3",
+    "name": "S",
+    "lx": 9570,
+    "ly": 4180
+   }
+  ]
+ },
+ "D_fly2": {
+  "id": "D_fly2",
+  "type": "Dfly",
+  "module": "MOS",
+  "value": "1N5819",
+  "pid": "6c29c3e024cb9e4a",
+  "designator": "U17",
+  "lcsc": "C9900008009",
+  "name": "1N5819",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "2",
+    "name": "A",
+    "lx": 9580,
+    "ly": 4680
+   },
+   {
+    "n": "1",
+    "name": "K",
+    "lx": 9540,
+    "ly": 4680
+   }
+  ]
+ },
+ "R_gate2": {
+  "id": "R_gate2",
+  "type": "R100",
+  "module": "MOS",
+  "value": "100",
+  "pid": "e7e970c62bd9693e",
+  "designator": "R26",
+  "lcsc": "C17408",
+  "name": "0805W8F1000T5E",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 9580,
+    "ly": 5160
+   },
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 9540,
+    "ly": 5160
+   }
+  ]
+ },
+ "R_pd2": {
+  "id": "R_pd2",
+  "type": "R10k",
+  "module": "MOS",
+  "value": "10k",
+  "pid": "6ece0a293dc3afb2",
+  "designator": "R27",
+  "lcsc": "C17414",
+  "name": "0805W8F1002T5E_C17414",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 9580,
+    "ly": 5640
+   },
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 9540,
+    "ly": 5640
+   }
+  ]
+ },
+ "D_mos2": {
+  "id": "D_mos2",
+  "type": "LEDr",
+  "module": "MOS",
+  "value": "LED",
+  "pid": "d9a039033236300c",
+  "designator": "LED3",
+  "lcsc": "C2295",
+  "name": "KT-0805R",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "2",
+    "name": "K",
+    "lx": 9540,
+    "ly": 6105
+   },
+   {
+    "n": "1",
+    "name": "A",
+    "lx": 9580,
+    "ly": 6105
+   }
+  ]
+ },
+ "R_mled2": {
+  "id": "R_mled2",
+  "type": "R1k",
+  "module": "MOS",
+  "value": "1k",
+  "pid": "22a33b11ae84b518",
+  "designator": "R28",
+  "lcsc": "C17513",
+  "name": "0805W8F1001T5E",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 9580,
+    "ly": 6600
+   },
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 9540,
+    "ly": 6600
+   }
+  ]
+ },
+ "J_MOS2": {
+  "id": "J_MOS2",
+  "type": "TERM2",
+  "module": "MOS",
+  "value": "MOS",
+  "pid": "92b036dae4c79f25",
+  "designator": "U18",
+  "lcsc": "C474920",
+  "name": "KF128-2.54-2P",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 9540,
+    "ly": 7085
+   },
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 9540,
+    "ly": 7075
+   }
+  ]
+ },
+ "Q_mos3": {
+  "id": "Q_mos3",
+  "type": "Qmos",
+  "module": "MOS",
+  "value": "IRLZ44N",
+  "pid": "74bbcb545f807d17",
+  "designator": "Q5",
+  "lcsc": "C54839582",
+  "name": "IRLZ44NPBF-MNS",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "2",
+    "name": "D",
+    "lx": 10130,
+    "ly": 4220
+   },
+   {
+    "n": "1",
+    "name": "G",
+    "lx": 10100,
+    "ly": 4200
+   },
+   {
+    "n": "3",
+    "name": "S",
+    "lx": 10130,
+    "ly": 4180
+   }
+  ]
+ },
+ "D_fly3": {
+  "id": "D_fly3",
+  "type": "Dfly",
+  "module": "MOS",
+  "value": "1N5819",
+  "pid": "a8e9806921281a07",
+  "designator": "U19",
+  "lcsc": "C9900008009",
+  "name": "1N5819",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "2",
+    "name": "A",
+    "lx": 10140,
+    "ly": 4680
+   },
+   {
+    "n": "1",
+    "name": "K",
+    "lx": 10100,
+    "ly": 4680
+   }
+  ]
+ },
+ "R_gate3": {
+  "id": "R_gate3",
+  "type": "R100",
+  "module": "MOS",
+  "value": "100",
+  "pid": "07c234ad617d3a83",
+  "designator": "R29",
+  "lcsc": "C17408",
+  "name": "0805W8F1000T5E",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 10140,
+    "ly": 5160
+   },
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 10100,
+    "ly": 5160
+   }
+  ]
+ },
+ "R_pd3": {
+  "id": "R_pd3",
+  "type": "R10k",
+  "module": "MOS",
+  "value": "10k",
+  "pid": "d951dc3b46ccbfe3",
+  "designator": "R30",
+  "lcsc": "C17414",
+  "name": "0805W8F1002T5E_C17414",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 10140,
+    "ly": 5640
+   },
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 10100,
+    "ly": 5640
+   }
+  ]
+ },
+ "D_mos3": {
+  "id": "D_mos3",
+  "type": "LEDr",
+  "module": "MOS",
+  "value": "LED",
+  "pid": "e4afb1ee24cb223a",
+  "designator": "LED4",
+  "lcsc": "C2295",
+  "name": "KT-0805R",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "2",
+    "name": "K",
+    "lx": 10100,
+    "ly": 6105
+   },
+   {
+    "n": "1",
+    "name": "A",
+    "lx": 10140,
+    "ly": 6105
+   }
+  ]
+ },
+ "R_mled3": {
+  "id": "R_mled3",
+  "type": "R1k",
+  "module": "MOS",
+  "value": "1k",
+  "pid": "0b458cf81ee30768",
+  "designator": "R31",
+  "lcsc": "C17513",
+  "name": "0805W8F1001T5E",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 10140,
+    "ly": 6600
+   },
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 10100,
+    "ly": 6600
+   }
+  ]
+ },
+ "J_MOS3": {
+  "id": "J_MOS3",
+  "type": "TERM2",
+  "module": "MOS",
+  "value": "MOS",
+  "pid": "1072babc28603a36",
+  "designator": "U20",
+  "lcsc": "C474920",
+  "name": "KF128-2.54-2P",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 10100,
+    "ly": 7085
+   },
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 10100,
+    "ly": 7075
+   }
+  ]
+ },
+ "Q_mos4": {
+  "id": "Q_mos4",
+  "type": "Qmos",
+  "module": "MOS",
+  "value": "IRLZ44N",
+  "pid": "8113976893581b6a",
+  "designator": "Q6",
+  "lcsc": "C54839582",
+  "name": "IRLZ44NPBF-MNS",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "2",
+    "name": "D",
+    "lx": 10690,
+    "ly": 4220
+   },
+   {
+    "n": "1",
+    "name": "G",
+    "lx": 10660,
+    "ly": 4200
+   },
+   {
+    "n": "3",
+    "name": "S",
+    "lx": 10690,
+    "ly": 4180
+   }
+  ]
+ },
+ "D_fly4": {
+  "id": "D_fly4",
+  "type": "Dfly",
+  "module": "MOS",
+  "value": "1N5819",
+  "pid": "248365e5abe3d6b5",
+  "designator": "U21",
+  "lcsc": "C9900008009",
+  "name": "1N5819",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "2",
+    "name": "A",
+    "lx": 10700,
+    "ly": 4680
+   },
+   {
+    "n": "1",
+    "name": "K",
+    "lx": 10660,
+    "ly": 4680
+   }
+  ]
+ },
+ "R_gate4": {
+  "id": "R_gate4",
+  "type": "R100",
+  "module": "MOS",
+  "value": "100",
+  "pid": "de8c7c2e1ca00a25",
+  "designator": "R32",
+  "lcsc": "C17408",
+  "name": "0805W8F1000T5E",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 10700,
+    "ly": 5160
+   },
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 10660,
+    "ly": 5160
+   }
+  ]
+ },
+ "R_pd4": {
+  "id": "R_pd4",
+  "type": "R10k",
+  "module": "MOS",
+  "value": "10k",
+  "pid": "cd53e82b454e6d06",
+  "designator": "R33",
+  "lcsc": "C17414",
+  "name": "0805W8F1002T5E_C17414",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 10700,
+    "ly": 5640
+   },
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 10660,
+    "ly": 5640
+   }
+  ]
+ },
+ "D_mos4": {
+  "id": "D_mos4",
+  "type": "LEDr",
+  "module": "MOS",
+  "value": "LED",
+  "pid": "b87ce531a1d79176",
+  "designator": "LED5",
+  "lcsc": "C2295",
+  "name": "KT-0805R",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "2",
+    "name": "K",
+    "lx": 10660,
+    "ly": 6105
+   },
+   {
+    "n": "1",
+    "name": "A",
+    "lx": 10700,
+    "ly": 6105
+   }
+  ]
+ },
+ "R_mled4": {
+  "id": "R_mled4",
+  "type": "R1k",
+  "module": "MOS",
+  "value": "1k",
+  "pid": "b127aad942a7fa31",
+  "designator": "R34",
+  "lcsc": "C17513",
+  "name": "0805W8F1001T5E",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 10700,
+    "ly": 6600
+   },
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 10660,
+    "ly": 6600
+   }
+  ]
+ },
+ "J_MOS4": {
+  "id": "J_MOS4",
+  "type": "TERM2",
+  "module": "MOS",
+  "value": "MOS",
+  "pid": "c076816cefd12bb1",
+  "designator": "U22",
+  "lcsc": "C474920",
+  "name": "KF128-2.54-2P",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 10660,
+    "ly": 7085
+   },
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 10660,
+    "ly": 7075
+   }
+  ]
+ },
+ "J_SV1": {
+  "id": "J_SV1",
+  "type": "HDR3",
+  "module": "SERVO",
+  "value": "SV1",
+  "pid": "33273e9bf9f1a2af",
+  "designator": "U23",
+  "lcsc": "C9900019266",
+  "name": "黄色排针A_HEADER3",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 14980,
+    "ly": 10
+   },
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 14980,
+    "ly": 0
+   },
+   {
+    "n": "3",
+    "name": "3",
+    "lx": 14980,
+    "ly": -10
+   }
+  ]
+ },
+ "J_SV2": {
+  "id": "J_SV2",
+  "type": "HDR3",
+  "module": "SERVO",
+  "value": "SV2",
+  "pid": "055c3fbab1473acc",
+  "designator": "U24",
+  "lcsc": "C9900019266",
+  "name": "黄色排针A_HEADER3",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 15540,
+    "ly": 10
+   },
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 15540,
+    "ly": 0
+   },
+   {
+    "n": "3",
+    "name": "3",
+    "lx": 15540,
+    "ly": -10
+   }
+  ]
+ },
+ "R_sv1": {
+  "id": "R_sv1",
+  "type": "R1k",
+  "module": "SERVO",
+  "value": "1k",
+  "pid": "9919bdb256fed805",
+  "designator": "R35",
+  "lcsc": "C17513",
+  "name": "0805W8F1001T5E",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 15020,
+    "ly": 480
+   },
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 14980,
+    "ly": 480
+   }
+  ]
+ },
+ "R_sv2": {
+  "id": "R_sv2",
+  "type": "R1k",
+  "module": "SERVO",
+  "value": "1k",
+  "pid": "840f2e87ad7c4b32",
+  "designator": "R36",
+  "lcsc": "C17513",
+  "name": "0805W8F1001T5E",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 15580,
+    "ly": 480
+   },
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 15540,
+    "ly": 480
+   }
+  ]
+ },
+ "Q_ws": {
+  "id": "Q_ws",
+  "type": "Qlvl",
+  "module": "WS",
+  "value": "BSS138",
+  "pid": "fe120a3f6d1dc6e2",
+  "designator": "Q7",
+  "lcsc": "C193019",
+  "name": "BSS138",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "3",
+    "name": "D",
+    "lx": 15000,
+    "ly": 1620
+   },
+   {
+    "n": "1",
+    "name": "G",
+    "lx": 14970,
+    "ly": 1600
+   },
+   {
+    "n": "2",
+    "name": "S",
+    "lx": 15000,
+    "ly": 1580
+   }
+  ]
+ },
+ "R_ws1": {
+  "id": "R_ws1",
+  "type": "R100",
+  "module": "WS",
+  "value": "100",
+  "pid": "8106e7c820238c88",
+  "designator": "R37",
+  "lcsc": "C17408",
+  "name": "0805W8F1000T5E",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 15580,
+    "ly": 1600
+   },
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 15540,
+    "ly": 1600
+   }
+  ]
+ },
+ "R_ws2": {
+  "id": "R_ws2",
+  "type": "R4k7",
+  "module": "WS",
+  "value": "4.7k",
+  "pid": "b3e27ed8bbd1fe95",
+  "designator": "R38",
+  "lcsc": "C17673",
+  "name": "0805W8F4701T5E",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 16140,
+    "ly": 1600
+   },
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 16100,
+    "ly": 1600
+   }
+  ]
+ },
+ "J_WS": {
+  "id": "J_WS",
+  "type": "HDR3",
+  "module": "WS",
+  "value": "WS2812",
+  "pid": "c909977c4302bab8",
+  "designator": "U25",
+  "lcsc": "C9900019266",
+  "name": "黄色排针A_HEADER3",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 16660,
+    "ly": 1610
+   },
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 16660,
+    "ly": 1600
+   },
+   {
+    "n": "3",
+    "name": "3",
+    "lx": 16660,
+    "ly": 1590
+   }
+  ]
+ },
+ "Q_tx": {
+  "id": "Q_tx",
+  "type": "Qlvl",
+  "module": "PZEM",
+  "value": "BSS138",
+  "pid": "49b224edea825896",
+  "designator": "Q8",
+  "lcsc": "C193019",
+  "name": "BSS138",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "3",
+    "name": "D",
+    "lx": 15000,
+    "ly": 2620
+   },
+   {
+    "n": "1",
+    "name": "G",
+    "lx": 14970,
+    "ly": 2600
+   },
+   {
+    "n": "2",
+    "name": "S",
+    "lx": 15000,
+    "ly": 2580
+   }
+  ]
+ },
+ "Q_rx": {
+  "id": "Q_rx",
+  "type": "Qlvl",
+  "module": "PZEM",
+  "value": "BSS138",
+  "pid": "9c7cc0fa1bc80b7a",
+  "designator": "Q9",
+  "lcsc": "C193019",
+  "name": "BSS138",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "3",
+    "name": "D",
+    "lx": 15560,
+    "ly": 2620
+   },
+   {
+    "n": "1",
+    "name": "G",
+    "lx": 15530,
+    "ly": 2600
+   },
+   {
+    "n": "2",
+    "name": "S",
+    "lx": 15560,
+    "ly": 2580
+   }
+  ]
+ },
+ "R_tx33": {
+  "id": "R_tx33",
+  "type": "R10k",
+  "module": "PZEM",
+  "value": "10k",
+  "pid": "17c821848898f9b3",
+  "designator": "R39",
+  "lcsc": "C17414",
+  "name": "0805W8F1002T5E_C17414",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 15020,
+    "ly": 3080
+   },
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 14980,
+    "ly": 3080
+   }
+  ]
+ },
+ "R_tx5": {
+  "id": "R_tx5",
+  "type": "R10k",
+  "module": "PZEM",
+  "value": "10k",
+  "pid": "e5d29583746f3b12",
+  "designator": "R40",
+  "lcsc": "C17414",
+  "name": "0805W8F1002T5E_C17414",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 15020,
+    "ly": 3560
+   },
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 14980,
+    "ly": 3560
+   }
+  ]
+ },
+ "R_rx33": {
+  "id": "R_rx33",
+  "type": "R10k",
+  "module": "PZEM",
+  "value": "10k",
+  "pid": "3df5acf38b6f925b",
+  "designator": "R41",
+  "lcsc": "C17414",
+  "name": "0805W8F1002T5E_C17414",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 15580,
+    "ly": 3080
+   },
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 15540,
+    "ly": 3080
+   }
+  ]
+ },
+ "R_rx5": {
+  "id": "R_rx5",
+  "type": "R10k",
+  "module": "PZEM",
+  "value": "10k",
+  "pid": "04c0064a671a3da1",
+  "designator": "R42",
+  "lcsc": "C17414",
+  "name": "0805W8F1002T5E_C17414",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 15580,
+    "ly": 3560
+   },
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 15540,
+    "ly": 3560
+   }
+  ]
+ },
+ "J_PZEM": {
+  "id": "J_PZEM",
+  "type": "HDR4",
+  "module": "PZEM",
+  "value": "PZEM",
+  "pid": "75c6997d94c46c5f",
+  "designator": "U26",
+  "lcsc": "C9900027556",
+  "name": "HDR1X4",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 16100,
+    "ly": 2615
+   },
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 16100,
+    "ly": 2605
+   },
+   {
+    "n": "3",
+    "name": "3",
+    "lx": 16100,
+    "ly": 2595
+   },
+   {
+    "n": "4",
+    "name": "4",
+    "lx": 16100,
+    "ly": 2585
+   },
+   {
+    "n": "5",
+    "name": "5",
+    "lx": 16130,
+    "ly": 2565
+   },
+   {
+    "n": "6",
+    "name": "6",
+    "lx": 16130,
+    "ly": 2635
+   }
+  ]
+ },
+ "U_INA": {
+  "id": "U_INA",
+  "type": "UINA",
+  "module": "INA",
+  "value": "INA226",
+  "pid": "0f668e8bba0e615a",
+  "designator": "U27",
+  "lcsc": "C49851",
+  "name": "INA226AIDGSR",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "1",
+    "name": "A1",
+    "lx": 20950,
+    "ly": 20
+   },
+   {
+    "n": "2",
+    "name": "A0",
+    "lx": 20950,
+    "ly": 10
+   },
+   {
+    "n": "3",
+    "name": "Alert",
+    "lx": 20950,
+    "ly": 0
+   },
+   {
+    "n": "4",
+    "name": "SDA",
+    "lx": 20950,
+    "ly": -10
+   },
+   {
+    "n": "5",
+    "name": "SCL",
+    "lx": 20950,
+    "ly": -20
+   },
+   {
+    "n": "6",
+    "name": "VS+",
+    "lx": 21050,
+    "ly": -20
+   },
+   {
+    "n": "7",
+    "name": "GND",
+    "lx": 21050,
+    "ly": -10
+   },
+   {
+    "n": "8",
+    "name": "VBUS",
+    "lx": 21050,
+    "ly": 0
+   },
+   {
+    "n": "9",
+    "name": "VIN-",
+    "lx": 21050,
+    "ly": 10
+   },
+   {
+    "n": "10",
+    "name": "VIN+",
+    "lx": 21050,
+    "ly": 20
+   }
+  ]
+ },
+ "R_shunt": {
+  "id": "R_shunt",
+  "type": "Rshunt",
+  "module": "INA",
+  "value": "0.01R",
+  "pid": "3b09f872f50e9ecf",
+  "designator": "R43",
+  "lcsc": "C3985410",
+  "name": "WSK2512R0100FEA",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "2",
+    "name": "E2",
+    "lx": 21530,
+    "ly": -10
+   },
+   {
+    "n": "1",
+    "name": "I2",
+    "lx": 21530,
+    "ly": 10
+   },
+   {
+    "n": "3",
+    "name": "E1",
+    "lx": 21590,
+    "ly": 10
+   },
+   {
+    "n": "4",
+    "name": "I1",
+    "lx": 21590,
+    "ly": -10
+   }
+  ]
+ },
+ "C_ina": {
+  "id": "C_ina",
+  "type": "C100n",
+  "module": "INA",
+  "value": "100nF",
+  "pid": "e80eb906621a4033",
+  "designator": "C12",
+  "lcsc": "C28233",
+  "name": "CL21B104KCFNNNE",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 22105,
+    "ly": 0
+   },
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 22135,
+    "ly": 0
+   }
+  ]
+ },
+ "U_ADS": {
+  "id": "U_ADS",
+  "type": "UADS",
+  "module": "ADS",
+  "value": "ADS1115",
+  "pid": "3de96c9d1b59052c",
+  "designator": "U28",
+  "lcsc": "C172375",
+  "name": "ADS1115QDGSRQ1",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "10",
+    "name": "SCL",
+    "lx": 21060,
+    "ly": 1820
+   },
+   {
+    "n": "9",
+    "name": "SDA",
+    "lx": 21060,
+    "ly": 1810
+   },
+   {
+    "n": "8",
+    "name": "VDD",
+    "lx": 21060,
+    "ly": 1800
+   },
+   {
+    "n": "7",
+    "name": "AIN3",
+    "lx": 21060,
+    "ly": 1790
+   },
+   {
+    "n": "6",
+    "name": "AIN2",
+    "lx": 21060,
+    "ly": 1780
+   },
+   {
+    "n": "5",
+    "name": "AIN1",
+    "lx": 20940,
+    "ly": 1780
+   },
+   {
+    "n": "4",
+    "name": "AIN0",
+    "lx": 20940,
+    "ly": 1790
+   },
+   {
+    "n": "3",
+    "name": "GND",
+    "lx": 20940,
+    "ly": 1800
+   },
+   {
+    "n": "2",
+    "name": "ALERT/RDY",
+    "lx": 20940,
+    "ly": 1810
+   },
+   {
+    "n": "1",
+    "name": "ADDR",
+    "lx": 20940,
+    "ly": 1820
+   }
+  ]
+ },
+ "C_ads": {
+  "id": "C_ads",
+  "type": "C100n",
+  "module": "ADS",
+  "value": "100nF",
+  "pid": "ce9c3884137ba4e4",
+  "designator": "C13",
+  "lcsc": "C28233",
+  "name": "CL21B104KCFNNNE",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 21545,
+    "ly": 1800
+   },
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 21575,
+    "ly": 1800
+   }
+  ]
+ },
+ "J_ADS0": {
+  "id": "J_ADS0",
+  "type": "TERM2",
+  "module": "ADS",
+  "value": "pH",
+  "pid": "922b7c91ac497ffc",
+  "designator": "U29",
+  "lcsc": "C474920",
+  "name": "KF128-2.54-2P",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 20980,
+    "ly": 2285
+   },
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 20980,
+    "ly": 2275
+   }
+  ]
+ },
+ "J_ADS1": {
+  "id": "J_ADS1",
+  "type": "TERM2",
+  "module": "ADS",
+  "value": "EC/TDS",
+  "pid": "bd44ff85de349349",
+  "designator": "U30",
+  "lcsc": "C474920",
+  "name": "KF128-2.54-2P",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 21540,
+    "ly": 2285
+   },
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 21540,
+    "ly": 2275
+   }
+  ]
+ },
+ "J_ADS2": {
+  "id": "J_ADS2",
+  "type": "TERM2",
+  "module": "ADS",
+  "value": "Turb",
+  "pid": "3b9bf76060c0bf6e",
+  "designator": "U31",
+  "lcsc": "C474920",
+  "name": "KF128-2.54-2P",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 22100,
+    "ly": 2285
+   },
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 22100,
+    "ly": 2275
+   }
+  ]
+ },
+ "U_MCP": {
+  "id": "U_MCP",
+  "type": "UMCP",
+  "module": "MCP",
+  "value": "MCP23017",
+  "pid": "a331eeeb5d76aa77",
+  "designator": "U32",
+  "lcsc": "C647352",
+  "name": "MCP23017-E/SP",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "1",
+    "name": "GPB0",
+    "lx": 20950,
+    "ly": 3665
+   },
+   {
+    "n": "2",
+    "name": "GPB1",
+    "lx": 20950,
+    "ly": 3655
+   },
+   {
+    "n": "3",
+    "name": "GPB2",
+    "lx": 20950,
+    "ly": 3645
+   },
+   {
+    "n": "4",
+    "name": "GPB3",
+    "lx": 20950,
+    "ly": 3635
+   },
+   {
+    "n": "5",
+    "name": "GPB4",
+    "lx": 20950,
+    "ly": 3625
+   },
+   {
+    "n": "6",
+    "name": "GPB5",
+    "lx": 20950,
+    "ly": 3615
+   },
+   {
+    "n": "7",
+    "name": "GPB6",
+    "lx": 20950,
+    "ly": 3605
+   },
+   {
+    "n": "8",
+    "name": "GPB7",
+    "lx": 20950,
+    "ly": 3595
+   },
+   {
+    "n": "9",
+    "name": "VDD",
+    "lx": 20950,
+    "ly": 3585
+   },
+   {
+    "n": "10",
+    "name": "VSS",
+    "lx": 20950,
+    "ly": 3575
+   },
+   {
+    "n": "11",
+    "name": "NC",
+    "lx": 20950,
+    "ly": 3565
+   },
+   {
+    "n": "12",
+    "name": "SCK",
+    "lx": 20950,
+    "ly": 3555
+   },
+   {
+    "n": "13",
+    "name": "SDA",
+    "lx": 20950,
+    "ly": 3545
+   },
+   {
+    "n": "14",
+    "name": "NC",
+    "lx": 20950,
+    "ly": 3535
+   },
+   {
+    "n": "15",
+    "name": "A0",
+    "lx": 21050,
+    "ly": 3535
+   },
+   {
+    "n": "16",
+    "name": "A1",
+    "lx": 21050,
+    "ly": 3545
+   },
+   {
+    "n": "17",
+    "name": "A2",
+    "lx": 21050,
+    "ly": 3555
+   },
+   {
+    "n": "18",
+    "name": "RESET#",
+    "lx": 21050,
+    "ly": 3565
+   },
+   {
+    "n": "19",
+    "name": "INTB",
+    "lx": 21050,
+    "ly": 3575
+   },
+   {
+    "n": "20",
+    "name": "INTA",
+    "lx": 21050,
+    "ly": 3585
+   },
+   {
+    "n": "21",
+    "name": "GPA0",
+    "lx": 21050,
+    "ly": 3595
+   },
+   {
+    "n": "22",
+    "name": "GPA1",
+    "lx": 21050,
+    "ly": 3605
+   },
+   {
+    "n": "23",
+    "name": "GPA2",
+    "lx": 21050,
+    "ly": 3615
+   },
+   {
+    "n": "24",
+    "name": "GPA3",
+    "lx": 21050,
+    "ly": 3625
+   },
+   {
+    "n": "25",
+    "name": "GPA4",
+    "lx": 21050,
+    "ly": 3635
+   },
+   {
+    "n": "26",
+    "name": "GPA5",
+    "lx": 21050,
+    "ly": 3645
+   },
+   {
+    "n": "27",
+    "name": "GPA6",
+    "lx": 21050,
+    "ly": 3655
+   },
+   {
+    "n": "28",
+    "name": "GPA7",
+    "lx": 21050,
+    "ly": 3665
+   }
+  ]
+ },
+ "C_mcp": {
+  "id": "C_mcp",
+  "type": "C100n",
+  "module": "MCP",
+  "value": "100nF",
+  "pid": "2f188dd2cb9e6191",
+  "designator": "C14",
+  "lcsc": "C28233",
+  "name": "CL21B104KCFNNNE",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 21545,
+    "ly": 3600
+   },
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 21575,
+    "ly": 3600
+   }
+  ]
+ },
+ "Q_prb1": {
+  "id": "Q_prb1",
+  "type": "Qprobe",
+  "module": "PROBE",
+  "value": "SI2302",
+  "pid": "cb0c7958ab78ffbc",
+  "designator": "Q10",
+  "lcsc": "C2841377",
+  "name": "SI2302",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "3",
+    "name": "D",
+    "lx": 27000,
+    "ly": 20
+   },
+   {
+    "n": "1",
+    "name": "G",
+    "lx": 26980,
+    "ly": 0
+   },
+   {
+    "n": "2",
+    "name": "S",
+    "lx": 27000,
+    "ly": -20
+   }
+  ]
+ },
+ "R_ppd1": {
+  "id": "R_ppd1",
+  "type": "R10k",
+  "module": "PROBE",
+  "value": "10k",
+  "pid": "945e9dcb88015dbb",
+  "designator": "R44",
+  "lcsc": "C17414",
+  "name": "0805W8F1002T5E_C17414",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 27020,
+    "ly": 480
+   },
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 26980,
+    "ly": 480
+   }
+  ]
+ },
+ "Q_prb2": {
+  "id": "Q_prb2",
+  "type": "Qprobe",
+  "module": "PROBE",
+  "value": "SI2302",
+  "pid": "18b6030edb957ccc",
+  "designator": "Q11",
+  "lcsc": "C2841377",
+  "name": "SI2302",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "3",
+    "name": "D",
+    "lx": 27560,
+    "ly": 20
+   },
+   {
+    "n": "1",
+    "name": "G",
+    "lx": 27540,
+    "ly": 0
+   },
+   {
+    "n": "2",
+    "name": "S",
+    "lx": 27560,
+    "ly": -20
+   }
+  ]
+ },
+ "R_ppd2": {
+  "id": "R_ppd2",
+  "type": "R10k",
+  "module": "PROBE",
+  "value": "10k",
+  "pid": "1dd7c9650b81cb38",
+  "designator": "R45",
+  "lcsc": "C17414",
+  "name": "0805W8F1002T5E_C17414",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 27580,
+    "ly": 480
+   },
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 27540,
+    "ly": 480
+   }
+  ]
+ },
+ "Q_prb3": {
+  "id": "Q_prb3",
+  "type": "Qprobe",
+  "module": "PROBE",
+  "value": "SI2302",
+  "pid": "3fc86d987ad96fcf",
+  "designator": "Q12",
+  "lcsc": "C2841377",
+  "name": "SI2302",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "3",
+    "name": "D",
+    "lx": 28120,
+    "ly": 20
+   },
+   {
+    "n": "1",
+    "name": "G",
+    "lx": 28100,
+    "ly": 0
+   },
+   {
+    "n": "2",
+    "name": "S",
+    "lx": 28120,
+    "ly": -20
+   }
+  ]
+ },
+ "R_ppd3": {
+  "id": "R_ppd3",
+  "type": "R10k",
+  "module": "PROBE",
+  "value": "10k",
+  "pid": "d2bc17e9551cfbee",
+  "designator": "R46",
+  "lcsc": "C17414",
+  "name": "0805W8F1002T5E_C17414",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 28140,
+    "ly": 480
+   },
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 28100,
+    "ly": 480
+   }
+  ]
+ },
+ "J_PRB": {
+  "id": "J_PRB",
+  "type": "HDR6",
+  "module": "PROBE",
+  "value": "PRB",
+  "pid": "810acf212728ac17",
+  "designator": "U33",
+  "lcsc": "C9900004873",
+  "name": "HDR-1X6",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "6",
+    "name": "6",
+    "lx": 26990,
+    "ly": 940
+   },
+   {
+    "n": "5",
+    "name": "5",
+    "lx": 26990,
+    "ly": 950
+   },
+   {
+    "n": "4",
+    "name": "4",
+    "lx": 26990,
+    "ly": 960
+   },
+   {
+    "n": "3",
+    "name": "3",
+    "lx": 26990,
+    "ly": 970
+   },
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 26990,
+    "ly": 980
+   },
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 26990,
+    "ly": 990
+   }
+  ]
+ },
+ "U_OPTO": {
+  "id": "U_OPTO",
+  "type": "Uopto",
+  "module": "PUMP",
+  "value": "PC817",
+  "pid": "6e1607a89861fc00",
+  "designator": "U34",
+  "lcsc": "C33333",
+  "name": "PC817-4",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "1",
+    "name": "A",
+    "lx": 26950,
+    "ly": 2210
+   },
+   {
+    "n": "2",
+    "name": "C",
+    "lx": 26950,
+    "ly": 2190
+   },
+   {
+    "n": "3",
+    "name": "EM",
+    "lx": 27050,
+    "ly": 2190
+   },
+   {
+    "n": "4",
+    "name": "COL",
+    "lx": 27050,
+    "ly": 2210
+   }
+  ]
+ },
+ "R_led": {
+  "id": "R_led",
+  "type": "R330",
+  "module": "PUMP",
+  "value": "330",
+  "pid": "2ba7e87304d65dee",
+  "designator": "R47",
+  "lcsc": "C17630",
+  "name": "0805W8F3300T5E",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 27580,
+    "ly": 2200
+   },
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 27540,
+    "ly": 2200
+   }
+  ]
+ },
+ "R_pl": {
+  "id": "R_pl",
+  "type": "R10k",
+  "module": "PUMP",
+  "value": "10k",
+  "pid": "6c1729e8765d0a1a",
+  "designator": "R48",
+  "lcsc": "C17414",
+  "name": "0805W8F1002T5E_C17414",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 28140,
+    "ly": 2200
+   },
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 28100,
+    "ly": 2200
+   }
+  ]
+ },
+ "R_pdpm": {
+  "id": "R_pdpm",
+  "type": "R10k",
+  "module": "PUMP",
+  "value": "10k",
+  "pid": "0f27ccf15155eb3e",
+  "designator": "R49",
+  "lcsc": "C17414",
+  "name": "0805W8F1002T5E_C17414",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 28700,
+    "ly": 2200
+   },
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 28660,
+    "ly": 2200
+   }
+  ]
+ },
+ "JP_VCC": {
+  "id": "JP_VCC",
+  "type": "HDR3",
+  "module": "PUMP",
+  "value": "VCC_SEL",
+  "pid": "8624390b9a05ace1",
+  "designator": "U35",
+  "lcsc": "C9900019266",
+  "name": "黄色排针A_HEADER3",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 29220,
+    "ly": 2210
+   },
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 29220,
+    "ly": 2200
+   },
+   {
+    "n": "3",
+    "name": "3",
+    "lx": 29220,
+    "ly": 2190
+   }
+  ]
+ },
+ "JP_NCNO": {
+  "id": "JP_NCNO",
+  "type": "HDR3",
+  "module": "PUMP",
+  "value": "NO/NC",
+  "pid": "17e98e921b7dcd29",
+  "designator": "U36",
+  "lcsc": "C9900019266",
+  "name": "黄色排针A_HEADER3",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 29780,
+    "ly": 2210
+   },
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 29780,
+    "ly": 2200
+   },
+   {
+    "n": "3",
+    "name": "3",
+    "lx": 29780,
+    "ly": 2190
+   }
+  ]
+ },
+ "J_PUMP": {
+  "id": "J_PUMP",
+  "type": "TERM3",
+  "module": "PUMP",
+  "value": "PUMP",
+  "pid": "90ba1b11b52da59c",
+  "designator": "U37",
+  "lcsc": "C474921",
+  "name": "KF128-2.54-3P",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 30340,
+    "ly": 2210
+   },
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 30340,
+    "ly": 2200
+   },
+   {
+    "n": "3",
+    "name": "3",
+    "lx": 30340,
+    "ly": 2190
+   }
+  ]
+ },
+ "U_OPTO2": {
+  "id": "U_OPTO2",
+  "type": "Uopto",
+  "module": "HW",
+  "value": "PC817",
+  "pid": "d9d731a5887f3a71",
+  "designator": "U38",
+  "lcsc": "C33333",
+  "name": "PC817-4",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "1",
+    "name": "A",
+    "lx": 32950,
+    "ly": 10
+   },
+   {
+    "n": "2",
+    "name": "C",
+    "lx": 32950,
+    "ly": -10
+   },
+   {
+    "n": "3",
+    "name": "EM",
+    "lx": 33050,
+    "ly": -10
+   },
+   {
+    "n": "4",
+    "name": "COL",
+    "lx": 33050,
+    "ly": 10
+   }
+  ]
+ },
+ "R_hw": {
+  "id": "R_hw",
+  "type": "R1k",
+  "module": "HW",
+  "value": "1k",
+  "pid": "3bc051c13f4787ec",
+  "designator": "R50",
+  "lcsc": "C17513",
+  "name": "0805W8F1001T5E",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 33580,
+    "ly": 0
+   },
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 33540,
+    "ly": 0
+   }
+  ]
+ },
+ "J_HW": {
+  "id": "J_HW",
+  "type": "TERM2",
+  "module": "HW",
+  "value": "HW_FLOAT",
+  "pid": "ecc1cb6cab11540f",
+  "designator": "U39",
+  "lcsc": "C474920",
+  "name": "KF128-2.54-2P",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 34100,
+    "ly": 5
+   },
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 34100,
+    "ly": -5
+   }
+  ]
+ },
+ "U_BME": {
+  "id": "U_BME",
+  "type": "UBME",
+  "module": "BME",
+  "value": "BME280",
+  "pid": "47d5fb7a1bef10ef",
+  "designator": "U40",
+  "lcsc": "C92489",
+  "name": "BME280",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "1",
+    "name": "GND",
+    "lx": 33050,
+    "ly": 1615
+   },
+   {
+    "n": "2",
+    "name": "CSB",
+    "lx": 33050,
+    "ly": 1605
+   },
+   {
+    "n": "3",
+    "name": "SDI",
+    "lx": 33050,
+    "ly": 1595
+   },
+   {
+    "n": "4",
+    "name": "SCK",
+    "lx": 33050,
+    "ly": 1585
+   },
+   {
+    "n": "5",
+    "name": "SDO",
+    "lx": 32950,
+    "ly": 1585
+   },
+   {
+    "n": "6",
+    "name": "VDDIO",
+    "lx": 32950,
+    "ly": 1595
+   },
+   {
+    "n": "7",
+    "name": "GND",
+    "lx": 32950,
+    "ly": 1605
+   },
+   {
+    "n": "8",
+    "name": "VDD",
+    "lx": 32950,
+    "ly": 1615
+   }
+  ]
+ },
+ "C_bme": {
+  "id": "C_bme",
+  "type": "C100n",
+  "module": "BME",
+  "value": "100nF",
+  "pid": "920f684899ec2ae1",
+  "designator": "C15",
+  "lcsc": "C28233",
+  "name": "CL21B104KCFNNNE",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "1",
+    "name": "1",
+    "lx": 33545,
+    "ly": 1600
+   },
+   {
+    "n": "2",
+    "name": "2",
+    "lx": 33575,
+    "ly": 1600
+   }
+  ]
+ },
+ "J_12V": {
+  "id": "J_12V",
+  "type": "TERM2",
+  "module": "PWRIN",
+  "value": "12V_IN",
+  "pid": "4354b87ab1ae5a6a",
+  "designator": "U41",
+  "lcsc": "C474920",
+  "name": "KF128-2.54-2P",
+  "rot": 0,
+  "pins": [
+   {
+    "n": "1",
+    "name": "1",
+    "lx": -20,
+    "ly": 8405
+   },
+   {
+    "n": "2",
+    "name": "2",
+    "lx": -20,
+    "ly": 8395
+   }
+  ]
+ }
+}
