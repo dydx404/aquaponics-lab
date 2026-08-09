@@ -1,0 +1,79 @@
+﻿Category,Reference,Part,Value/Spec,Package,LCSC,Qty,Notes
+Power,F1,Fuse Holder + 5A Fuse,5A 250V,5x20mm,C70066741,1,Input overcurrent
+Power,Q1,AO4407A,P-MOS -30V/-12A,SOP-8,C14308,1,Reverse polarity protection
+Power,R1,Resistor 10k,10k 1%,0805,C17414,1,Q1 gate pulldown
+Power,R2,Resistor 100k,100k 1%,0805,C17415,1,Q1 gate current limit
+Power,D1,SMBJ15A,TVS 15V,SMB,C110050,1,Transient clamp
+Power,D2,1N4744A,Zener 15V 0.5W,DO-41,C84361,1,Q1 Vgs protection
+Power,U1,MP1584EN,Buck 12V-to-5V 3A,SOP-8,C14259,1,DC-DC converter
+Power,L1,Inductor 47uH/3A,47uH 3A,CD54,C167230,1,Buck inductor
+Power,C1,Cap 10uF/25V,10uF X5R,0805,C19702,1,Buck input
+Power,C2,Cap 220uF/25V,220uF 25V,D6.3x11,C126828,1,Buck input bulk
+Power,C3,Cap 22uF/10V,22uF X5R,0805,C45988,1,Buck output
+Power,C4,Cap 220uF/10V,220uF 10V,D6.3x11,C126828,1,Buck output bulk
+Power,R3,Resistor 68k,68k 1%,0805,C17408,1,Feedback R1 (Vout=5V)
+Power,R4,Resistor 13k,13k 1%,0805,C17726,1,Feedback R2
+Power,C5,Cap 100nF,100nF X7R,0805,C1525,1,MP1584 bootstrap
+Power,U2,AMS1117-3.3,LDO 5V-to-3.3V 1A,SOT-223,C6186,1,3.3V regulator
+Power,C6,Cap 10uF/10V,10uF X5R,0805,C19702,1,LDO input
+Power,C7,Cap 10uF/10V,10uF X5R,0805,C19702,1,LDO output
+Power,D3,LED Green,Green 2.0V,0805,C2297,1,3.3V power indicator
+Power,R5,Resistor 1k,1k 1%,0805,C2110,1,LED current limit
+Carrier,J_DEV1,Header Female 1x19,2.54mm 1x19,P-1x19,C124378,1,DevKitC left
+Carrier,J_DEV2,Header Female 1x19,2.54mm 1x19,P-1x19,C124378,1,DevKitC right
+I2C,R6,Resistor 4.7k,4.7k 1%,0805,C17557,1,SDA pullup to 3.3V
+I2C,R7,Resistor 4.7k,4.7k 1%,0805,C17557,1,SCL pullup to 3.3V
+I2C,J_I2C,JST-XH 4P,2.54mm 4P,XH-4P,C158013,1,I2C bus header
+1-Wire,R8,Resistor 4.7k,4.7k 1%,0805,C17557,1,1-Wire pullup to 3.3V
+1-Wire,J_1W,JST-XH 3P,2.54mm 3P,XH-3P,C157947,1,DS18B20 header
+Digital Input,R_pull,Resistor 10k,10k 1%,0805,C17414,6,Pullup (6 channels)
+Digital Input,R_series,Resistor 1k,1k 1%,0805,C17415,6,Current limit (6ch)
+Digital Input,C_filter,Cap 100nF,100nF X7R,0805,C1525,6,RC filter (6ch)
+Digital Input,D_clamp,BAT54S,Schottky dual,SOT-23,C11723,6,Voltage clamp (6ch)
+Digital Input,Q_lvl,BSS138,N-MOS SOT-23,SOT-23,C528292,2,Level shifter CH2/3
+Digital Input,R_pull5V,Resistor 10k,10k 1%,0805,C17414,2,5V pullup (pulse ch)
+Digital Input,J_DIN,KF128-2P,Terminal 2P 2.54mm,KF128-2P,C395882,6,Digital input terminals
+MOSFET,Q_mos,IRLZ44N,N-MOS 55V/47A,TO-220,C8337,4,Logic-level MOSFET
+MOSFET,D_fly,1N5819,Schottky 40V/1A,DO-41,C908267,4,Flyback diode
+MOSFET,R_gate,Resistor 100R,100R 1%,0805,C17563,4,Gate series
+MOSFET,R_pd,Resistor 10k,10k 1%,0805,C17414,4,Gate pulldown (safety)
+MOSFET,D_mos,LED Red,Red 2.0V,0805,C84263,4,Status LED
+MOSFET,R_mosled,Resistor 1k,1k 1%,0805,C2110,4,LED limit
+MOSFET,J_MOS,KF128-2P,Terminal 2P 2.54mm,KF128-2P,C395882,4,12V load terminals
+Servo,J_SV,Header Male 1x3,2.54mm 3P,P-1x3,C124379,2,Servo headers
+Servo,R_sv,Resistor 1k,1k 1%,0805,C17415,2,PWM signal limit
+WS2812,Q_ws,BSS138,N-MOS SOT-23,SOT-23,C528292,1,3.3V-to-5V data
+WS2812,R_ws1,Resistor 100R,100R 1%,0805,C17563,1,Gate series
+WS2812,R_ws2,Resistor 4.7k,4.7k 1%,0805,C17557,1,5V data pullup
+WS2812,J_WS,Header Male 1x3,2.54mm 3P,P-1x3,C124379,1,WS2812 header
+PZEM UART,Q_tx,BSS138,N-MOS SOT-23,SOT-23,C528292,1,TX level shift
+PZEM UART,Q_rx,BSS138,N-MOS SOT-23,SOT-23,C528292,1,RX level shift
+PZEM UART,R_tx_33,Resistor 10k,10k 1%,0805,C17414,1,TX 3.3V pullup
+PZEM UART,R_tx_5,Resistor 10k,10k 1%,0805,C17414,1,TX 5V pullup
+PZEM UART,R_rx_33,Resistor 10k,10k 1%,0805,C17414,1,RX 3.3V pullup
+PZEM UART,R_rx_5,Resistor 10k,10k 1%,0805,C17414,1,RX 5V pullup
+PZEM UART,J_PZEM,Header Male 1x4,2.54mm 4P,P-1x4,C124378,1,PZEM UART header
+INA226,U_INA,INA226AIDGSR,I2C current/voltage,MSOP-10,C49851,1,12V bus monitor (审核 R-4 修正 LCSC 编号)
+INA226,R_shunt,Resistor 0.01R,10mΩ 1%,1206,C87965,1,Shunt resistor
+INA226,C_ina,Cap 100nF,100nF X7R,0805,C1525,1,VCC bypass
+ADS1115,U_ADS,ADS1115,16-bit I2C ADC,VSSOP-10,C83422,1,Analog sensor ADC
+ADS1115,C_ads,Cap 100nF,100nF X7R,0805,C1525,1,VCC bypass
+Probe Power,Q_probe,SI2302,N-MOS 20V/2A,SOT-23,C400159,3,Probe power switch
+Probe Power,R_probe_pd,Resistor 10k,10k 1%,0805,C17414,3,Gate pulldown (default OFF)
+Probe Power,J_PRB,Header Male 1x6,2.54mm 6P,P-1x6,C124376,1,3x probe power
+MCP23017,U_MCP,MCP23017,I2C 16-bit I/O,SOIC-28,C8719,1,I/O expander
+MCP23017,C_mcp,Cap 100nF,100nF X7R,0805,C1525,1,VCC bypass
+Pump Control,U_OPTO,PC817,Optocoupler 4-pin,DIP-4,C66580,1,PUMP_STOP isolation
+Pump Control,R_led,Resistor 330R,330R 1%,0805,C17168,1,Opto LED limit
+Pump Control,R_pull,Resistor 10k,10k 1%,0805,C17414,1,Output pullup
+Pump Control,R_pd_pump,Resistor 10k,10k 1%,0805,C17414,1,GPIO27 pulldown (审核 R-6: boot 安全)
+Pump Control,JP_VCC,Header Male 1x3,2.54mm 3P,P-1x3,C124379,1,3.3V/5V jumper
+Pump Control,JP_NCNO,Header Male 1x3,2.54mm 3P,P-1x3,C124379,1,NO/NC jumper (default NO)
+Pump Control,J_PUMP,KF128-3P,Terminal 3P 2.54mm,KF128-3P,C395882,1,Pump control output
+High Water,U_OPTO2,PC817,Optocoupler 4-pin,DIP-4,C66580,1,Safety isolation
+High Water,R_hw,Resistor 1k,1k 1%,0805,C2110,1,Opto LED limit
+High Water,J_HW,KF128-2P,Terminal 2P 2.54mm,KF128-2P,C395882,1,High water float
+BME280,U_BME,BME280,Temp/Humi/Press,LGA-8,C83291,1,Onboard (optional)
+BME280,C_bme,Cap 100nF,100nF X7R,0805,C1525,1,VCC bypass
+Input,J_12V,KF128-2P,Terminal 2P 2.54mm,KF128-2P,C395882,1,12V power input
+Mechanical,H1-H4,M3 Mounting Hole,3.2mm pad,—,—,4,Board mounting

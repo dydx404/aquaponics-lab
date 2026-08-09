@@ -1,0 +1,1915 @@
+{
+ "12V_IN": [
+  [
+   "J_12V",
+   "1",
+   "+12V source +"
+  ],
+  [
+   "F1",
+   "1",
+   "fuse in"
+  ]
+ ],
+ "12V_BUS": [
+  [
+   "F1",
+   "2",
+   "fuse out"
+  ],
+  [
+   "Q1",
+   "D",
+   "P-MOS drain = input side"
+  ],
+  [
+   "D1",
+   "K",
+   "TVS cathode (anode->GND)"
+  ],
+  [
+   "U1",
+   "VIN",
+   "buck input"
+  ],
+  [
+   "C1",
+   "1",
+   "buck input cap"
+  ],
+  [
+   "C2",
+   "1",
+   "buck input bulk cap"
+  ],
+  [
+   "U1",
+   "EN",
+   "buck enable (tied to 12V = on)"
+  ],
+  [
+   "U_INA",
+   "VBUS",
+   "INA226 bus voltage monitor"
+  ],
+  [
+   "U_INA",
+   "VIN+",
+   "shunt high side (分流前)"
+  ],
+  [
+   "R_shunt",
+   "I1",
+   "shunt current terminal (high side)"
+  ],
+  [
+   "R_hw",
+   "1",
+   "HW float current limit from 12V"
+  ]
+ ],
+ "12V_LOAD": [
+  [
+   "U_INA",
+   "VIN-",
+   "shunt low side (分流后)"
+  ],
+  [
+   "R_shunt",
+   "I2",
+   "shunt current terminal (low side)"
+  ],
+  [
+   "J_MOS1",
+   "1",
+   "+12V to load terminal"
+  ],
+  [
+   "J_MOS2",
+   "1",
+   "+12V to load terminal"
+  ],
+  [
+   "J_MOS3",
+   "1",
+   "+12V to load terminal"
+  ],
+  [
+   "J_MOS4",
+   "1",
+   "+12V to load terminal"
+  ],
+  [
+   "R_mled1",
+   "1",
+   "LED limit from 12V_LOAD"
+  ],
+  [
+   "R_mled2",
+   "1",
+   "LED limit from 12V_LOAD"
+  ],
+  [
+   "R_mled3",
+   "1",
+   "LED limit from 12V_LOAD"
+  ],
+  [
+   "R_mled4",
+   "1",
+   "LED limit from 12V_LOAD"
+  ]
+ ],
+ "SW": [
+  [
+   "U1",
+   "SW",
+   "switch node"
+  ],
+  [
+   "L1",
+   "1",
+   "inductor -> 5V output"
+  ],
+  [
+   "C5",
+   "2",
+   "bootstrap cap -> BST"
+  ],
+  [
+   "U1",
+   "BST",
+   "bootstrap"
+  ],
+  [
+   "C5",
+   "1",
+   "bootstrap cap other end"
+  ]
+ ],
+ "5V": [
+  [
+   "L1",
+   "2",
+   "inductor output = 5V"
+  ],
+  [
+   "C3",
+   "1",
+   "buck output cap"
+  ],
+  [
+   "C4",
+   "1",
+   "buck output bulk cap"
+  ],
+  [
+   "U2",
+   "VIN",
+   "LDO input = 5V"
+  ],
+  [
+   "C6",
+   "1",
+   "LDO input cap (5V)"
+  ],
+  [
+   "J_DEV",
+   "35",
+   "DevKitC VIN(5V)"
+  ],
+  [
+   "J_DEV",
+   "2",
+   "DevKitC VIN(5V) parallel"
+  ],
+  [
+   "J_SV1",
+   "1",
+   ""
+  ],
+  [
+   "J_SV2",
+   "1",
+   ""
+  ],
+  [
+   "J_WS",
+   "1",
+   ""
+  ],
+  [
+   "J_PZEM",
+   "1",
+   ""
+  ],
+  [
+   "R_p5V1",
+   "1",
+   "CH2 5V pullup"
+  ],
+  [
+   "R_p5V2",
+   "1",
+   "CH3 5V pullup"
+  ],
+  [
+   "R_ws2",
+   "1",
+   "WS 5V data pullup"
+  ],
+  [
+   "R_tx5",
+   "1",
+   "PZEM TX 5V pullup"
+  ],
+  [
+   "R_rx5",
+   "1",
+   "PZEM RX 5V pullup"
+  ]
+ ],
+ "3V3": [
+  [
+   "U2",
+   "VOUT",
+   "LDO 3.3V out"
+  ],
+  [
+   "U2",
+   "VOUT",
+   "LDO 3.3V out (dup pad)"
+  ],
+  [
+   "C7",
+   "1",
+   "LDO output cap"
+  ],
+  [
+   "R5",
+   "1",
+   "pwr LED limit from 3V3"
+  ],
+  [
+   "R6",
+   "1",
+   "SDA pullup"
+  ],
+  [
+   "R7",
+   "1",
+   "SCL pullup"
+  ],
+  [
+   "R8",
+   "1",
+   "1-Wire pullup"
+  ],
+  [
+   "R_pull1",
+   "1",
+   ""
+  ],
+  [
+   "R_pull2",
+   "1",
+   ""
+  ],
+  [
+   "R_pull3",
+   "1",
+   ""
+  ],
+  [
+   "R_pull4",
+   "1",
+   ""
+  ],
+  [
+   "R_pull5",
+   "1",
+   ""
+  ],
+  [
+   "R_pull6",
+   "1",
+   ""
+  ],
+  [
+   "U_INA",
+   "VS+",
+   "INA226 analog supply"
+  ],
+  [
+   "U_ADS",
+   "VDD",
+   "ADS1115 VDD"
+  ],
+  [
+   "U_MCP",
+   "VDD",
+   "MCP23017 VDD"
+  ],
+  [
+   "U_BME",
+   "VDD",
+   "BME280 VDD"
+  ],
+  [
+   "U_BME",
+   "VDDIO",
+   "BME280 VDDIO"
+  ],
+  [
+   "U_BME",
+   "CSB",
+   "BME280 CSB=HIGH for I2C mode"
+  ],
+  [
+   "J_I2C",
+   "1",
+   "I2C 3.3V"
+  ],
+  [
+   "J_1W",
+   "1",
+   "1-Wire 3.3V"
+  ],
+  [
+   "Q_lvl1",
+   "G",
+   "CH2 BSS138 gate->3.3V"
+  ],
+  [
+   "Q_lvl2",
+   "G",
+   "CH3 BSS138 gate->3.3V"
+  ],
+  [
+   "Q_ws",
+   "G",
+   "WS BSS138 gate->3.3V"
+  ],
+  [
+   "Q_tx",
+   "G",
+   "PZEM-TX BSS138 gate->3.3V"
+  ],
+  [
+   "Q_rx",
+   "G",
+   "PZEM-RX BSS138 gate->3.3V"
+  ],
+  [
+   "R_tx33",
+   "1",
+   "PZEM TX 3.3V pullup"
+  ],
+  [
+   "R_rx33",
+   "1",
+   "PZEM RX 3.3V pullup"
+  ],
+  [
+   "D_cl1",
+   "3",
+   ""
+  ],
+  [
+   "D_cl2",
+   "3",
+   ""
+  ],
+  [
+   "D_cl3",
+   "3",
+   ""
+  ],
+  [
+   "D_cl4",
+   "3",
+   ""
+  ],
+  [
+   "D_cl5",
+   "3",
+   ""
+  ],
+  [
+   "D_cl6",
+   "3",
+   ""
+  ],
+  [
+   "JP_VCC",
+   "1",
+   "VCC_SEL 3.3V option"
+  ]
+ ],
+ "GND": [
+  [
+   "J_12V",
+   "2",
+   "GND return"
+  ],
+  [
+   "Q1",
+   "S",
+   "P-MOS source = load/GND side"
+  ],
+  [
+   "D1",
+   "A",
+   "TVS anode"
+  ],
+  [
+   "R1",
+   "2",
+   "Q1 gate pulldown to GND"
+  ],
+  [
+   "D2",
+   "K",
+   "zener cathode to GND (anode->gate)"
+  ],
+  [
+   "U1",
+   "GND",
+   "buck GND"
+  ],
+  [
+   "U1",
+   "GND",
+   "buck GND (dup pad)"
+  ],
+  [
+   "C1",
+   "2",
+   "in cap"
+  ],
+  [
+   "C2",
+   "2",
+   "bulk"
+  ],
+  [
+   "C3",
+   "2",
+   "out"
+  ],
+  [
+   "C4",
+   "2",
+   "bulk"
+  ],
+  [
+   "C6",
+   "2",
+   "LDO in cap"
+  ],
+  [
+   "C7",
+   "2",
+   "LDO out cap"
+  ],
+  [
+   "U2",
+   "GND",
+   "LDO GND"
+  ],
+  [
+   "D3",
+   "K",
+   "pwr LED cathode"
+  ],
+  [
+   "J_DEV",
+   "3",
+   "DevKitC GND"
+  ],
+  [
+   "J_DEV",
+   "33",
+   "DevKitC GND"
+  ],
+  [
+   "J_DEV",
+   "4",
+   "DevKitC GND"
+  ],
+  [
+   "J_DEV",
+   "36",
+   "DevKitC GND"
+  ],
+  [
+   "C_flt1",
+   "2",
+   ""
+  ],
+  [
+   "C_flt2",
+   "2",
+   ""
+  ],
+  [
+   "C_flt3",
+   "2",
+   ""
+  ],
+  [
+   "C_flt4",
+   "2",
+   ""
+  ],
+  [
+   "C_flt5",
+   "2",
+   ""
+  ],
+  [
+   "C_flt6",
+   "2",
+   ""
+  ],
+  [
+   "J_DIN1",
+   "2",
+   ""
+  ],
+  [
+   "J_DIN2",
+   "2",
+   ""
+  ],
+  [
+   "J_DIN3",
+   "2",
+   ""
+  ],
+  [
+   "J_DIN4",
+   "2",
+   ""
+  ],
+  [
+   "J_DIN5",
+   "2",
+   ""
+  ],
+  [
+   "J_DIN6",
+   "2",
+   ""
+  ],
+  [
+   "D_cl1",
+   "2",
+   ""
+  ],
+  [
+   "D_cl2",
+   "2",
+   ""
+  ],
+  [
+   "D_cl3",
+   "2",
+   ""
+  ],
+  [
+   "D_cl4",
+   "2",
+   ""
+  ],
+  [
+   "D_cl5",
+   "2",
+   ""
+  ],
+  [
+   "D_cl6",
+   "2",
+   ""
+  ],
+  [
+   "Q_mos1",
+   "S",
+   ""
+  ],
+  [
+   "Q_mos2",
+   "S",
+   ""
+  ],
+  [
+   "Q_mos3",
+   "S",
+   ""
+  ],
+  [
+   "Q_mos4",
+   "S",
+   ""
+  ],
+  [
+   "D_fly1",
+   "K",
+   ""
+  ],
+  [
+   "D_fly2",
+   "K",
+   ""
+  ],
+  [
+   "D_fly3",
+   "K",
+   ""
+  ],
+  [
+   "D_fly4",
+   "K",
+   ""
+  ],
+  [
+   "R_pd1",
+   "2",
+   ""
+  ],
+  [
+   "R_pd2",
+   "2",
+   ""
+  ],
+  [
+   "R_pd3",
+   "2",
+   ""
+  ],
+  [
+   "R_pd4",
+   "2",
+   ""
+  ],
+  [
+   "D_mos1",
+   "K",
+   ""
+  ],
+  [
+   "D_mos2",
+   "K",
+   ""
+  ],
+  [
+   "D_mos3",
+   "K",
+   ""
+  ],
+  [
+   "D_mos4",
+   "K",
+   ""
+  ],
+  [
+   "J_SV1",
+   "2",
+   ""
+  ],
+  [
+   "J_SV2",
+   "2",
+   ""
+  ],
+  [
+   "J_WS",
+   "2",
+   ""
+  ],
+  [
+   "J_PZEM",
+   "2",
+   ""
+  ],
+  [
+   "J_I2C",
+   "2",
+   ""
+  ],
+  [
+   "J_1W",
+   "2",
+   ""
+  ],
+  [
+   "U_INA",
+   "GND",
+   ""
+  ],
+  [
+   "U_ADS",
+   "GND",
+   ""
+  ],
+  [
+   "U_MCP",
+   "VSS",
+   ""
+  ],
+  [
+   "U_BME",
+   "GND",
+   ""
+  ],
+  [
+   "C_ina",
+   "2",
+   ""
+  ],
+  [
+   "C_ads",
+   "2",
+   ""
+  ],
+  [
+   "C_mcp",
+   "2",
+   ""
+  ],
+  [
+   "C_bme",
+   "2",
+   ""
+  ],
+  [
+   "U_INA",
+   "A0",
+   ""
+  ],
+  [
+   "U_INA",
+   "A1",
+   ""
+  ],
+  [
+   "U_ADS",
+   "ADDR",
+   ""
+  ],
+  [
+   "U_MCP",
+   "A0",
+   ""
+  ],
+  [
+   "U_MCP",
+   "A1",
+   ""
+  ],
+  [
+   "U_MCP",
+   "A2",
+   ""
+  ],
+  [
+   "U_BME",
+   "SDO",
+   ""
+  ],
+  [
+   "U_ADS",
+   "AIN3",
+   ""
+  ],
+  [
+   "U_OPTO",
+   "C",
+   "PC817 LED cathode -> GND"
+  ],
+  [
+   "R_pdpm",
+   "2",
+   "GPIO27 pulldown to GND"
+  ],
+  [
+   "R2",
+   "2",
+   "Q1 gate-source resistor (other->gate)"
+  ],
+  [
+   "Q_prb1",
+   "S",
+   ""
+  ],
+  [
+   "Q_prb2",
+   "S",
+   ""
+  ],
+  [
+   "Q_prb3",
+   "S",
+   ""
+  ],
+  [
+   "R_ppd1",
+   "2",
+   ""
+  ],
+  [
+   "R_ppd2",
+   "2",
+   ""
+  ],
+  [
+   "R_ppd3",
+   "2",
+   ""
+  ],
+  [
+   "J_PRB",
+   "2",
+   ""
+  ],
+  [
+   "J_PRB",
+   "4",
+   ""
+  ],
+  [
+   "J_PRB",
+   "6",
+   ""
+  ],
+  [
+   "J_HW",
+   "2",
+   "FLOAT_COM -> GND"
+  ],
+  [
+   "U_OPTO2",
+   "C",
+   "PC817-2 LED cathode -> GND"
+  ],
+  [
+   "J_ADS0",
+   "2",
+   ""
+  ],
+  [
+   "J_ADS1",
+   "2",
+   ""
+  ],
+  [
+   "J_ADS2",
+   "2",
+   ""
+  ]
+ ],
+ "SDA": [
+  [
+   "U_INA",
+   "SDA",
+   ""
+  ],
+  [
+   "U_ADS",
+   "SDA",
+   ""
+  ],
+  [
+   "U_MCP",
+   "SDA",
+   ""
+  ],
+  [
+   "U_BME",
+   "SDI",
+   "BME280 I2C data (SPI-symbol note)"
+  ],
+  [
+   "J_I2C",
+   "3",
+   "SDA to external"
+  ],
+  [
+   "J_DEV",
+   "21",
+   "GPIO21 SDA"
+  ],
+  [
+   "R6",
+   "2",
+   "pullup"
+  ]
+ ],
+ "SCL": [
+  [
+   "U_INA",
+   "SCL",
+   ""
+  ],
+  [
+   "U_ADS",
+   "SCL",
+   ""
+  ],
+  [
+   "U_MCP",
+   "SCK",
+   "MCP23017 I2C clk = SCK"
+  ],
+  [
+   "U_BME",
+   "SCK",
+   "BME280 I2C clk (SPI-symbol note)"
+  ],
+  [
+   "J_I2C",
+   "4",
+   "SCL to external"
+  ],
+  [
+   "J_DEV",
+   "27",
+   "GPIO22 SCL"
+  ],
+  [
+   "R7",
+   "2",
+   "pullup"
+  ]
+ ],
+ "1WIRE": [
+  [
+   "J_1W",
+   "3",
+   "DATA"
+  ],
+  [
+   "J_DEV",
+   "9",
+   "GPIO4 1-Wire"
+  ],
+  [
+   "R8",
+   "2",
+   "pullup"
+  ]
+ ],
+ "DIN1": [
+  [
+   "J_DIN1",
+   "1",
+   "terminal signal (dry contact to GND)"
+  ],
+  [
+   "R_pull1",
+   "1",
+   "pullup -> 3V3 (other end)"
+  ],
+  [
+   "R_ser1",
+   "1",
+   "series R"
+  ],
+  [
+   "C_flt1",
+   "1",
+   "filter cap other end->GND"
+  ],
+  [
+   "D_cl1",
+   "1",
+   "clamp signal pin"
+  ],
+  [
+   "R_ser1",
+   "2",
+   "GPIO for CH1"
+  ],
+  [
+   "J_DEV",
+   "31",
+   "GPIO for CH1"
+  ]
+ ],
+ "DIN4": [
+  [
+   "J_DIN4",
+   "1",
+   "terminal signal (dry contact to GND)"
+  ],
+  [
+   "R_pull4",
+   "1",
+   "pullup -> 3V3 (other end)"
+  ],
+  [
+   "R_ser4",
+   "1",
+   "series R"
+  ],
+  [
+   "C_flt4",
+   "1",
+   "filter cap other end->GND"
+  ],
+  [
+   "D_cl4",
+   "1",
+   "clamp signal pin"
+  ],
+  [
+   "R_ser4",
+   "2",
+   "GPIO for CH4"
+  ],
+  [
+   "J_DEV",
+   "28",
+   "GPIO for CH4"
+  ]
+ ],
+ "DIN5": [
+  [
+   "J_DIN5",
+   "1",
+   "terminal signal (dry contact to GND)"
+  ],
+  [
+   "R_pull5",
+   "1",
+   "pullup -> 3V3 (other end)"
+  ],
+  [
+   "R_ser5",
+   "1",
+   "series R"
+  ],
+  [
+   "C_flt5",
+   "1",
+   "filter cap other end->GND"
+  ],
+  [
+   "D_cl5",
+   "1",
+   "clamp signal pin"
+  ],
+  [
+   "R_ser5",
+   "2",
+   "GPIO for CH5"
+  ],
+  [
+   "J_DEV",
+   "26",
+   "GPIO for CH5"
+  ]
+ ],
+ "DIN6": [
+  [
+   "J_DIN6",
+   "1",
+   "terminal signal (dry contact to GND)"
+  ],
+  [
+   "R_pull6",
+   "1",
+   "pullup -> 3V3 (other end)"
+  ],
+  [
+   "R_ser6",
+   "1",
+   "series R"
+  ],
+  [
+   "C_flt6",
+   "1",
+   "filter cap other end->GND"
+  ],
+  [
+   "D_cl6",
+   "1",
+   "clamp signal pin"
+  ],
+  [
+   "R_ser6",
+   "2",
+   "GPIO for CH6"
+  ],
+  [
+   "J_DEV",
+   "20",
+   "GPIO for CH6"
+  ]
+ ],
+ "DIN2_5V": [
+  [
+   "J_DIN2",
+   "1",
+   "5V sensor signal"
+  ],
+  [
+   "Q_lvl1",
+   "D",
+   "BSS138 drain (5V side)"
+  ],
+  [
+   "R_p5V1",
+   "1",
+   "5V pullup (other->5V)"
+  ]
+ ],
+ "DIN2_3V3": [
+  [
+   "Q_lvl1",
+   "S",
+   "BSS138 source (3.3V side)"
+  ],
+  [
+   "R_ser2",
+   "1",
+   "series R"
+  ],
+  [
+   "R_pull2",
+   "1",
+   "3.3V pullup (other->3V3)"
+  ],
+  [
+   "C_flt2",
+   "1",
+   "filter cap other end->GND"
+  ],
+  [
+   "D_cl2",
+   "1",
+   "clamp signal pin"
+  ],
+  [
+   "R_ser2",
+   "2",
+   "GPIO for CH2"
+  ],
+  [
+   "J_DEV",
+   "24",
+   "GPIO for CH2"
+  ]
+ ],
+ "DIN3_5V": [
+  [
+   "J_DIN3",
+   "1",
+   "5V sensor signal"
+  ],
+  [
+   "Q_lvl2",
+   "D",
+   "BSS138 drain (5V side)"
+  ],
+  [
+   "R_p5V2",
+   "1",
+   "5V pullup (other->5V)"
+  ]
+ ],
+ "DIN3_3V3": [
+  [
+   "Q_lvl2",
+   "S",
+   "BSS138 source (3.3V side)"
+  ],
+  [
+   "R_ser3",
+   "1",
+   "series R"
+  ],
+  [
+   "R_pull3",
+   "1",
+   "3.3V pullup (other->3V3)"
+  ],
+  [
+   "C_flt3",
+   "1",
+   "filter cap other end->GND"
+  ],
+  [
+   "D_cl3",
+   "1",
+   "clamp signal pin"
+  ],
+  [
+   "R_ser3",
+   "2",
+   "GPIO for CH3"
+  ],
+  [
+   "J_DEV",
+   "22",
+   "GPIO for CH3"
+  ]
+ ],
+ "MOS1_GATE": [
+  [
+   "Q_mos1",
+   "G",
+   "gate"
+  ],
+  [
+   "R_gate1",
+   "2",
+   "gate series R (other->GPIO)"
+  ],
+  [
+   "R_pd1",
+   "1",
+   "gate pulldown (other->GND)"
+  ],
+  [
+   "J_DEV",
+   "18",
+   "GPIO MOS1"
+  ],
+  [
+   "R_gate1",
+   "1",
+   "to GPIO (same as J_DEV endpoint)"
+  ]
+ ],
+ "MOS1_DRAIN": [
+  [
+   "Q_mos1",
+   "D",
+   "drain"
+  ],
+  [
+   "D_fly1",
+   "A",
+   "flyback anode (cathode->GND)"
+  ],
+  [
+   "D_mos1",
+   "A",
+   "status LED anode (cathode->drain)"
+  ],
+  [
+   "D_mos1",
+   "K",
+   "status LED cathode"
+  ],
+  [
+   "J_MOS1",
+   "2",
+   "load- terminal"
+  ],
+  [
+   "R_mled1",
+   "2",
+   "LED limit (other->12V_LOAD)"
+  ]
+ ],
+ "MOS2_GATE": [
+  [
+   "Q_mos2",
+   "G",
+   "gate"
+  ],
+  [
+   "R_gate2",
+   "2",
+   "gate series R (other->GPIO)"
+  ],
+  [
+   "R_pd2",
+   "1",
+   "gate pulldown (other->GND)"
+  ],
+  [
+   "J_DEV",
+   "10",
+   "GPIO MOS2"
+  ],
+  [
+   "R_gate2",
+   "1",
+   "to GPIO (same as J_DEV endpoint)"
+  ]
+ ],
+ "MOS2_DRAIN": [
+  [
+   "Q_mos2",
+   "D",
+   "drain"
+  ],
+  [
+   "D_fly2",
+   "A",
+   "flyback anode (cathode->GND)"
+  ],
+  [
+   "D_mos2",
+   "A",
+   "status LED anode (cathode->drain)"
+  ],
+  [
+   "D_mos2",
+   "K",
+   "status LED cathode"
+  ],
+  [
+   "J_MOS2",
+   "2",
+   "load- terminal"
+  ],
+  [
+   "R_mled2",
+   "2",
+   "LED limit (other->12V_LOAD)"
+  ]
+ ],
+ "MOS3_GATE": [
+  [
+   "Q_mos3",
+   "G",
+   "gate"
+  ],
+  [
+   "R_gate3",
+   "2",
+   "gate series R (other->GPIO)"
+  ],
+  [
+   "R_pd3",
+   "1",
+   "gate pulldown (other->GND)"
+  ],
+  [
+   "J_DEV",
+   "17",
+   "GPIO MOS3"
+  ],
+  [
+   "R_gate3",
+   "1",
+   "to GPIO (same as J_DEV endpoint)"
+  ]
+ ],
+ "MOS3_DRAIN": [
+  [
+   "Q_mos3",
+   "D",
+   "drain"
+  ],
+  [
+   "D_fly3",
+   "A",
+   "flyback anode (cathode->GND)"
+  ],
+  [
+   "D_mos3",
+   "A",
+   "status LED anode (cathode->drain)"
+  ],
+  [
+   "D_mos3",
+   "K",
+   "status LED cathode"
+  ],
+  [
+   "J_MOS3",
+   "2",
+   "load- terminal"
+  ],
+  [
+   "R_mled3",
+   "2",
+   "LED limit (other->12V_LOAD)"
+  ]
+ ],
+ "MOS4_GATE": [
+  [
+   "Q_mos4",
+   "G",
+   "gate"
+  ],
+  [
+   "R_gate4",
+   "2",
+   "gate series R (other->GPIO)"
+  ],
+  [
+   "R_pd4",
+   "1",
+   "gate pulldown (other->GND)"
+  ],
+  [
+   "J_DEV",
+   "20",
+   "GPIO MOS4"
+  ],
+  [
+   "R_gate4",
+   "1",
+   "to GPIO (same as J_DEV endpoint)"
+  ]
+ ],
+ "MOS4_DRAIN": [
+  [
+   "Q_mos4",
+   "D",
+   "drain"
+  ],
+  [
+   "D_fly4",
+   "A",
+   "flyback anode (cathode->GND)"
+  ],
+  [
+   "D_mos4",
+   "A",
+   "status LED anode (cathode->drain)"
+  ],
+  [
+   "D_mos4",
+   "K",
+   "status LED cathode"
+  ],
+  [
+   "J_MOS4",
+   "2",
+   "load- terminal"
+  ],
+  [
+   "R_mled4",
+   "2",
+   "LED limit (other->12V_LOAD)"
+  ]
+ ],
+ "SV1": [
+  [
+   "J_SV1",
+   "3",
+   "PWM"
+  ],
+  [
+   "R_sv1",
+   "2",
+   "signal limit (other->GPIO)"
+  ],
+  [
+   "J_DEV",
+   "16",
+   "GPIO servo1"
+  ],
+  [
+   "R_sv1",
+   "1",
+   "to GPIO"
+  ]
+ ],
+ "SV2": [
+  [
+   "J_SV2",
+   "3",
+   "PWM"
+  ],
+  [
+   "R_sv2",
+   "2",
+   "signal limit (other->GPIO)"
+  ],
+  [
+   "J_DEV",
+   "14",
+   "GPIO servo2"
+  ],
+  [
+   "R_sv2",
+   "1",
+   "to GPIO"
+  ]
+ ],
+ "WS_3V3": [
+  [
+   "J_DEV",
+   "29",
+   "GPIO23 WS data"
+  ],
+  [
+   "R_ws1",
+   "1",
+   "series R (GPIO side)"
+  ],
+  [
+   "R_ws1",
+   "2",
+   "series R (source side)"
+  ],
+  [
+   "Q_ws",
+   "S",
+   "level-shift source (3.3V GPIO side)"
+  ]
+ ],
+ "WS_5V": [
+  [
+   "J_WS",
+   "3",
+   "DATA"
+  ],
+  [
+   "Q_ws",
+   "D",
+   "drain -> 5V data"
+  ],
+  [
+   "R_ws2",
+   "1",
+   "5V data pullup (other->5V)"
+  ]
+ ],
+ "PZEM_TX_3V3": [
+  [
+   "J_DEV",
+   "13",
+   "GPIO17 TX"
+  ],
+  [
+   "Q_tx",
+   "S",
+   "3.3V side"
+  ],
+  [
+   "R_tx33",
+   "2",
+   "3.3V pullup (other->3.3V)"
+  ]
+ ],
+ "PZEM_TX_5V": [
+  [
+   "Q_tx",
+   "D",
+   "5V side"
+  ],
+  [
+   "R_tx5",
+   "1",
+   "5V pullup (other->5V)"
+  ],
+  [
+   "J_PZEM",
+   "4",
+   "PZEM RX"
+  ]
+ ],
+ "PZEM_RX_5V": [
+  [
+   "J_PZEM",
+   "3",
+   "PZEM TX"
+  ],
+  [
+   "Q_rx",
+   "D",
+   "5V side"
+  ],
+  [
+   "R_rx5",
+   "1",
+   "5V pullup (other->5V)"
+  ]
+ ],
+ "PZEM_RX_3V3": [
+  [
+   "Q_rx",
+   "S",
+   "3.3V side"
+  ],
+  [
+   "R_rx33",
+   "2",
+   "3.3V pullup (other->3.3V)"
+  ],
+  [
+   "J_DEV",
+   "11",
+   "GPIO16 RX"
+  ]
+ ],
+ "FB": [
+  [
+   "U1",
+   "FB",
+   "feedback node"
+  ],
+  [
+   "R3",
+   "2",
+   "top of divider (other->5V)"
+  ],
+  [
+   "R4",
+   "1",
+   "bottom of divider (other->GND)"
+  ]
+ ],
+ "INA_SENSE_HI": [
+  [
+   "R_shunt",
+   "E1",
+   "sense + (shunt high side)"
+  ],
+  [
+   "U_INA",
+   "VIN+",
+   "redundant tap"
+  ]
+ ],
+ "INA_SENSE_LO": [
+  [
+   "R_shunt",
+   "E2",
+   "sense - (shunt low side)"
+  ],
+  [
+   "U_INA",
+   "VIN-",
+   "redundant tap"
+  ]
+ ],
+ "ADS_A0": [
+  [
+   "U_ADS",
+   "AIN0",
+   "pH"
+  ],
+  [
+   "J_ADS0",
+   "1",
+   "pH BNC"
+  ]
+ ],
+ "ADS_A1": [
+  [
+   "U_ADS",
+   "AIN1",
+   "TDS"
+  ],
+  [
+   "J_ADS1",
+   "1",
+   "TDS BNC"
+  ]
+ ],
+ "ADS_A2": [
+  [
+   "U_ADS",
+   "AIN2",
+   "turbidity"
+  ],
+  [
+   "J_ADS2",
+   "1",
+   "turbidity BNC"
+  ]
+ ],
+ "PRB1_CTL": [
+  [
+   "U_MCP",
+   "GPA0",
+   "GPA0 -> Q_prb1 gate"
+  ],
+  [
+   "Q_prb1",
+   "G",
+   "gate"
+  ],
+  [
+   "R_ppd1",
+   "1",
+   "gate pulldown (other->GND)"
+  ]
+ ],
+ "PRB1_V": [
+  [
+   "Q_prb1",
+   "D",
+   "drain -> V_PROBE"
+  ],
+  [
+   "J_PRB",
+   "1",
+   "V_PROBE1"
+  ]
+ ],
+ "PRB2_CTL": [
+  [
+   "U_MCP",
+   "GPA1",
+   "GPA1 -> Q_prb2 gate"
+  ],
+  [
+   "Q_prb2",
+   "G",
+   "gate"
+  ],
+  [
+   "R_ppd2",
+   "1",
+   "gate pulldown (other->GND)"
+  ]
+ ],
+ "PRB2_V": [
+  [
+   "Q_prb2",
+   "D",
+   "drain -> V_PROBE"
+  ],
+  [
+   "J_PRB",
+   "3",
+   "V_PROBE2"
+  ]
+ ],
+ "PRB3_CTL": [
+  [
+   "U_MCP",
+   "GPA2",
+   "GPA2 -> Q_prb3 gate"
+  ],
+  [
+   "Q_prb3",
+   "G",
+   "gate"
+  ],
+  [
+   "R_ppd3",
+   "1",
+   "gate pulldown (other->GND)"
+  ]
+ ],
+ "PRB3_V": [
+  [
+   "Q_prb3",
+   "D",
+   "drain -> V_PROBE"
+  ],
+  [
+   "J_PRB",
+   "5",
+   "V_PROBE3"
+  ]
+ ],
+ "PWR_LED": [
+  [
+   "D3",
+   "A",
+   "LED anode"
+  ],
+  [
+   "R5",
+   "2",
+   "limit (other->3V3)"
+  ]
+ ],
+ "PUMP_STOP": [
+  [
+   "J_DEV",
+   "12",
+   "GPIO27 PUMP_STOP"
+  ],
+  [
+   "R_led",
+   "1",
+   "330R LED limit (other->GPIO)"
+  ],
+  [
+   "R_led",
+   "2",
+   "LED limit (other->anode)"
+  ],
+  [
+   "U_OPTO",
+   "A",
+   "PC817 LED anode (cathode->GND)"
+  ],
+  [
+   "R_pdpm",
+   "1",
+   "GPIO27 pulldown (other->GND)"
+  ]
+ ],
+ "PUMP_OUT": [
+  [
+   "JP_VCC",
+   "2",
+   "VCC_SEL COM (selected 3.3/5V)"
+  ],
+  [
+   "R_pl",
+   "1",
+   "output pullup (other->COM)"
+  ],
+  [
+   "U_OPTO",
+   "COL",
+   "PC817 collector"
+  ],
+  [
+   "J_PUMP",
+   "1",
+   "COM"
+  ]
+ ],
+ "PUMP_CASCADE": [
+  [
+   "U_OPTO",
+   "EM",
+   "PC817 emitter -> opto2 collector"
+  ],
+  [
+   "U_OPTO2",
+   "COL",
+   "PC817-2 collector"
+  ]
+ ],
+ "GND_ISO": [
+  [
+   "U_OPTO2",
+   "EM",
+   "PC817-2 emitter -> isolated return"
+  ],
+  [
+   "J_PUMP",
+   "2",
+   "NO (default)"
+  ],
+  [
+   "JP_NCNO",
+   "1",
+   "NO jumper pin"
+  ],
+  [
+   "JP_NCNO",
+   "2",
+   "NO jumper common"
+  ]
+ ],
+ "PUMP_NC": [
+  [
+   "J_PUMP",
+   "3",
+   "NC (spare)"
+  ],
+  [
+   "JP_NCNO",
+   "3",
+   "NC jumper pin"
+  ]
+ ],
+ "HW_FLOAT": [
+  [
+   "J_HW",
+   "1",
+   "FLOAT_NC (+12V side)"
+  ],
+  [
+   "R_hw",
+   "2",
+   "1k limit (other->12V)"
+  ],
+  [
+   "U_OPTO2",
+   "A",
+   "PC817-2 LED anode (cathode->via R_hw from 12V)"
+  ]
+ ],
+ "GATE_Q1": [
+  [
+   "Q1",
+   "G",
+   "P-MOS gate"
+  ],
+  [
+   "R1",
+   "1",
+   "gate pulldown (other->GND)"
+  ],
+  [
+   "D2",
+   "A",
+   "zener anode (cathode->GND)"
+  ],
+  [
+   "R2",
+   "1",
+   "gate-source resistor (other->GND via Q1.S)"
+  ]
+ ]
+}
